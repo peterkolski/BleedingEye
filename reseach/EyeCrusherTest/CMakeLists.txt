@@ -32,13 +32,17 @@ set( ${APP_NAME}_SOURCE_FILES
 
 # ------------------------ AddOns OF INTERNAL ------------
 set( OFX_ADDONS_ACTIVE
-        #        ofxXmlSettings
-        #        ofxOsc
+                ofxXmlSettings
+                ofxOsc
                 ofxGui
-)
+        )
 
 # ------------------------ AddOns EXTERNAL ----------------
 #include( ${OF_DIRECTORY}/addons/external/ofxFluid/ )
+#        ofxFlowTools
+#        ofxTwistedRibbon
+#        ofxOneEuroFilter
+
 
 # ========================================================
 # ===================== OpenFrameworks ===================
