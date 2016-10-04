@@ -29,20 +29,22 @@ set( ${APP_NAME}_SOURCE_FILES
         ../../shared/FlowPoint.cpp
         )
 
+include( ${OF_DIRECTORY}/CMake/addOns/external/ofxTwistedRibbon.cmake )
+#include( ${OF_DIRECTORY}/CMake/addOns/external/ofxOneEuroFilter.cmake )
+#include( ${OF_DIRECTORY}/CMake/addOns/external/ofxFlowTools.cmake )
+#include( ${OF_DIRECTORY}/CMake/addOns/external/ofxMidi.cmake )
 
-# ------------------------ AddOns OF INTERNAL ------------
+# ------------------------ AddOns ------------
 set( OFX_ADDONS_ACTIVE
                 ofxXmlSettings
                 ofxOsc
                 ofxGui
+
+                ofxTwistedRibbon
+        #        ofxFlowTools
+        #        ofxOneEuroFilter
+        #       ofxMidi
         )
-
-# ------------------------ AddOns EXTERNAL ----------------
-#include( ${OF_DIRECTORY}/addons/external/ofxFluid/ )
-#        ofxFlowTools
-#        ofxTwistedRibbon
-#        ofxOneEuroFilter
-
 
 # ========================================================
 # ===================== OpenFrameworks ===================
