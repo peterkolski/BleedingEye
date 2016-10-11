@@ -20,6 +20,10 @@ set( OF_DIRECTORY /Users/sonneundasche/programming/of )
 set( ${APP_NAME}_SOURCE_FILES
         src/main.cpp
         src/ofApp.cpp
+        )
+
+# ------------------------ Shared ------------------------
+list( APPEND ${APP_NAME}_SOURCE_FILES
         ../../shared/NetworkNode.cpp
         ../../shared/NetworkVisual.cpp
         ../../shared/DancePerfOSC.cpp
@@ -31,12 +35,12 @@ set( ${APP_NAME}_SOURCE_FILES
 
 include_directories( ../../shared )
 
+# ------------------------ AddOns ------------
 include( ${OF_DIRECTORY}/CMake/addOns/external/ofxTwistedRibbon.cmake )
 include( ${OF_DIRECTORY}/CMake/addOns/external/ofxOneEuroFilter.cmake )
 include( ${OF_DIRECTORY}/CMake/addOns/external/ofxFlowTools.cmake )
 include( ${OF_DIRECTORY}/CMake/addOns/external/ofxMidi.cmake )
 
-# ------------------------ AddOns ------------
 set( OFX_ADDONS_ACTIVE
                 ofxXmlSettings
                 ofxOsc
