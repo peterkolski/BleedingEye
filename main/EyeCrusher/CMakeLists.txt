@@ -14,27 +14,41 @@ project(        BleedingEye )
 set( APP_NAME   EyeCrusher )
 
 # ------------------------ OF Path -----------------------
-set( OF_DIRECTORY /Users/sonneundasche/programming/of )
+set( OF_DIRECTORY_BY_USER /Users/sonneundasche/programming/of )
 
 # --------------------- Source Files ---------------------
 set( ${APP_NAME}_SOURCE_FILES
         src/main.cpp
-        src/ofApp.cpp )
+        src/ofApp.cpp
+        )
 
+# ------------------------ Shared ------------------------
+list( APPEND ${APP_NAME}_SOURCE_FILES
+        ../../shared/NetworkNode.cpp
+        ../../shared/NetworkVisual.cpp
+        ../../shared/DancePerfOSC.cpp
+        ../../shared/videoDirectory.cpp
+        ../../shared/MidiValues.cpp
+        ../../shared/LinesHorizontal.cpp
+        ../../shared/FlowPoint.cpp
+        )
 
-# ------------------------ AddOns OF INTERNAL ------------
+include_directories( ../../shared )
+
+# ------------------------ AddOns ------------
 set( OFX_ADDONS_ACTIVE
-        #        ofxXmlSettings
-        #        ofxOsc
-        #        ofxGui
-)
+                ofxXmlSettings
+                ofxOsc
+                ofxGui
 
-# ------------------------ AddOns EXTERNAL ----------------
-#include( ${OF_DIRECTORY}/addons/external/ofxFluid/ )
+                ofxTwistedRibbon
+                ofxOneEuroFilter
+                ofxFlowTools
+                ofxMidi
+        )
 
-# ========================================================
-# ===================== OpenFrameworks ===================
-# ========================================================
-include( ${OF_DIRECTORY}/CMake/modules/openFrameworksGlobal.cmake )
-# ========================================================
-
+# =========================================================================
+# ============================== OpenFrameworks ===========================
+# =========================================================================
+include( ${OF_DIRECTORY_BY_USER}/CMake/modules/openFrameworksGlobal.cmake )
+# =========================================================================
