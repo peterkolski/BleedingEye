@@ -10,7 +10,7 @@
 #define NetworkVisual_hpp
 
 #include "ofMain.h"
-#include <NetworkNode.hpp>
+#include "NetworkNode.hpp"
 
 namespace bildpeter {
     

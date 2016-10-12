@@ -11,7 +11,7 @@ cmake_policy(SET CMP0042 NEW)
 # ========================================================
 # ------------------------- Names  -----------------------
 project(        BleedingEye )
-set( APP_NAME   EyeCrusher )
+set( APP_NAME   EyeCrusher_TEST )
 
 # ------------------------ OF Path -----------------------
 set( OF_DIRECTORY_BY_USER /Users/sonneundasche/programming/of )
