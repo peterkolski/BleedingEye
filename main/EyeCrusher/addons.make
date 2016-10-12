@@ -1,8 +1,0 @@
-ofxFlowTools
-ofxGui
-ofxHistoryPlot
-ofxKinect
-ofxOneEuroFilter
-ofxOsc
-ofxTwistedRibbon
-ofxXmlSettings
