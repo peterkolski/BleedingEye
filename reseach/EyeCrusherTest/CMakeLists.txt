@@ -14,7 +14,7 @@ project(        BleedingEye )
 set( APP_NAME   EyeCrusher_TEST )
 
 # ------------------------ OF Path -----------------------
-set( OF_DIRECTORY /Users/sonneundasche/programming/of )
+set( OF_DIRECTORY_BY_USER /Users/sonneundasche/programming/of )
 
 # --------------------- Source Files ---------------------
 set( ${APP_NAME}_SOURCE_FILES
@@ -36,11 +36,6 @@ list( APPEND ${APP_NAME}_SOURCE_FILES
 include_directories( ../../shared )
 
 # ------------------------ AddOns ------------
-include( ${OF_DIRECTORY}/CMake/addOns/external/ofxTwistedRibbon.cmake )
-include( ${OF_DIRECTORY}/CMake/addOns/external/ofxOneEuroFilter.cmake )
-include( ${OF_DIRECTORY}/CMake/addOns/external/ofxFlowTools.cmake )
-include( ${OF_DIRECTORY}/CMake/addOns/external/ofxMidi.cmake )
-
 set( OFX_ADDONS_ACTIVE
                 ofxXmlSettings
                 ofxOsc
@@ -52,9 +47,8 @@ set( OFX_ADDONS_ACTIVE
                 ofxMidi
         )
 
-# ========================================================
-# ===================== OpenFrameworks ===================
-# ========================================================
-include( ${OF_DIRECTORY}/CMake/modules/openFrameworksGlobal.cmake )
-# ========================================================
-
+# =========================================================================
+# ============================== OpenFrameworks ===========================
+# =========================================================================
+include( ${OF_DIRECTORY_BY_USER}/CMake/modules/openFrameworksGlobal.cmake )
+# =========================================================================
