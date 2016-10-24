@@ -80,7 +80,7 @@ void ofApp::keyPressed(int key){
     
     switch ( key ) {
         case 'r':   network.setRandomPositions( guiNumPoints ); break;
-        case 'p':   network.isPointDrawing = !network.isPointDrawing;   break;
+        case 'p':   network.isPointDrawing_ = !network.isPointDrawing_;   break;
         case 's':   controlNextSet();                   break;
 //        case 'i':
 //            inputIsRandom = !inputIsRandom;

@@ -24,22 +24,22 @@ public:
 
     void setRandomPositions( int _num );
 
-    bool isPointDrawing = false;
+    bool isPointDrawing_ = false;
 
 private:
-    bildpeter::NetworkVisual network;
-    float valMovement;
-    float valOpacity;
-    float movementMax = 500.0;
-    float distanceMaxDifference = 500.0;
-    float distanceMaxCenter = 500.0;
-    float distanceDifference;
-    float distanceCenter;
-    float minDist;
-    float maxDist;
-    float netMoveSensor;
-    float netDiffSensor;
-    float netCenterSensor;
+    bildpeter::NetworkVisual network_;
+    float valMovement_;
+    float valOpacity_;
+    float movementMax_ = 500.0;
+    float distanceMaxDifference_ = 500.0;
+    float distanceMaxCenter_ = 500.0;
+    float distanceDifference_;
+    float distanceCenter_;
+    float minDist_;
+    float maxDist_;
+    float netMoveSensor_;
+    float netDiffSensor_;
+    float netCenterSensor_;
 
 };
 }
