@@ -1,22 +1,24 @@
 #pragma once
 
 #include "ofMain.h"
+
 #include "ofxGui.h"
+#include "ofxTwistedRibbon.h"
+#include "ofxMidi.h"
+#include "ofxFlowTools.h"
+
 #include "NetworkNode.hpp"
 #include "NetworkVisual.hpp"
 #include "DancePerfOSC.hpp"
-#include "ofxTwistedRibbon.h"
-#include "ofxMidi.h"
 #include "videoDirectory.hpp"
 #include "MidiValues.hpp"
 #include "LinesHorizontal.hpp"
 #include "FlowPoint.hpp"
-#include "ofxFlowTools.h"
 
 // -------------------------------------------------------------------
 // -------------------------------------------------------------------
 
-// For midi we need multiple inheritance
+/// For midi we need multiple inheritance
 class ofApp : public ofBaseApp, public ofxMidiListener{
 
 	public:

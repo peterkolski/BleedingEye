@@ -13,10 +13,7 @@
 #include "ofxMidi.h"
 
 
-/*
-    - change to unordered_map with names
- 
- */
+//    TODO Done? change to unordered_map with names
 
 namespace bildpeter{
 
