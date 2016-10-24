@@ -66,7 +66,7 @@ void Network::networkUpdate( float fade, float movement, float distCenter, float
 void Network::networkDraw( float fade )
 {
     if ( fade ) {
-        if ( isPointDrawing ) network.drawPoints( 2, ofColor_::gray );
+        if ( isPointDrawing ) network.drawPoints( 2, ofColor::gray );
 
         ofPushMatrix( );
         {
