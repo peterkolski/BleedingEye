@@ -58,7 +58,9 @@ void ofApp::update(){
     
     videoUpdate();
     networkUpdate( midiUC.getValue( "networkFade" ), midiUC.getValue( "networkMovement" ),
-                   midiUC.getValue( "networkDistCenter" ), midiUC.getValue( "networkDistDiff" ) );
+                   midiUC.getValue( "networkDistCenter" ), midiUC.getValue( "networkDistDiff" ), armValue, backValue,
+                   shoulderValue, midiUC.getValue( "networkMovementSensor" ),
+                   midiUC.getValue( "networkDistCenterSensor" ), midiUC.getValue( "networkDistDiffSensor" ) );
     linesUpdate();
     flow.update( midiUC.getValue( "flowFade" ), midiUC.getValue( "flowStrength" ), armValue, shoulderValue, backValue,
                  midiUC.getValue( "flowStrengthSensor" ) );
@@ -75,7 +77,7 @@ void ofApp::draw(){
 
     linesDraw();
 
-    networkDraw();
+    networkDraw( midiUC.getValue( "networkFade" ) );
     
     ribbon.draw( midiUC, "ribbonFade" );
     flow.draw( midiUC.getValue( "flowFade" ) );
@@ -193,10 +195,11 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 
 void ofApp::guiUpdate()
 {
-    minDist             = guiDistCenter - guiDistDiff / 2;
-    maxDist             = guiDistCenter + guiDistDiff / 2;
-    valOpacity          = oscData[ 0 ] * guiOscOpacity;
-    valMovement         = oscData[ 0 ] * guiOscMaxMovement;
+    // For Network
+//    minDist             = guiDistCenter - guiDistDiff / 2;
+//    maxDist             = guiDistCenter + guiDistDiff / 2;
+//    valOpacity          = oscData[ 0 ] * guiOscOpacity;
+//    valMovement         = oscData[ 0 ] * guiOscMaxMovement;
 }
 
 //--------------------------------------------------------------
@@ -244,10 +247,16 @@ void ofApp::videoNext()
 
 //--------------------------------------------------------------
 
-void ofApp::networkUpdate( float fade, float movement, float distCenter, float distDiff )
+void ofApp::networkUpdate( float fade, float movement, float distCenter, float distDiff, float arm, float back,
+                           float shoulder, float movementSensor, float distCenterSensor, float distDiffSensor )
 {
+    netMoveSensor       = ( 1 - arm ) * movementSensor;
+    netDiffSensor       = ( 1 - back ) * distDiffSensor;
+    netCenterSensor     = ( 1 - shoulder ) * distCenterSensor;
+
     if ( fade )
     {
+        // TODO get rid of copying
         auto    opacityMain         = fade;
 //        auto    opacityFromSensor   = midiUC.getValue("networkFadeSensor" ) * oscData[ 2 ];
         auto    movementMain        = movement;
@@ -272,9 +281,9 @@ void ofApp::networkUpdate( float fade, float movement, float distCenter, float d
 
 //--------------------------------------------------------------
 
-void ofApp::networkDraw()
+void ofApp::networkDraw( float fade )
 {
-    if ( midiUC.getValue("networkFade") )
+    if ( fade )
     {
         if ( isPointDrawing )   network.drawPoints( 2, ofColor::gray );
         
@@ -423,7 +432,4 @@ void ofApp::controlSet1()
     
     linesSensor         = ( 1 - armValue ) * midiUC.getValue( "linesSpeedSensor" );
 
-    netMoveSensor       = ( 1 - armValue ) * midiUC.getValue( "networkMovementSensor" );
-    netDiffSensor       = ( 1 - backValue ) * midiUC.getValue( "networkDistDiffSensor" );
-    netCenterSensor     = ( 1 - shoulderValue ) * midiUC.getValue( "networkDistCenterSensor" );
 }

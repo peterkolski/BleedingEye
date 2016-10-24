@@ -57,8 +57,9 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     bildpeter::VideoDirectoryPlayer     videoA, videoB;
     
     // --- Network
-    void networkUpdate( float fade, float movement, float distCenter, float distDiff );
-    void    networkDraw();
+    void networkUpdate( float fade, float movement, float distCenter, float distDiff, float arm, float back,
+                        float shoulder, float movementSensor, float distCenterSensor, float distDiffSensor );
+    void networkDraw( float fade );
     bildpeter::NetworkVisual    network;
 
     // --- VALUES
@@ -69,6 +70,8 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     float           distanceMaxCenter       = 500.0;
     float           distanceDifference;
     float           distanceCenter;
+    float           minDist, maxDist;
+    float   netMoveSensor, netConnectionSensor, netDiffSensor, netCenterSensor;
 
 
     // --- LINES
@@ -97,7 +100,6 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     void    controlNextSet();
     float   videoASensor, videoBSensor;
     float   linesSensor;
-    float   netMoveSensor, netConnectionSensor, netDiffSensor, netCenterSensor;
     float   armValue, shoulderValue, backValue, legValue;
 
 
@@ -112,7 +114,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     ofxFloatSlider  guiOscShift;
     ofxFloatSlider  guiOscMaxMovement;
     ofxPanel        gui;
-    float           minDist, maxDist;
+
 
 
     
