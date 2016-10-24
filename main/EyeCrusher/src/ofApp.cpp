@@ -1,13 +1,5 @@
 #include "ofApp.h"
 
-#include "ofMain.h"
-#include "ofxMidi.h"
-#include "MidiValues.hpp"
-
-#include "Ribbon.h"
-#include "Flow.h"
-#include "Network.h"
-
 //--------------------------------------------------------------
 void ofApp::setup(){
 //    ofEnableAntiAliasing();

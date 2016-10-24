@@ -1,20 +1,20 @@
 #pragma once
 
-#include <Flow.h>
+//#include <Flow.h>
 #include "ofMain.h"
-
 #include "ofxGui.h"
-
 #include "ofxMidi.h"
 
-#include "Ribbon.h"
-
 #include "LinesHorizontal.hpp"
-#include "NetworkNode.hpp"
-#include "NetworkVisual.hpp"
+//#include "NetworkNode.hpp"
+//#include "NetworkVisual.hpp"
 #include "DancePerfOSC.hpp"
 #include "videoDirectory.hpp"
 #include "MidiValues.hpp"
+
+#include "Ribbon.h"
+#include "Flow.h"
+#include "Network.h"
 
 
 // -------------------------------------------------------------------
