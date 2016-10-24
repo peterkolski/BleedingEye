@@ -125,9 +125,6 @@ void ofApp::keyPressed(int key){
 //--------------------------------------------------------------
 
 void ofApp::newMidiMessage(ofxMidiMessage& msg) {
-//    if ( msg.channel == 4) {
-//        midiXS.updateMessageValues( msg );
-//    }
  
     if( msg.channel == 1 )
     {
