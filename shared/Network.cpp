@@ -7,7 +7,7 @@
 namespace bildpeter
 {
 
-void Network::networkSetup( int numPoints )
+void Network::setup( int numPoints )
 {
     network.setCorrelation( 777 );
 
@@ -32,8 +32,8 @@ void Network::setRandomPositions( int _num )
     }
 }
 
-void Network::networkUpdate( float fade, float movement, float distCenter, float distDiff, float arm, float back,
-                             float shoulder, float movementSensor, float distCenterSensor, float distDiffSensor )
+void Network::update( float fade, float movement, float distCenter, float distDiff, float arm, float back,
+                      float shoulder, float movementSensor, float distCenterSensor, float distDiffSensor )
 {
     netMoveSensor = ( 1 - arm ) * movementSensor;
     netDiffSensor = ( 1 - back ) * distDiffSensor;
@@ -63,7 +63,7 @@ void Network::networkUpdate( float fade, float movement, float distCenter, float
     }
 }
 
-void Network::networkDraw( float fade )
+void Network::draw( float fade )
 {
     if ( fade ) {
         if ( isPointDrawing ) network.drawPoints( 2, ofColor::gray );

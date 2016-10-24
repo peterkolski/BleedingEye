@@ -10,17 +10,19 @@
 namespace bildpeter
 {
 
+// TODO comments
+
 class Network
 {
 public:
-    void networkSetup( int numPoints );
+    void setup( int numPoints );
+
+    void update( float fade, float movement, float distCenter, float distDiff, float arm, float back,
+                 float shoulder, float movementSensor, float distCenterSensor, float distDiffSensor );
+
+    void draw( float fade );
 
     void setRandomPositions( int _num );
-
-    void networkUpdate( float fade, float movement, float distCenter, float distDiff, float arm, float back,
-                        float shoulder, float movementSensor, float distCenterSensor, float distDiffSensor );
-
-    void networkDraw( float fade );
 
     bool isPointDrawing = false;
 

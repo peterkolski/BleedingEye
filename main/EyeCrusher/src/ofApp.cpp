@@ -37,7 +37,7 @@ void ofApp::setup(){
     setupMidi();
 
     flow.setup( ofColor::lightBlue );
-    network.networkSetup( guiNumPoints );
+    network.setup( guiNumPoints );
 }
 
 //--------------------------------------------------------------
@@ -48,10 +48,10 @@ void ofApp::update(){
     controlUpdate();
     
     videoUpdate();
-    network.networkUpdate( midiUC.getValue( "networkFade" ), midiUC.getValue( "networkMovement" ),
-                            midiUC.getValue( "networkDistCenter" ), midiUC.getValue( "networkDistDiff" ), armValue, backValue,
-                            shoulderValue, midiUC.getValue( "networkMovementSensor" ),
-                            midiUC.getValue( "networkDistCenterSensor" ), midiUC.getValue( "networkDistDiffSensor" ) );
+    network.update( midiUC.getValue( "networkFade" ), midiUC.getValue( "networkMovement" ),
+                    midiUC.getValue( "networkDistCenter" ), midiUC.getValue( "networkDistDiff" ), armValue, backValue,
+                    shoulderValue, midiUC.getValue( "networkMovementSensor" ),
+                    midiUC.getValue( "networkDistCenterSensor" ), midiUC.getValue( "networkDistDiffSensor" ) );
     linesUpdate();
     flow.update( midiUC.getValue( "flowFade" ), midiUC.getValue( "flowStrength" ), armValue, shoulderValue, backValue,
                  midiUC.getValue( "flowStrengthSensor" ) );
@@ -68,7 +68,7 @@ void ofApp::draw(){
 
     linesDraw();
 
-    network.networkDraw( midiUC.getValue( "networkFade" ) );
+    network.draw( midiUC.getValue( "networkFade" ) );
     
     ribbon.draw( midiUC, "ribbonFade" );
     flow.draw( midiUC.getValue( "flowFade" ) );
