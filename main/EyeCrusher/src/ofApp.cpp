@@ -37,7 +37,7 @@ void ofApp::setup(){
     setupMidi();
 
     flow.setup( ofColor::lightBlue );
-    Network::networkSetup();
+    Network::networkSetup( guiNumPoints );
 }
 
 //--------------------------------------------------------------

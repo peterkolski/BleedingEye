@@ -5,16 +5,13 @@
 #ifndef BLEEDINGEYE_NETWORK_H
 #define BLEEDINGEYE_NETWORK_H
 
-
-#include <Flow.h>
-#include "ofxMidi.h"
 #include "NetworkVisual.hpp"
 
 class Network {
 
 public:
     // --- Network
-    void networkSetup();
+    void networkSetup( int numPoints );
 
     bildpeter::NetworkVisual    network;
     // --- VALUES
