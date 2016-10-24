@@ -26,6 +26,7 @@ list( APPEND ${APP_NAME}_SOURCE_FILES
         ../../shared/Ribbon.cpp
         ../../shared/Flow.cpp
         ../../shared/Network.cpp
+        ../../shared/Lines.cpp
         )
 
 # ------------------------ AddOns ------------

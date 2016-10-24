@@ -55,12 +55,6 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     bildpeter::VideoDirectoryPlayer     videoA, videoB;
 
 
-    // --- LINES
-    void    linesSetup();
-    void    linesUpdate();
-    void    linesDraw();
-    bildpeter::LinesHorizontal  lines;
-
     // --- OSC
     bildpeter::SensorOSC    oscSensor;
     vector< float >         oscData;
@@ -78,7 +72,6 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     void    controlSet1();
     void    controlNextSet();
     float   videoASensor, videoBSensor;
-    float   linesSensor;
     float   armValue, shoulderValue, backValue, legValue;
 
 

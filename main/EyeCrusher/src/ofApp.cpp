@@ -1,4 +1,5 @@
 #include "ofApp.h"
+#include "Lines.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -26,7 +27,7 @@ void ofApp::setup(){
     videoA.play();
     videoB.play();
     
-    linesSetup();
+    Lines::linesSetup();
     
     // --- MIDI
     midiIn.openPort( 0 );
@@ -52,7 +53,8 @@ void ofApp::update(){
                     midiUC.getValue( "networkDistCenter" ), midiUC.getValue( "networkDistDiff" ), armValue, backValue,
                     shoulderValue, midiUC.getValue( "networkMovementSensor" ),
                     midiUC.getValue( "networkDistCenterSensor" ), midiUC.getValue( "networkDistDiffSensor" ) );
-    linesUpdate();
+    Lines::linesUpdate( midiUC.getValue( "linesFade" ), midiUC.getValue( "linesSpeed" ), midiUC.getValue( "linesSpeedSensor" ),
+                        armValue );
     flow.update( midiUC.getValue( "flowFade" ), midiUC.getValue( "flowStrength" ), armValue, shoulderValue, backValue,
                  midiUC.getValue( "flowStrengthSensor" ) );
 
@@ -65,11 +67,9 @@ void ofApp::draw(){
 //    ofBackgroundGradient( ofColor( 0 ), ofColor( 100 ) , OF_GRADIENT_CIRCULAR );
     
     videoDraw();
-
-    linesDraw();
+    Lines::linesDraw( midiUC.getValue( "linesFade" ), midiUC.getValue( "linesColor" ) );
 
     network.draw( midiUC.getValue( "networkFade" ) );
-    
     ribbon.draw( midiUC, "ribbonFade" );
     flow.draw( midiUC.getValue( "flowFade" ) );
 }
@@ -217,44 +217,6 @@ void ofApp::videoNext()
 
 //--------------------------------------------------------------
 
-void ofApp::linesSetup()
-{
-    lines.setup( 20, 2.0, 3.0, ofGetScreenHeight() / 3, ofGetScreenHeight() * 2 / 3 );
-    lines.setSpeedFactor( 1.0 );
-}
-
-//--------------------------------------------------------------
-
-void ofApp::linesUpdate()
-{
-    lines.setSpeedFactor( ofClamp( midiUC.getValue( "linesSpeed" ) - linesSensor, 0.0, 1.0 ) );
-    lines.setFade( midiUC.getValue( "linesFade" ) );
-    lines.update();
-}
-
-//--------------------------------------------------------------
-
-void ofApp::linesDraw()
-{
-    if ( midiUC.getValue( "linesFade" ) )
-    {
-        auto brightness = 255.0 * midiUC.getValue( "linesColor" );
-        auto alpha      = 255.0 * midiUC.getValue("linesFade");
-        auto color      = ofColor(brightness, brightness, brightness, alpha );
-        
-        ofPushStyle();
-        {
-//            ofSetColor(brightness, brightness, brightness, alpha );
-            lines.setColor( color );
-            lines.draw();
-        }
-        ofPopStyle();
-    }
-}
-
-
-//--------------------------------------------------------------
-
 void    ofApp::adjustSensitivity()
 {
     for ( auto &sensorValue : oscData )
@@ -336,8 +298,4 @@ void ofApp::controlSet1()
 
     videoASensor        = ( 1 - armValue ) * midiUC.getValue( "videoSensorA" );
     videoBSensor        = ( 1 - backValue ) * midiUC.getValue( "videoSensorB" );
-
-    
-    linesSensor         = ( 1 - armValue ) * midiUC.getValue( "linesSpeedSensor" );
-
 }
