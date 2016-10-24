@@ -7,13 +7,13 @@
 namespace bildpeter
 {
 
-void Lines::linesSetup()
+void Lines::setup()
 {
     lines_.setup( 20, 2.0, 3.0, ofGetScreenHeight( ) / 3, ofGetScreenHeight( ) * 2 / 3 );
     lines_.setSpeedFactor( 1.0 );
 }
 
-void Lines::linesUpdate( float fade, float speed, float speedSensor, float arm )
+void Lines::update( float fade, float speed, float speedSensor, float arm )
 {
     linesSensor_ = ( 1 - arm ) * speedSensor;
     lines_.setSpeedFactor( ofClamp( speed - linesSensor_, 0.0, 1.0 ) );
@@ -21,7 +21,7 @@ void Lines::linesUpdate( float fade, float speed, float speedSensor, float arm )
     lines_.update( );
 }
 
-void Lines::linesDraw( float fade, float brightness )
+void Lines::draw( float fade, float brightness )
 {
     if ( fade ) {
         auto _brightness = 255.0 * brightness;

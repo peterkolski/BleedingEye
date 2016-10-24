@@ -17,11 +17,11 @@ class Lines
 {
 
 public:
-    void linesSetup();
+    void setup();
 
-    void linesUpdate( float fade, float speed, float speedSensor, float arm );
+    void update( float fade, float speed, float speedSensor, float arm );
 
-    void linesDraw( float fade, float brightness );
+    void draw( float fade, float brightness );
 
 private:
     bildpeter::LinesHorizontal lines_;

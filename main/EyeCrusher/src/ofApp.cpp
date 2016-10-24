@@ -25,8 +25,8 @@ void ofApp::setup(){
     videoB.loadDirectory( "/Users/sonneundasche/Programming/ofx/apps/LacunExh16/_excluded/videosB/" );
     videoA.play();
     videoB.play();
-    
-    lines.linesSetup();
+
+    lines.setup( );
     
     // --- MIDI
     midiIn.openPort( 0 );
@@ -52,8 +52,9 @@ void ofApp::update(){
                     midiUC.getValue( "networkDistCenter" ), midiUC.getValue( "networkDistDiff" ), armValue, backValue,
                     shoulderValue, midiUC.getValue( "networkMovementSensor" ),
                     midiUC.getValue( "networkDistCenterSensor" ), midiUC.getValue( "networkDistDiffSensor" ) );
-    lines.linesUpdate( midiUC.getValue( "linesFade" ), midiUC.getValue( "linesSpeed" ), midiUC.getValue( "linesSpeedSensor" ),
-                        armValue );
+    lines.update( midiUC.getValue( "linesFade" ), midiUC.getValue( "linesSpeed" ),
+                  midiUC.getValue( "linesSpeedSensor" ),
+                  armValue );
     flow.update( midiUC.getValue( "flowFade" ), midiUC.getValue( "flowStrength" ), armValue, shoulderValue, backValue,
                  midiUC.getValue( "flowStrengthSensor" ) );
 
@@ -66,7 +67,7 @@ void ofApp::draw(){
 //    ofBackgroundGradient( ofColor( 0 ), ofColor( 100 ) , OF_GRADIENT_CIRCULAR );
     
     videoDraw();
-    lines.linesDraw( midiUC.getValue( "linesFade" ), midiUC.getValue( "linesColor" ) );
+    lines.draw( midiUC.getValue( "linesFade" ), midiUC.getValue( "linesColor" ) );
 
     network.draw( midiUC.getValue( "networkFade" ) );
     ribbon.draw( midiUC, "ribbonFade" );
