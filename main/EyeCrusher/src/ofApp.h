@@ -93,7 +93,4 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     ofxFloatSlider  guiOscShift;
     ofxFloatSlider  guiOscMaxMovement;
     ofxPanel        gui;
-
-    ofEasyCam       camera;
-    ofEasyCam           cam;
 };
