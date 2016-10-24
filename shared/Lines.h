@@ -24,8 +24,8 @@ public:
     void linesDraw( float fade, float brightness );
 
 private:
-    bildpeter::LinesHorizontal lines;
-    float linesSensor;
+    bildpeter::LinesHorizontal lines_;
+    float linesSensor_;
 };
 
 }
