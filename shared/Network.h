@@ -22,6 +22,8 @@ public:
 
     void networkDraw( float fade );
 
+    bool isPointDrawing = false;
+
 private:
     bildpeter::NetworkVisual network;
     float valMovement;
@@ -36,7 +38,7 @@ private:
     float netMoveSensor;
     float netDiffSensor;
     float netCenterSensor;
-    bool isPointDrawing = false;
+
 };
 }
 

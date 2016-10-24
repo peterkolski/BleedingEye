@@ -48,6 +48,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 	// TODO easier construction
 	bildpeter::Ribbon   ribbon;
     bildpeter::Flow     flow;
+    bildpeter::Network  network;
 
     // --- Video
     void    videoUpdate();

@@ -37,7 +37,7 @@ void ofApp::setup(){
     setupMidi();
 
     flow.setup( ofColor::lightBlue );
-    Network::networkSetup( guiNumPoints );
+    network.networkSetup( guiNumPoints );
 }
 
 //--------------------------------------------------------------
@@ -48,7 +48,7 @@ void ofApp::update(){
     controlUpdate();
     
     videoUpdate();
-    Network::networkUpdate( midiUC.getValue( "networkFade" ), midiUC.getValue( "networkMovement" ),
+    network.networkUpdate( midiUC.getValue( "networkFade" ), midiUC.getValue( "networkMovement" ),
                             midiUC.getValue( "networkDistCenter" ), midiUC.getValue( "networkDistDiff" ), armValue, backValue,
                             shoulderValue, midiUC.getValue( "networkMovementSensor" ),
                             midiUC.getValue( "networkDistCenterSensor" ), midiUC.getValue( "networkDistDiffSensor" ) );
@@ -68,22 +68,19 @@ void ofApp::draw(){
 
     linesDraw();
 
-    Network::networkDraw( midiUC.getValue( "networkFade" ) );
+    network.networkDraw( midiUC.getValue( "networkFade" ) );
     
     ribbon.draw( midiUC, "ribbonFade" );
     flow.draw( midiUC.getValue( "flowFade" ) );
 }
-//--------------------------------------------------------------
-//--------------------------------------------------------------
 
-//--------------------------------------------------------------
 //--------------------------------------------------------------
 
 void ofApp::keyPressed(int key){
     
     switch ( key ) {
-        case 'r':   Network::setRandomPositions( guiNumPoints ); break;
-        case 'p':   Network::isPointDrawing = !Network::isPointDrawing;   break;
+        case 'r':   network.setRandomPositions( guiNumPoints ); break;
+        case 'p':   network.isPointDrawing = !network.isPointDrawing;   break;
         case 's':   controlNextSet();                   break;
 //        case 'i':
 //            inputIsRandom = !inputIsRandom;
@@ -220,14 +217,6 @@ void ofApp::videoNext()
 
 //--------------------------------------------------------------
 
-//--------------------------------------------------------------
-
-//--------------------------------------------------------------
-
-//--------------------------------------------------------------
-
-//--------------------------------------------------------------
-
 void ofApp::linesSetup()
 {
     lines.setup( 20, 2.0, 3.0, ofGetScreenHeight() / 3, ofGetScreenHeight() * 2 / 3 );
@@ -286,13 +275,6 @@ void ofApp::drawInputIndicator()
     else
         ofDrawBitmapStringHighlight( "INPUT: Noise", ofGetWidth() - 100, ofGetHeight() - 10 );
 }
-
-//--------------------------------------------------------------
-
-//--------------------------------------------------------------
-
-//--------------------------------------------------------------
-
 
 //--------------------------------------------------------------
 
