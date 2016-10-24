@@ -40,24 +40,13 @@ void Network::update( float fade, float movement, float distCenter, float distDi
     netCenterSensor = ( 1 - shoulder ) * distCenterSensor;
 
     if ( fade ) {
-        // TODO get rid of copying
-        auto opacityMain = fade;
-//        auto    opacityFromSensor   = midiUC.getValue("networkFadeSensor" ) * oscData[ 2 ];
-        auto movementMain = movement;
-//        auto    movementFromSensor  = midiUC.getValue("networkMovementSensor") * oscData[ 0 ];
-        auto distanceCenterMain = distCenter;
-//        auto    distanceCenterSensor = midiUC.getValue("networkDistCenterSensor") * oscData[ 4 ];
-        auto distanceDiffMain = distDiff;
-//        auto    distanceDiffSensor  = midiUC.getValue("networkDistDiffSensor") * oscData[ 6 ];
-
-        distanceCenter = ofClamp( distanceCenterMain - netCenterSensor, 0.0, 1.0 ) * distanceMaxCenter;
-        distanceDifference = ofClamp( distanceDiffMain - netDiffSensor, 0.0, 1.0 ) * distanceMaxDifference;
+        distanceCenter = ofClamp( distCenter - netCenterSensor, 0.0, 1.0 ) * distanceMaxCenter;
+        distanceDifference = ofClamp( distDiff - netDiffSensor, 0.0, 1.0 ) * distanceMaxDifference;
         minDist = distanceCenter - distanceDifference / 2;
         maxDist = distanceCenter + distanceDifference / 2;
-        valOpacity = ofClamp( opacityMain, 0.0, 1.0 );
-        valMovement = ofClamp( movementMain - netMoveSensor, 0.0, 1.0 ) * movementMax;
+        valOpacity = ofClamp( fade, 0.0, 1.0 );
+        valMovement = ofClamp( movement - netMoveSensor, 0.0, 1.0 ) * movementMax;
 
-        // --- NETWORK
         network.setMaxMovement( valMovement );
         network.update( );
     }
