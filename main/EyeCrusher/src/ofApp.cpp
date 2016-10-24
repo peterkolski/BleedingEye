@@ -331,7 +331,7 @@ void ofApp::controlSet1()
     // -- In case two linbs are mapped, just use one value
     armValue          = std::max( oscData[ 2 ], oscData[ 2 ] ); // 2 real | 0 mapped
     shoulderValue     = std::max( oscData[ 3 ], oscData[ 3 ] );
-    backValue         = std::max( oscData[ 0 ], oscData[ 0 ] ); // 0 real |�4 mapped
+    backValue         = std::max( oscData[ 0 ], oscData[ 0 ] ); // 0 real | 4 mapped
     legValue          = std::max( oscData[ 6 ], oscData[ 6 ] );
 
     videoASensor        = ( 1 - armValue ) * midiUC.getValue( "videoSensorA" );

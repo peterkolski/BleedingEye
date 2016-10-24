@@ -6,8 +6,6 @@
 #include "ofxMidi.h"
 
 #include "LinesHorizontal.hpp"
-//#include "NetworkNode.hpp"
-//#include "NetworkVisual.hpp"
 #include "DancePerfOSC.hpp"
 #include "videoDirectory.hpp"
 #include "MidiValues.hpp"
@@ -63,8 +61,6 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     void    linesDraw();
     bildpeter::LinesHorizontal  lines;
 
-    ofEasyCam           cam;
-    
     // --- OSC
     bildpeter::SensorOSC    oscSensor;
     vector< float >         oscData;
@@ -98,8 +94,6 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     ofxFloatSlider  guiOscMaxMovement;
     ofxPanel        gui;
 
-
-
-    
     ofEasyCam       camera;
+    ofEasyCam           cam;
 };
