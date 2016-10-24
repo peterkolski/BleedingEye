@@ -25,6 +25,7 @@ list( APPEND ${APP_NAME}_SOURCE_FILES
         ../../shared/FlowPoint.cpp
         ../../shared/Ribbon.cpp
         ../../shared/Flow.cpp
+        ../../shared/Network.cpp
         )
 
 # ------------------------ AddOns ------------
