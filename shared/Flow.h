@@ -18,17 +18,17 @@ namespace bildpeter {
         void draw( float fadeFlow );
 
     private:
-        flowTools::ftFluidSimulation fluidSimulation;
-        vector< FlowPoint > flowPoints;
-        ofVec2f posCurrent;
-        ofVec2f posPrevious;
-        int flowWidth;
-        int flowHeight;
-        int drawWidth;
-        int drawHeight;
-        float flowSensorA;
-        float flowSensorB;
-        float flowSensorC;
+        flowTools::ftFluidSimulation fluidSimulation_;
+        vector< FlowPoint > flowPoints_;
+        ofVec2f posCurrent_;
+        ofVec2f posPrevious_;
+        int flowWidth_;
+        int flowHeight_;
+        int drawWidth_;
+        int drawHeight_;
+        float flowSensorA_;
+        float flowSensorB_;
+        float flowSensorC_;
 
     };
 
