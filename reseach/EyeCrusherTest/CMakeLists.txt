@@ -1,20 +1,12 @@
-#THIS FILE SHOULD BE PUT INTO THE OF PROJECT FOLDER
-
-# ========================================================
-# ===================== CMake Settings ===================
-# ========================================================
-cmake_minimum_required(VERSION 2.8.4)
-cmake_policy(SET CMP0042 NEW)
-
 # ========================================================
 # ===================== User Settings ====================
 # ========================================================
 # ------------------------- Names  -----------------------
-project(        BleedingEye )
+#project(        BleedingEye )
 set( APP_NAME   EyeCrusher_TEST )
 
 # ------------------------ OF Path -----------------------
-set( OF_DIRECTORY_BY_USER /Users/sonneundasche/programming/of )
+#set( OF_DIRECTORY_BY_USER /Users/sonneundasche/programming/of )
 
 # --------------------- Source Files ---------------------
 set( ${APP_NAME}_SOURCE_FILES
@@ -33,7 +25,7 @@ list( APPEND ${APP_NAME}_SOURCE_FILES
         ../../shared/FlowPoint.cpp
         )
 
-include_directories( ../../shared )
+#include_directories( ../../shared )
 
 # ------------------------ AddOns ------------
 set( OFX_ADDONS_ACTIVE
@@ -50,5 +42,5 @@ set( OFX_ADDONS_ACTIVE
 # =========================================================================
 # ============================== OpenFrameworks ===========================
 # =========================================================================
-include( ${OF_DIRECTORY_BY_USER}/CMake/modules/openFrameworksGlobal.cmake )
+include( ${OF_DIRECTORY_BY_USER}/addons/ofxCMake/modules/main.cmake )
 # =========================================================================
