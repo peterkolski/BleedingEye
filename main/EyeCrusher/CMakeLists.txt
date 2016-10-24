@@ -12,7 +12,7 @@ project(        BleedingEye )
 set( APP_NAME   EyeCrusher )
 
 # ------------------------ OF Path -----------------------
-set( OF_DIRECTORY_BY_USER /Users/sonneundasche/programming/of )
+set( OF_DIRECTORY_BY_USER ../../../../ )
 
 # --------------------- Source Files ---------------------
 set( ${APP_NAME}_SOURCE_FILES
@@ -48,5 +48,5 @@ set( OFX_ADDONS_ACTIVE
 # =========================================================================
 # ============================== OpenFrameworks ===========================
 # =========================================================================
-include( ${OF_DIRECTORY_BY_USER}/CMake/modules/openFrameworksGlobal.cmake )
+include( ${OF_DIRECTORY_BY_USER}/addons/ofxCMake/modules/main.cmake )
 # =========================================================================
