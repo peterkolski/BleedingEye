@@ -1,4 +1,5 @@
 #include "ofApp.h"
+#include "Ribbon.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -16,9 +17,7 @@ void ofApp::setup(){
     gui.add( guiOscMaxMovement.setup( "OSC move distance", 100.0, 0.0, 500.0 ) );
 
     network.setCorrelation( 777 );
-    ribbonLeft      = new ofxTwistedRibbon( ribbonLength, ribbonColor, ribbonThickness );
-    ribbonRight     = new ofxTwistedRibbon( ribbonLength, ribbonColor, ribbonThickness );
-    
+
     setRandomPositions( guiNumPoints );
     
     oscPort = 6000;
@@ -55,9 +54,10 @@ void ofApp::update(){
     
     videoUpdate();
     networkUpdate();
-    ribbonUpdate();
     linesUpdate();
     flowUpdate();
+
+    ribbon.update( midiUC, "ribbonSize", "ribbonFade", armValue, shoulderValue, backValue );
 }
 
 //--------------------------------------------------------------
@@ -68,7 +68,7 @@ void ofApp::draw(){
     videoDraw();
     flowDraw();
     linesDraw();
-    ribbonDraw();
+    ribbon.draw( midiUC, "ribbonFade" );
     networkDraw();
 }
 //--------------------------------------------------------------
@@ -286,61 +286,7 @@ void ofApp::networkDraw()
 
 //--------------------------------------------------------------
 
-void ofApp::ribbonUpdate()
-{
-    ofVec3f nullVec;
-    ofVec3f posLeft, posRight;
-    
-    ribbonRadius    = midiUC.getValue("ribbonSize") * ribbonRadiusMax;
-    auto    fade    = ofMap( midiUC.getValue( "ribbonFade" ), 0.2, 1.0, 0.0, 255.0, true );
-//    fade += 50.0;// add value, so I can fade out
-    
-    ribbonColor = ofColor( fade, fade, fade, 255 );
-    
-    posLeft.x = ( ribbonLeftX - 0.5) * ribbonRadius;
-    posLeft.y = ( ribbonLeftY - 0.5) * ribbonRadius;
-    posLeft.z = ( ribbonLeftZ - 0.5) * ribbonRadius;
-    
-    posRight.x = ( ribbonRightX - 0.5) * ribbonRadius;
-    posRight.y = ( ribbonRightY - 0.5) * ribbonRadius;
-    posRight.z = ( ribbonRightZ - 0.5) * ribbonRadius;
-    
-    if ( posLeft.length() != 0 ) {
-        ribbonLeft->update( posLeft, ribbonColor );
-    }
-    
-    if ( posRight.length() != 0 ) {
-        ribbonRight->update( posRight, ribbonColor );
-    }
-}
-
 //--------------------------------------------------------------
-
-void ofApp::ribbonDraw()
-{
-    if ( midiUC.getValue( "ribbonFade" ) )
-    {
-        ofPushStyle();
-        ofSetColor( 255 );
-        
-        ofPushMatrix();
-        {
-            ofTranslate( ofGetWidth() * 1/3, ofGetHeight() / 2 );
-            ofRotate( -ofGetElapsedTimef() * 10, 0, 1, 0 );
-            ribbonLeft->draw();
-        }
-        ofPopMatrix();
-        ofPushMatrix();
-        {
-            ofTranslate( ofGetWidth() * 2/3, ofGetHeight() / 2 );
-            ofRotate( ofGetElapsedTimef() * 10, 0, 1, 0 );
-            ribbonRight->draw();
-        }
-        ofPopMatrix();
-        
-        ofPopStyle();
-    }
-}
 
 //--------------------------------------------------------------
 
@@ -558,19 +504,11 @@ void ofApp::controlUpdate()
 void ofApp::controlSet1()
 {
     // -- In case two linbs are mapped, just use one value
-    auto &armValue          = std::max( oscData[ 2 ], oscData[ 2 ] ); // 2 real | 0 mapped
-    auto &shoulderValue     = std::max( oscData[ 3 ], oscData[ 3 ] );
-    auto &backValue         = std::max( oscData[ 0 ], oscData[ 0 ] ); // 0 real |Ê4 mapped
-    auto &legValue          = std::max( oscData[ 6 ], oscData[ 6 ] );
-    
-    ribbonLeftX         = armValue;
-    ribbonLeftY         = shoulderValue;
-    ribbonLeftZ         = backValue;
-    
-    ribbonRightX        = ( 1 - armValue );
-    ribbonRightY        = shoulderValue;
-    ribbonRightZ        = backValue;
-    
+    armValue          = std::max( oscData[ 2 ], oscData[ 2 ] ); // 2 real | 0 mapped
+    shoulderValue     = std::max( oscData[ 3 ], oscData[ 3 ] );
+    backValue         = std::max( oscData[ 0 ], oscData[ 0 ] ); // 0 real |ï¿½4 mapped
+    legValue          = std::max( oscData[ 6 ], oscData[ 6 ] );
+
     videoASensor        = ( 1 - armValue ) * midiUC.getValue( "videoSensorA" );
     videoBSensor        = ( 1 - backValue ) * midiUC.getValue( "videoSensorB" );
 

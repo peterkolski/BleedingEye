@@ -23,7 +23,7 @@ list( APPEND ${APP_NAME}_SOURCE_FILES
         ../../shared/MidiValues.cpp
         ../../shared/LinesHorizontal.cpp
         ../../shared/FlowPoint.cpp
-        ../../shared/Ribbon.h
+        ../../shared/Ribbon.cpp
         )
 
 #include_directories( ../../shared )

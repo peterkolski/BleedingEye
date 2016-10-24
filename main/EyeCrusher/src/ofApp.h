@@ -3,17 +3,20 @@
 #include "ofMain.h"
 
 #include "ofxGui.h"
-#include "ofxTwistedRibbon.h"
+
 #include "ofxMidi.h"
 #include "ofxFlowTools.h"
 
+#include "Ribbon.h"
+
+#include "FlowPoint.hpp"
+#include "LinesHorizontal.hpp"
 #include "NetworkNode.hpp"
 #include "NetworkVisual.hpp"
 #include "DancePerfOSC.hpp"
 #include "videoDirectory.hpp"
 #include "MidiValues.hpp"
-#include "LinesHorizontal.hpp"
-#include "FlowPoint.hpp"
+
 
 // -------------------------------------------------------------------
 // -------------------------------------------------------------------
@@ -45,7 +48,13 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     void                adjustSensitivity();
     
     bool                isPointDrawing  = false;
-    
+
+	// TODO easier construction
+	bildpeter::Ribbon ribbon;
+    float   ribbonLeftX, ribbonLeftY, ribbonLeftZ;
+    float   ribbonRightX, ribbonRightY, ribbonRightZ;
+
+
     // --- Video
     void    videoUpdate();
     void    videoDraw();
@@ -56,17 +65,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     void    networkUpdate();
     void    networkDraw();
     bildpeter::NetworkVisual    network;
-    
-    // --- Ribbon
-    void    ribbonUpdate();
-    void    ribbonDraw();
-    ofxTwistedRibbon        *ribbonLeft, *ribbonRight;
-    int                     ribbonLength    = 200;
-    ofColor                 ribbonColor     = ofColor::black;
-    float                   ribbonThickness = 10.0;
-    float                   ribbonRadius    = 600;
-    float                   ribbonRadiusMax = 1000;
-    
+
     // --- LINES
     void    linesSetup();
     void    linesUpdate();
@@ -113,11 +112,9 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     float   flowSensorA, flowSensorB, flowSensorC;
     float   linesSensor;
     float   netMoveSensor, netConnectionSensor, netDiffSensor, netCenterSensor;
-    float   ribbonLeftX, ribbonLeftY, ribbonLeftZ;
-    float   ribbonRightX, ribbonRightY, ribbonRightZ;
-    
-    
-    
+    float   armValue, shoulderValue, backValue, legValue;
+
+
     // --- GUI
     void            guiUpdate();
     bool            useMidi      = true;

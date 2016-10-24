@@ -10,23 +10,30 @@
 #include "ofxTwistedRibbon.h"
 #include "MidiValues.hpp"
 
+namespace bildpeter
+{
+    class Ribbon
+    {
 
-class Ribbon {
+    public:
+        Ribbon();
 
-public:
+        Ribbon( int ribbonLength, const ofColor &ribbonColor, float ribbonThickness );
 
-    void    ribbonUpdate();
-    void    ribbonDraw( bildpeter::MidiValues &midiValues, string nameDev );
+        void update( bildpeter::MidiValues midiValues, string sizeTxt, string fadeTxt, double x, double y, double z );
+        void    draw( bildpeter::MidiValues &midiValues, string nameDev );
 
-    ofxTwistedRibbon        *ribbonLeft, *ribbonRight;
-    int                     ribbonLength    = 200;
-    ofColor                 ribbonColor     = ofColor::black;
-    float                   ribbonThickness = 10.0;
-    float                   ribbonRadius    = 600;
-    float                   ribbonRadiusMax = 1000;
+        ofxTwistedRibbon        *ribbonLeft, *ribbonRight;
+        int                     ribbonLength    = 200;
+        ofColor                 ribbonColor     = ofColor::black;
+        float                   ribbonThickness = 10.0;
+        float                   ribbonRadius    = 600;
+        float                   ribbonRadiusMax = 1000;
 
+    };
 
-};
+}
+
 
 
 #endif //BLEEDINGEYE_RIBBON_H
