@@ -22,7 +22,6 @@ namespace bildpeter {
         vector< FlowPoint > flowPoints;
         ofVec2f posCurrent;
         ofVec2f posPrevious;
-        ofVec2f posDelta;
         int flowWidth;
         int flowHeight;
         int drawWidth;

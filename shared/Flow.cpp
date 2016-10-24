@@ -40,7 +40,7 @@ namespace bildpeter
 
                 posCurrent = ofVec2f( ofNoise( ofGetElapsedTimef( ) / 10.0, i++ ),
                                       ofNoise( ofGetElapsedTimef( ) / 10.0 + 1000, i ) );
-                posDelta = ofVec2f( posPrevious.x - posCurrent.x, posPrevious.y - posCurrent.y );
+                ofVec2f( posPrevious.x - posCurrent.x, posPrevious.y - posCurrent.y );
                 posPrevious = posCurrent;
                 _point.applyForce( ofVec2f( ( float ) ( i - 1 ) / 4.0, 0.8 ) );
                 _point.setStrength( strength );
