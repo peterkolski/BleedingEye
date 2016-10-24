@@ -5,11 +5,9 @@
 #include "ofxGui.h"
 
 #include "ofxMidi.h"
-#include "ofxFlowTools.h"
 
 #include "Ribbon.h"
 
-#include "FlowPoint.hpp"
 #include "LinesHorizontal.hpp"
 #include "NetworkNode.hpp"
 #include "NetworkVisual.hpp"
@@ -67,19 +65,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     void    linesUpdate();
     void    linesDraw();
     bildpeter::LinesHorizontal  lines;
-    
-    // --- FLOW
-    void flowSetup( ofColor color );
-    void flowUpdate( float fadeFlow, float strengthFlow, float a, float s, float b, float strengthSensor );
-    void flowDraw( float fadeFlow );
-    flowTools::ftFluidSimulation	fluidSimulation;
-    vector< FlowPoint > flowPoints;
-    ofVec2f             posCurrent, posPrevious, posDelta;
-    int					flowWidth;
-    int					flowHeight;
-    int					drawWidth;
-    int					drawHeight;
-    
+
     ofEasyCam           cam;
     
     // --- OSC
@@ -103,7 +89,6 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     void    controlSet1();
     void    controlNextSet();
     float   videoASensor, videoBSensor;
-    float   flowSensorA, flowSensorB, flowSensorC;
     float   linesSensor;
     float   netMoveSensor, netConnectionSensor, netDiffSensor, netCenterSensor;
     float   armValue, shoulderValue, backValue, legValue;

@@ -24,9 +24,8 @@ list( APPEND ${APP_NAME}_SOURCE_FILES
         ../../shared/LinesHorizontal.cpp
         ../../shared/FlowPoint.cpp
         ../../shared/Ribbon.cpp
+        ../../shared/Flow.cpp
         )
-
-#include_directories( ../../shared )
 
 # ------------------------ AddOns ------------
 set( OFX_ADDONS_ACTIVE
