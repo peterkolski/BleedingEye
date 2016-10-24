@@ -1,5 +1,4 @@
 #include "ofApp.h"
-#include "Lines.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){

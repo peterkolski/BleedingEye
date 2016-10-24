@@ -7,23 +7,28 @@
 
 
 #include "ofMain.h"
-#include "ofxMidi.h"
 #include "LinesHorizontal.hpp"
+
+
+namespace bildpeter
+{
 
 class Lines
 {
 
 public:
-    void    linesSetup();
+    void linesSetup();
 
     void linesUpdate( float fade, float speed, float speedSensor, float arm );
 
     void linesDraw( float fade, float brightness );
 
 private:
-    bildpeter::LinesHorizontal  lines;
-    float   linesSensor;
+    bildpeter::LinesHorizontal lines;
+    float linesSensor;
 };
+
+}
 
 
 #endif //BLEEDINGEYE_LINES_H

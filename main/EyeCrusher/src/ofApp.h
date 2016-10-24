@@ -5,15 +5,14 @@
 #include "ofxGui.h"
 #include "ofxMidi.h"
 
-#include "LinesHorizontal.hpp"
 #include "DancePerfOSC.hpp"
 #include "videoDirectory.hpp"
 #include "MidiValues.hpp"
-
+°
 #include "Ribbon.h"
 #include "Flow.h"
 #include "Network.h"
-
+#include "Lines.h"
 
 // -------------------------------------------------------------------
 // -------------------------------------------------------------------
