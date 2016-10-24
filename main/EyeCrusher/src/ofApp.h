@@ -8,7 +8,7 @@
 #include "DancePerfOSC.hpp"
 #include "videoDirectory.hpp"
 #include "MidiValues.hpp"
-°
+
 #include "Ribbon.h"
 #include "Flow.h"
 #include "Network.h"
@@ -46,6 +46,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 	bildpeter::Ribbon   ribbon;
     bildpeter::Flow     flow;
     bildpeter::Network  network;
+	bildpeter::Lines	lines;
 
     // --- Video
     void    videoUpdate();

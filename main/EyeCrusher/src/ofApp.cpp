@@ -26,7 +26,7 @@ void ofApp::setup(){
     videoA.play();
     videoB.play();
     
-    Lines::linesSetup();
+    lines.linesSetup();
     
     // --- MIDI
     midiIn.openPort( 0 );
@@ -52,7 +52,7 @@ void ofApp::update(){
                     midiUC.getValue( "networkDistCenter" ), midiUC.getValue( "networkDistDiff" ), armValue, backValue,
                     shoulderValue, midiUC.getValue( "networkMovementSensor" ),
                     midiUC.getValue( "networkDistCenterSensor" ), midiUC.getValue( "networkDistDiffSensor" ) );
-    Lines::linesUpdate( midiUC.getValue( "linesFade" ), midiUC.getValue( "linesSpeed" ), midiUC.getValue( "linesSpeedSensor" ),
+    lines.linesUpdate( midiUC.getValue( "linesFade" ), midiUC.getValue( "linesSpeed" ), midiUC.getValue( "linesSpeedSensor" ),
                         armValue );
     flow.update( midiUC.getValue( "flowFade" ), midiUC.getValue( "flowStrength" ), armValue, shoulderValue, backValue,
                  midiUC.getValue( "flowStrengthSensor" ) );
@@ -66,7 +66,7 @@ void ofApp::draw(){
 //    ofBackgroundGradient( ofColor( 0 ), ofColor( 100 ) , OF_GRADIENT_CIRCULAR );
     
     videoDraw();
-    Lines::linesDraw( midiUC.getValue( "linesFade" ), midiUC.getValue( "linesColor" ) );
+    lines.linesDraw( midiUC.getValue( "linesFade" ), midiUC.getValue( "linesColor" ) );
 
     network.draw( midiUC.getValue( "networkFade" ) );
     ribbon.draw( midiUC, "ribbonFade" );
