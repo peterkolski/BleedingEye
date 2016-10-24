@@ -11,26 +11,26 @@ namespace bildpeter {
         ofVec3f nullVec;
         ofVec3f posLeft, posRight;
 
-        ribbonRadius = midiValues.getValue( sizeTxt ) * ribbonRadiusMax;
+        ribbonRadius_ = midiValues.getValue( sizeTxt ) * ribbonRadiusMax_;
         auto fade = ofMap( midiValues.getValue( fadeTxt ), 0.2, 1.0, 0.0, 255.0, true );
 //    fade += 50.0;// add value, so I can fade out
 
-        ribbonColor = ofColor( fade, fade, fade, 255 );
+        ribbonColor_ = ofColor( fade, fade, fade, 255 );
 
-        posLeft.x = ( x - 0.5 ) * ribbonRadius;
-        posLeft.y = ( y - 0.5 ) * ribbonRadius;
-        posLeft.z = ( z - 0.5 ) * ribbonRadius;
+        posLeft.x = ( x - 0.5 ) * ribbonRadius_;
+        posLeft.y = ( y - 0.5 ) * ribbonRadius_;
+        posLeft.z = ( z - 0.5 ) * ribbonRadius_;
 
-        posRight.x = ( (1 - x) - 0.5 ) * ribbonRadius;
-        posRight.y = ( y - 0.5 ) * ribbonRadius;
-        posRight.z = ( z - 0.5 ) * ribbonRadius;
+        posRight.x = ( (1 - x) - 0.5 ) * ribbonRadius_;
+        posRight.y = ( y - 0.5 ) * ribbonRadius_;
+        posRight.z = ( z - 0.5 ) * ribbonRadius_;
 
         if ( posLeft.length( ) != 0 ) {
-            ribbonLeft->update( posLeft, ribbonColor );
+            ribbonLeft_->update( posLeft, ribbonColor_ );
         }
 
         if ( posRight.length( ) != 0 ) {
-            ribbonRight->update( posRight, ribbonColor );
+            ribbonRight_->update( posRight, ribbonColor_ );
         }
     }
 
@@ -43,14 +43,14 @@ namespace bildpeter {
             {
                 ofTranslate( ofGetWidth( ) * 1 / 3, ofGetHeight( ) / 2 );
                 ofRotate( -ofGetElapsedTimef( ) * 10, 0, 1, 0 );
-                ribbonLeft->draw( );
+                ribbonLeft_->draw( );
             }
             ofPopMatrix( );
             ofPushMatrix( );
             {
                 ofTranslate( ofGetWidth( ) * 2 / 3, ofGetHeight( ) / 2 );
                 ofRotate( ofGetElapsedTimef( ) * 10, 0, 1, 0 );
-                ribbonRight->draw( );
+                ribbonRight_->draw( );
             }
             ofPopMatrix( );
 
@@ -59,18 +59,18 @@ namespace bildpeter {
     }
 
     Ribbon::Ribbon( int ribbonLength, const ofColor &ribbonColor, float ribbonThickness ) :
-            ribbonLength( ribbonLength ),
-            ribbonColor( ribbonColor ),
-            ribbonThickness( ribbonThickness )
+            ribbonLength_( ribbonLength ),
+            ribbonColor_( ribbonColor ),
+            ribbonThickness_( ribbonThickness )
     {
-        ribbonLeft  = new ofxTwistedRibbon( ribbonLength, ribbonColor, ribbonThickness );
-        ribbonRight = new ofxTwistedRibbon( ribbonLength, ribbonColor, ribbonThickness );
+        ribbonLeft_  = new ofxTwistedRibbon( ribbonLength, ribbonColor, ribbonThickness );
+        ribbonRight_ = new ofxTwistedRibbon( ribbonLength, ribbonColor, ribbonThickness );
     }
 
     Ribbon::Ribbon()
     {
-        ribbonLeft  = new ofxTwistedRibbon( ribbonLength, ribbonColor, ribbonThickness );
-        ribbonRight = new ofxTwistedRibbon( ribbonLength, ribbonColor, ribbonThickness );
+        ribbonLeft_  = new ofxTwistedRibbon( ribbonLength_, ribbonColor_, ribbonThickness_ );
+        ribbonRight_ = new ofxTwistedRibbon( ribbonLength_, ribbonColor_, ribbonThickness_ );
     }
 
 }

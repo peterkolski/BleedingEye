@@ -25,13 +25,12 @@ public:
     void    draw( bildpeter::MidiValues &midiValues, string nameDev );
 
 private:
-    ofxTwistedRibbon        *ribbonLeft, *ribbonRight;
-    int                     ribbonLength    = 200;
-    ofColor                 ribbonColor     = ofColor::black;
-    float                   ribbonThickness = 10.0;
-    float                   ribbonRadius    = 600;
-    float                   ribbonRadiusMax = 1000;
-
+    ofxTwistedRibbon        *ribbonLeft_, *ribbonRight_;
+    int                     ribbonLength_    = 200;
+    ofColor                 ribbonColor_     = ofColor::black;
+    float                   ribbonThickness_ = 10.0;
+    float                   ribbonRadius_    = 600;
+    float                   ribbonRadiusMax_ = 1000;
 };
 
 }
