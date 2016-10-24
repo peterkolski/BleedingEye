@@ -341,26 +341,6 @@ void    ofApp::adjustSensitivity()
 
 //--------------------------------------------------------------
 
-vector< ofVec3f > ofApp::getPositions( )
-{
-    auto    positions = vector< ofVec3f >( 2 );
-//    ofVec3f pos;
-//    
-//    pos.x = ( oscData[ 0 ] - 0.5) * ribbonRadius;
-//    pos.y = ( oscData[ 2 ] - 0.5) * ribbonRadius;
-//    pos.z = ( oscData[ 6 ] - 0.5) * ribbonRadius;
-//    positions[ 0 ] = pos;
-//    
-//    pos.x = ( oscData[ 2 ] - 0.5) * ribbonRadius;
-//    pos.y = ( oscData[ 6 ] - 0.5) * ribbonRadius;
-//    pos.z = ( oscData[ 4 ] - 0.5) * ribbonRadius;
-//    positions[ 1 ] = pos;
-    
-    return positions;
-}
-
-//--------------------------------------------------------------
-
 void ofApp::drawInputIndicator()
 {
     if ( !inputIsRandom )

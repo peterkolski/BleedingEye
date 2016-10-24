@@ -44,15 +44,11 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 		
     void                setRandomPositions( int _num );
     void                drawInputIndicator();
-    vector< ofVec3f >   getPositions( );
     void                adjustSensitivity();
-    
     bool                isPointDrawing  = false;
 
 	// TODO easier construction
 	bildpeter::Ribbon ribbon;
-    float   ribbonLeftX, ribbonLeftY, ribbonLeftZ;
-    float   ribbonRightX, ribbonRightY, ribbonRightZ;
 
 
     // --- Video
@@ -105,8 +101,6 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     void    controlInit();
     void    controlUpdate();
     void    controlSet1();
-    void    controlSet2();
-    void    controlset3();
     void    controlNextSet();
     float   videoASensor, videoBSensor;
     float   flowSensorA, flowSensorB, flowSensorC;
