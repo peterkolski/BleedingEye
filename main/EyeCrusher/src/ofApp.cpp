@@ -55,7 +55,8 @@ void ofApp::update(){
     videoUpdate();
     networkUpdate();
     linesUpdate();
-    flowUpdate( midiUC.getValue( "flowFade" ), midiUC.getValue( "flowStrength" ) );
+    flowUpdate( midiUC.getValue( "flowFade" ), midiUC.getValue( "flowStrength" ), armValue, shoulderValue, backValue,
+                midiUC.getValue( "flowStrengthSensor" ) );
 
     ribbon.update( midiUC, "ribbonSize", "ribbonFade", armValue, shoulderValue, backValue );
 }
@@ -376,8 +377,13 @@ void ofApp::flowSetup( ofColor color )
 
 //--------------------------------------------------------------
 
-void ofApp::flowUpdate( float fadeFlow, float strengthFlow )
+void ofApp::flowUpdate( float fadeFlow, float strengthFlow, float a, float s, float b, float strengthSensor )
 {
+    flowSensorA         = ( 1 - a ) * strengthSensor;
+    flowSensorB         = ( 1 - s ) * strengthSensor;
+    flowSensorC         = ( 1 - b ) * strengthSensor;
+
+
     if ( fadeFlow )
     {
         auto    strength    = strengthFlow / 10.0;
@@ -495,9 +501,6 @@ void ofApp::controlSet1()
     videoASensor        = ( 1 - armValue ) * midiUC.getValue( "videoSensorA" );
     videoBSensor        = ( 1 - backValue ) * midiUC.getValue( "videoSensorB" );
 
-    flowSensorA         = ( 1 - armValue ) * midiUC.getValue( "flowStrengthSensor" );
-    flowSensorB         = ( 1 - shoulderValue ) * midiUC.getValue( "flowStrengthSensor" );
-    flowSensorC         = ( 1 - backValue ) * midiUC.getValue( "flowStrengthSensor" );
     
     linesSensor         = ( 1 - armValue ) * midiUC.getValue( "linesSpeedSensor" );
 

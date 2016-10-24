@@ -70,7 +70,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     
     // --- FLOW
     void flowSetup( ofColor color );
-    void flowUpdate( float fadeFlow, float strengthFlow );
+    void flowUpdate( float fadeFlow, float strengthFlow, float a, float s, float b, float strengthSensor );
     void flowDraw( float fadeFlow );
     flowTools::ftFluidSimulation	fluidSimulation;
     vector< FlowPoint > flowPoints;
