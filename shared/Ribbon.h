@@ -12,26 +12,27 @@
 
 namespace bildpeter
 {
-    class Ribbon
-    {
+class Ribbon
+{
 
-    public:
-        Ribbon();
+public:
+    Ribbon();
 
-        Ribbon( int ribbonLength, const ofColor &ribbonColor, float ribbonThickness );
+    Ribbon( int ribbonLength, const ofColor &ribbonColor, float ribbonThickness );
 
-        // TODO extract Midi
-        void update( bildpeter::MidiValues midiValues, string sizeTxt, string fadeTxt, double x, double y, double z );
-        void    draw( bildpeter::MidiValues &midiValues, string nameDev );
+    // TODO extract Midi
+    void update( bildpeter::MidiValues midiValues, string sizeTxt, string fadeTxt, double x, double y, double z );
+    void    draw( bildpeter::MidiValues &midiValues, string nameDev );
 
-        ofxTwistedRibbon        *ribbonLeft, *ribbonRight;
-        int                     ribbonLength    = 200;
-        ofColor                 ribbonColor     = ofColor::black;
-        float                   ribbonThickness = 10.0;
-        float                   ribbonRadius    = 600;
-        float                   ribbonRadiusMax = 1000;
+private:
+    ofxTwistedRibbon        *ribbonLeft, *ribbonRight;
+    int                     ribbonLength    = 200;
+    ofColor                 ribbonColor     = ofColor::black;
+    float                   ribbonThickness = 10.0;
+    float                   ribbonRadius    = 600;
+    float                   ribbonRadiusMax = 1000;
 
-    };
+};
 
 }
 
