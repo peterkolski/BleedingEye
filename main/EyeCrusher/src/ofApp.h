@@ -1,6 +1,5 @@
 #pragma once
 
-//#include <Flow.h>
 #include "ofMain.h"
 #include "ofxGui.h"
 #include "ofxMidi.h"

@@ -39,7 +39,7 @@ namespace bildpeter
             for ( auto &_point : flowPoints_ ) {
 
                 posCurrent_ = ofVec2f( ofNoise( ofGetElapsedTimef( ) / 10.0, i++ ),
-                                      ofNoise( ofGetElapsedTimef( ) / 10.0 + 1000, i ) );
+                                       ofNoise( ofGetElapsedTimef( ) / 10.0 + 1000, i ) );
                 ofVec2f( posPrevious_.x - posCurrent_.x, posPrevious_.y - posCurrent_.y );
                 posPrevious_ = posCurrent_;
                 _point.applyForce( ofVec2f( ( float ) ( i - 1 ) / 4.0, 0.8 ) );

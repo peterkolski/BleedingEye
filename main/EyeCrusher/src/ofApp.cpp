@@ -25,19 +25,17 @@ void ofApp::setup(){
     videoB.loadDirectory( "/Users/sonneundasche/Programming/ofx/apps/LacunExh16/_excluded/videosB/" );
     videoA.play();
     videoB.play();
-
-    lines.setup( );
     
     // --- MIDI
     midiIn.openPort( 0 );
     midiIn.addListener( this );
-    // verbose
     midiIn.setVerbose(true);
 //    midiIn.listPorts();
     setupMidi();
 
     flow.setup( ofColor::lightBlue );
     network.setup( guiNumPoints );
+    lines.setup( );
 }
 
 //--------------------------------------------------------------
