@@ -6,6 +6,7 @@
 
 #include "Ribbon.h"
 #include "Flow.h"
+#include "Network.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -22,10 +23,7 @@ void ofApp::setup(){
     gui.add( guiOscShift.setup( "OSC Shift", 0.0, 0.0, 1.0 ) );
     gui.add( guiOscMaxMovement.setup( "OSC move distance", 100.0, 0.0, 500.0 ) );
 
-    network.setCorrelation( 777 );
 
-    setRandomPositions( guiNumPoints );
-    
     oscPort = 6000;
     oscSensor.setup( oscPort, "/dance", 7 );
     oscSensor.enableRandomValues( inputIsRandom );
@@ -47,6 +45,7 @@ void ofApp::setup(){
     setupMidi();
 
     flow.setup( ofColor::lightBlue );
+    Network::networkSetup();
 }
 
 //--------------------------------------------------------------
@@ -57,10 +56,10 @@ void ofApp::update(){
     controlUpdate();
     
     videoUpdate();
-    networkUpdate( midiUC.getValue( "networkFade" ), midiUC.getValue( "networkMovement" ),
-                   midiUC.getValue( "networkDistCenter" ), midiUC.getValue( "networkDistDiff" ), armValue, backValue,
-                   shoulderValue, midiUC.getValue( "networkMovementSensor" ),
-                   midiUC.getValue( "networkDistCenterSensor" ), midiUC.getValue( "networkDistDiffSensor" ) );
+    Network::networkUpdate( midiUC.getValue( "networkFade" ), midiUC.getValue( "networkMovement" ),
+                            midiUC.getValue( "networkDistCenter" ), midiUC.getValue( "networkDistDiff" ), armValue, backValue,
+                            shoulderValue, midiUC.getValue( "networkMovementSensor" ),
+                            midiUC.getValue( "networkDistCenterSensor" ), midiUC.getValue( "networkDistDiffSensor" ) );
     linesUpdate();
     flow.update( midiUC.getValue( "flowFade" ), midiUC.getValue( "flowStrength" ), armValue, shoulderValue, backValue,
                  midiUC.getValue( "flowStrengthSensor" ) );
@@ -77,7 +76,7 @@ void ofApp::draw(){
 
     linesDraw();
 
-    networkDraw( midiUC.getValue( "networkFade" ) );
+    Network::networkDraw( midiUC.getValue( "networkFade" ) );
     
     ribbon.draw( midiUC, "ribbonFade" );
     flow.draw( midiUC.getValue( "flowFade" ) );
@@ -85,32 +84,14 @@ void ofApp::draw(){
 //--------------------------------------------------------------
 //--------------------------------------------------------------
 
-void    ofApp::setRandomPositions( int _num )
-{
-    ofLogVerbose()  << "Setting random node position";
-    network.nodes_.clear();
-    for ( int i = 0; i  < _num; ++i)
-    {
-        network.nodes_.emplace_back( i );
-        network.nodes_.back().setRandomPosition( -(ofGetWidth() / 2), ofGetWidth() / 2,
-                                                -(ofGetWidth() / 2), ofGetWidth() / 2,
-                                                -(ofGetWidth() / 2), ofGetWidth() / 2 );
-        
-        ofLogVerbose()  << "node ID: " << network.nodes_.back().getId() << " ( "
-                        << network.nodes_.back().getPosition().x << ", "
-                        << network.nodes_.back().getPosition().y << ", "
-                        << network.nodes_.back().getPosition().z << " )";
-    }
-}
-
 //--------------------------------------------------------------
 //--------------------------------------------------------------
 
 void ofApp::keyPressed(int key){
     
     switch ( key ) {
-        case 'r':   setRandomPositions( guiNumPoints ); break;
-        case 'p':   isPointDrawing = !isPointDrawing;   break;
+        case 'r':   Network::setRandomPositions( guiNumPoints ); break;
+        case 'p':   Network::isPointDrawing = !Network::isPointDrawing;   break;
         case 's':   controlNextSet();                   break;
 //        case 'i':
 //            inputIsRandom = !inputIsRandom;
@@ -247,54 +228,7 @@ void ofApp::videoNext()
 
 //--------------------------------------------------------------
 
-void ofApp::networkUpdate( float fade, float movement, float distCenter, float distDiff, float arm, float back,
-                           float shoulder, float movementSensor, float distCenterSensor, float distDiffSensor )
-{
-    netMoveSensor       = ( 1 - arm ) * movementSensor;
-    netDiffSensor       = ( 1 - back ) * distDiffSensor;
-    netCenterSensor     = ( 1 - shoulder ) * distCenterSensor;
-
-    if ( fade )
-    {
-        // TODO get rid of copying
-        auto    opacityMain         = fade;
-//        auto    opacityFromSensor   = midiUC.getValue("networkFadeSensor" ) * oscData[ 2 ];
-        auto    movementMain        = movement;
-//        auto    movementFromSensor  = midiUC.getValue("networkMovementSensor") * oscData[ 0 ];
-        auto    distanceCenterMain  = distCenter;
-//        auto    distanceCenterSensor = midiUC.getValue("networkDistCenterSensor") * oscData[ 4 ];
-        auto    distanceDiffMain    = distDiff;
-//        auto    distanceDiffSensor  = midiUC.getValue("networkDistDiffSensor") * oscData[ 6 ];
-        
-        distanceCenter      = ofClamp( distanceCenterMain   - netCenterSensor, 0.0, 1.0 ) * distanceMaxCenter;
-        distanceDifference  = ofClamp( distanceDiffMain     - netDiffSensor, 0.0, 1.0 ) * distanceMaxDifference;
-        minDist             = distanceCenter - distanceDifference / 2;
-        maxDist             = distanceCenter + distanceDifference / 2;
-        valOpacity          = ofClamp( opacityMain, 0.0, 1.0);
-        valMovement         = ofClamp( movementMain - netMoveSensor, 0.0, 1.0 ) * movementMax;
-        
-        // --- NETWORK
-        network.setMaxMovement( valMovement );
-        network.update();
-    }
-}
-
 //--------------------------------------------------------------
-
-void ofApp::networkDraw( float fade )
-{
-    if ( fade )
-    {
-        if ( isPointDrawing )   network.drawPoints( 2, ofColor::gray );
-        
-        ofPushMatrix();
-        {
-            ofTranslate( ofGetWidth() / 2, ofGetHeight() / 2, -1000 );
-            network.draw( minDist, maxDist,  valOpacity );
-        }
-        ofPopMatrix();
-    }
-}
 
 //--------------------------------------------------------------
 
