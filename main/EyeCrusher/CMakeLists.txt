@@ -1,18 +1,18 @@
 # ========================================================
 # ===================== CMake Settings ===================
 # ========================================================
-cmake_minimum_required(VERSION 2.8.4)
-cmake_policy(SET CMP0042 NEW)
+#cmake_minimum_required(VERSION 2.8.4)
+#cmake_policy(SET CMP0042 NEW)
 
 # ========================================================
 # ===================== User Settings ====================
 # ========================================================
 # ------------------------- Names  -----------------------
-project(        BleedingEye )
+#project(        BleedingEye )
 set( APP_NAME   EyeCrusher )
 
 # ------------------------ OF Path -----------------------
-set( OF_DIRECTORY_BY_USER ../../../../ )
+#set( OF_DIRECTORY_BY_USER ../../../../ )
 
 # --------------------- Source Files ---------------------
 set( ${APP_NAME}_SOURCE_FILES
@@ -31,7 +31,7 @@ list( APPEND ${APP_NAME}_SOURCE_FILES
         ../../shared/FlowPoint.cpp
         )
 
-include_directories( ../../shared )
+#include_directories( ../../shared )
 
 # ------------------------ AddOns ------------
 set( OFX_ADDONS_ACTIVE
