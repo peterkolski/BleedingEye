@@ -69,9 +69,9 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     bildpeter::LinesHorizontal  lines;
     
     // --- FLOW
-    void                flowSetup();
-    void                flowUpdate();
-    void                flowDraw();
+    void flowSetup( ofColor color );
+    void flowUpdate( float fadeFlow, float strengthFlow );
+    void flowDraw( float fadeFlow );
     flowTools::ftFluidSimulation	fluidSimulation;
     vector< FlowPoint > flowPoints;
     ofVec2f             posCurrent, posPrevious, posDelta;

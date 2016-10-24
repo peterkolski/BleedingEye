@@ -39,8 +39,8 @@ void ofApp::setup(){
     midiIn.setVerbose(true);
 //    midiIn.listPorts();
     setupMidi();
-    
-    flowSetup();
+
+    flowSetup( ofColor::lightBlue );
     
     controlInit();
 }
@@ -55,7 +55,7 @@ void ofApp::update(){
     videoUpdate();
     networkUpdate();
     linesUpdate();
-    flowUpdate();
+    flowUpdate( midiUC.getValue( "flowFade" ), midiUC.getValue( "flowStrength" ) );
 
     ribbon.update( midiUC, "ribbonSize", "ribbonFade", armValue, shoulderValue, backValue );
 }
@@ -66,10 +66,13 @@ void ofApp::draw(){
 //    ofBackgroundGradient( ofColor( 0 ), ofColor( 100 ) , OF_GRADIENT_CIRCULAR );
     
     videoDraw();
-    flowDraw();
+
     linesDraw();
-    ribbon.draw( midiUC, "ribbonFade" );
+
     networkDraw();
+    
+    ribbon.draw( midiUC, "ribbonFade" );
+    flowDraw( midiUC.getValue( "flowFade" ) );
 }
 //--------------------------------------------------------------
 //--------------------------------------------------------------
@@ -351,7 +354,7 @@ void ofApp::drawInputIndicator()
 
 //--------------------------------------------------------------
 
-void ofApp::flowSetup()
+void ofApp::flowSetup( ofColor color )
 {
     drawWidth = ofGetWidth();
     drawHeight = ofGetHeight();
@@ -366,18 +369,18 @@ void ofApp::flowSetup()
         _point.setup( flowWidth, flowHeight );
     }
     
-    flowPoints[ 0 ].setColor( ofColor::lightBlue );
-    flowPoints[ 1 ].setColor( ofColor::lightBlue );
-    flowPoints[ 2 ].setColor( ofColor::lightBlue );
+    flowPoints[ 0 ].setColor( color );
+    flowPoints[ 1 ].setColor( color );
+    flowPoints[ 2 ].setColor( color );
 }
 
 //--------------------------------------------------------------
 
-void    ofApp::flowUpdate()
+void ofApp::flowUpdate( float fadeFlow, float strengthFlow )
 {
-    if (midiUC.getValue( "flowFade" ) )
+    if ( fadeFlow )
     {
-        auto    strength    = midiUC.getValue( "flowStrength" )  / 10.0;
+        auto    strength    = strengthFlow / 10.0;
         auto    radius      =  3.0;
         
         int i = 1;
@@ -398,9 +401,9 @@ void    ofApp::flowUpdate()
             fluidSimulation.addDensity(  _point.getDensityTexture() );
         }
 
-        flowPoints[ 0 ].setRadius( ofClamp( midiUC.getValue( "flowStrength" )  - flowSensorA, 0.0, 1.0 ) * radius );
-        flowPoints[ 1 ].setRadius( ofClamp( midiUC.getValue( "flowStrength" )  - flowSensorB, 0.0, 1.0 ) * radius );
-        flowPoints[ 2 ].setRadius( ofClamp( midiUC.getValue( "flowStrength" )  - flowSensorC, 0.0, 1.0 ) * radius );
+        flowPoints[ 0 ].setRadius( ofClamp( strengthFlow - flowSensorA, 0.0, 1.0 ) * radius );
+        flowPoints[ 1 ].setRadius( ofClamp( strengthFlow - flowSensorB, 0.0, 1.0 ) * radius );
+        flowPoints[ 2 ].setRadius( ofClamp( strengthFlow - flowSensorC, 0.0, 1.0 ) * radius );
         
         fluidSimulation.update();
     }
@@ -411,14 +414,14 @@ void    ofApp::flowUpdate()
 
 //--------------------------------------------------------------
 
-void    ofApp::flowDraw()
+void ofApp::flowDraw( float fadeFlow )
 {
-    if ( midiUC.getValue( "flowFade" ) )
+    if ( fadeFlow )
     {
         ofPushStyle();
         {
             ofEnableBlendMode(OF_BLENDMODE_ADD);
-            ofSetColor( 255, 255, 255, 255 * midiUC.getValue( "flowFade" ) );
+            ofSetColor( 255, 255, 255, 255 * fadeFlow );
             fluidSimulation.draw( 0, 0, ofGetWidth(), ofGetHeight() );
         }
         ofPopStyle();
