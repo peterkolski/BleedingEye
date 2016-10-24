@@ -2,12 +2,11 @@
 // Created by Peter A. Kolski on 24.10.16.
 //
 
-#include "ofApp.h"
 #include "Flow.h"
 
 namespace bildpeter
 {
-    void Flow::flowSetup( ofColor color ) {
+    void Flow::setup( ofColor color ) {
         drawWidth = ofGetWidth( );
         drawHeight = ofGetHeight( );
         flowWidth = drawWidth / 4;
@@ -25,7 +24,7 @@ namespace bildpeter
         flowPoints[ 2 ].setColor( color );
     }
 
-    void Flow::flowUpdate( float fadeFlow, float strengthFlow, float a, float s, float b, float strengthSensor ) {
+    void Flow::update( float fadeFlow, float strengthFlow, float a, float s, float b, float strengthSensor ) {
         flowSensorA = ( 1 - a ) * strengthSensor;
         flowSensorB = ( 1 - s ) * strengthSensor;
         flowSensorC = ( 1 - b ) * strengthSensor;
@@ -63,7 +62,7 @@ namespace bildpeter
 
     }
 
-    void Flow::flowDraw( float fadeFlow ) {
+    void Flow::draw( float fadeFlow ) {
         if ( fadeFlow ) {
             ofPushStyle( );
             {

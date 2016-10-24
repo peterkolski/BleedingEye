@@ -46,7 +46,7 @@ void ofApp::setup(){
 //    midiIn.listPorts();
     setupMidi();
 
-    Flow::flowSetup( ofColor::lightBlue );
+    flow.setup( ofColor::lightBlue );
 }
 
 //--------------------------------------------------------------
@@ -59,8 +59,8 @@ void ofApp::update(){
     videoUpdate();
     networkUpdate();
     linesUpdate();
-    Flow::flowUpdate( midiUC.getValue( "flowFade" ), midiUC.getValue( "flowStrength" ), armValue, shoulderValue, backValue,
-                      midiUC.getValue( "flowStrengthSensor" ) );
+    flow.update( midiUC.getValue( "flowFade" ), midiUC.getValue( "flowStrength" ), armValue, shoulderValue, backValue,
+                 midiUC.getValue( "flowStrengthSensor" ) );
 
     ribbon.update( midiUC, "ribbonSize", "ribbonFade", armValue, shoulderValue, backValue );
 }
@@ -77,7 +77,7 @@ void ofApp::draw(){
     networkDraw();
     
     ribbon.draw( midiUC, "ribbonFade" );
-    Flow::flowDraw( midiUC.getValue( "flowFade" ) );
+    flow.draw( midiUC.getValue( "flowFade" ) );
 }
 //--------------------------------------------------------------
 //--------------------------------------------------------------

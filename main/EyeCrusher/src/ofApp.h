@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Flow.h>
 #include "ofMain.h"
 
 #include "ofxGui.h"
@@ -46,8 +47,8 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     bool                isPointDrawing  = false;
 
 	// TODO easier construction
-	bildpeter::Ribbon ribbon;
-
+	bildpeter::Ribbon   ribbon;
+    bildpeter::Flow     flow;
 
     // --- Video
     void    videoUpdate();

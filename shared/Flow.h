@@ -13,6 +13,11 @@ namespace bildpeter {
     class Flow {
 
     public:
+        void setup( ofColor color );
+        void update( float fadeFlow, float strengthFlow, float a, float s, float b, float strengthSensor );
+        void draw( float fadeFlow );
+
+    private:
         flowTools::ftFluidSimulation fluidSimulation;
         vector< FlowPoint > flowPoints;
         ofVec2f posCurrent;
@@ -26,12 +31,6 @@ namespace bildpeter {
         float flowSensorB;
         float flowSensorC;
 
-        // --- FLOW
-        void flowSetup( ofColor color );
-
-        void flowUpdate( float fadeFlow, float strengthFlow, float a, float s, float b, float strengthSensor );
-
-        void flowDraw( float fadeFlow );
     };
 
 }
