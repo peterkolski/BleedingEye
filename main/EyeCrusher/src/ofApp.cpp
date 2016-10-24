@@ -47,8 +47,6 @@ void ofApp::setup(){
     setupMidi();
 
     Flow::flowSetup( ofColor::lightBlue );
-    
-    controlInit();
 }
 
 //--------------------------------------------------------------
@@ -201,7 +199,6 @@ void ofApp::guiUpdate()
     maxDist             = guiDistCenter + guiDistDiff / 2;
     valOpacity          = oscData[ 0 ] * guiOscOpacity;
     valMovement         = oscData[ 0 ] * guiOscMaxMovement;
-    //        valMovementShift    = oscData[ 2 ] * guiOscShift;
 }
 
 //--------------------------------------------------------------
@@ -228,8 +225,6 @@ void ofApp::videoUpdate()
 
 void ofApp::videoDraw()
 {
-    //    auto w = 10000 * midiControlXS[ 6 ];
-    //    auto h = 10000 * midiControlXS[ 7 ];
     auto x = ofGetWidth() / 2;
     auto y = ofGetHeight() / 2;
     auto z = -2000;
@@ -402,11 +397,6 @@ void ofApp::setupMidi()
 
 //--------------------------------------------------------------
 
-void ofApp::controlInit()
-{
-    
-}
-
 void ofApp::controlNextSet()
 {
     videoNext();
@@ -439,17 +429,3 @@ void ofApp::controlSet1()
     netDiffSensor       = ( 1 - backValue ) * midiUC.getValue( "networkDistDiffSensor" );
     netCenterSensor     = ( 1 - shoulderValue ) * midiUC.getValue( "networkDistCenterSensor" );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

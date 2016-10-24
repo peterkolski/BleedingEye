@@ -78,13 +78,10 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     void                    setupMidi();
     void                    newMidiMessage( ofxMidiMessage& eventArgs );
     ofxMidiIn               midiIn;
-//    unordered_map< int, float>  midiControlXS;
 //    bildpeter::MidiValues   midiXS;
     bildpeter::MidiValues   midiUC;
 
-    
-    //--- CONTROL
-    void    controlInit();
+
     void    controlUpdate();
     void    controlSet1();
     void    controlNextSet();
@@ -109,7 +106,6 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 
     // --- VALUES
     float           valMovement;
-    float           valMovementShift;
     float           valOpacity;
     float           movementMax             = 500.0;
     float           distanceMaxDifference   = 500.0;
