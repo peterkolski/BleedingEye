@@ -57,9 +57,19 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     bildpeter::VideoDirectoryPlayer     videoA, videoB;
     
     // --- Network
-    void    networkUpdate();
+    void networkUpdate( float fade, float movement, float distCenter, float distDiff );
     void    networkDraw();
     bildpeter::NetworkVisual    network;
+
+    // --- VALUES
+    float           valMovement;
+    float           valOpacity;
+    float           movementMax             = 500.0;
+    float           distanceMaxDifference   = 500.0;
+    float           distanceMaxCenter       = 500.0;
+    float           distanceDifference;
+    float           distanceCenter;
+
 
     // --- LINES
     void    linesSetup();
@@ -104,14 +114,6 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     ofxPanel        gui;
     float           minDist, maxDist;
 
-    // --- VALUES
-    float           valMovement;
-    float           valOpacity;
-    float           movementMax             = 500.0;
-    float           distanceMaxDifference   = 500.0;
-    float           distanceMaxCenter       = 500.0;
-    float           distanceDifference;
-    float           distanceCenter;
 
     
     ofEasyCam       camera;

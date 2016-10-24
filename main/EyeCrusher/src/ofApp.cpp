@@ -57,7 +57,8 @@ void ofApp::update(){
     controlUpdate();
     
     videoUpdate();
-    networkUpdate();
+    networkUpdate( midiUC.getValue( "networkFade" ), midiUC.getValue( "networkMovement" ),
+                   midiUC.getValue( "networkDistCenter" ), midiUC.getValue( "networkDistDiff" ) );
     linesUpdate();
     flow.update( midiUC.getValue( "flowFade" ), midiUC.getValue( "flowStrength" ), armValue, shoulderValue, backValue,
                  midiUC.getValue( "flowStrengthSensor" ) );
@@ -243,17 +244,17 @@ void ofApp::videoNext()
 
 //--------------------------------------------------------------
 
-void ofApp::networkUpdate()
+void ofApp::networkUpdate( float fade, float movement, float distCenter, float distDiff )
 {
-    if ( midiUC.getValue( "networkFade" ) )
+    if ( fade )
     {
-        auto    opacityMain         = midiUC.getValue( "networkFade" );
+        auto    opacityMain         = fade;
 //        auto    opacityFromSensor   = midiUC.getValue("networkFadeSensor" ) * oscData[ 2 ];
-        auto    movementMain        = midiUC.getValue("networkMovement" );
+        auto    movementMain        = movement;
 //        auto    movementFromSensor  = midiUC.getValue("networkMovementSensor") * oscData[ 0 ];
-        auto    distanceCenterMain  = midiUC.getValue("networkDistCenter");
+        auto    distanceCenterMain  = distCenter;
 //        auto    distanceCenterSensor = midiUC.getValue("networkDistCenterSensor") * oscData[ 4 ];
-        auto    distanceDiffMain    = midiUC.getValue("networkDistDiff");
+        auto    distanceDiffMain    = distDiff;
 //        auto    distanceDiffSensor  = midiUC.getValue("networkDistDiffSensor") * oscData[ 6 ];
         
         distanceCenter      = ofClamp( distanceCenterMain   - netCenterSensor, 0.0, 1.0 ) * distanceMaxCenter;
