@@ -12,6 +12,7 @@
 #include "Flow.h"
 #include "Network.h"
 #include "Lines.h"
+#include "Video.h"
 
 // -------------------------------------------------------------------
 // -------------------------------------------------------------------
@@ -47,11 +48,6 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     bildpeter::Network  network;
 	bildpeter::Lines	lines;
 
-    // --- Video
-    void    videoUpdate();
-    void    videoDraw();
-    void    videoNext();
-    bildpeter::VideoDirectoryPlayer     videoA, videoB;
 
 
     // --- OSC
@@ -70,7 +66,6 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     void    controlUpdate();
     void    controlSet1();
     void    controlNextSet();
-    float   videoASensor, videoBSensor;
     float   armValue, shoulderValue, backValue, legValue;
 
 

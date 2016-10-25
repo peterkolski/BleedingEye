@@ -1,4 +1,5 @@
 #include "ofApp.h"
+#include "Video.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -21,10 +22,6 @@ void ofApp::setup(){
     oscSensor.enableRandomValues( inputIsRandom );
 
     // --- VIDEO
-    videoA.loadDirectory( "/Users/sonneundasche/Programming/ofx/apps/LacunExh16/_excluded/videosA/" );
-    videoB.loadDirectory( "/Users/sonneundasche/Programming/ofx/apps/LacunExh16/_excluded/videosB/" );
-    videoA.play();
-    videoB.play();
     
     // --- MIDI
     midiIn.openPort( 0 );
@@ -36,6 +33,8 @@ void ofApp::setup(){
     flow.setup( ofColor::lightBlue );
     network.setup( guiNumPoints );
     lines.setup( );
+    Video::videoSetup( "/Users/sonneundasche/Programming/ofx/apps/LacunExh16/_excluded/videosA/",
+                       "/Users/sonneundasche/Programming/ofx/apps/LacunExh16/_excluded/videosB/" );
 }
 
 //--------------------------------------------------------------
@@ -44,8 +43,9 @@ void ofApp::update(){
     oscData = oscSensor.getData();
     adjustSensitivity();
     controlUpdate();
-    
-    videoUpdate();
+
+    Video::videoUpdate( midiUC.getValue( "videoFaderA" ), midiUC.getValue( "videoFaderB" ), midiUC.getValue( "videoSensorA" ),
+                        midiUC.getValue( "videoSensorB" ), armValue, backValue );
     network.update( midiUC.getValue( "networkFade" ), midiUC.getValue( "networkMovement" ),
                     midiUC.getValue( "networkDistCenter" ), midiUC.getValue( "networkDistDiff" ), armValue, backValue,
                     shoulderValue, midiUC.getValue( "networkMovementSensor" ),
@@ -63,8 +63,8 @@ void ofApp::update(){
 void ofApp::draw(){
     ofBackground( ofColor::black );
 //    ofBackgroundGradient( ofColor( 0 ), ofColor( 100 ) , OF_GRADIENT_CIRCULAR );
-    
-    videoDraw();
+
+    Video::videoDraw( midiUC.getValue( "videoFaderA" ), midiUC.getValue( "videoFaderB" ) );
     lines.draw( midiUC.getValue( "linesFade" ), midiUC.getValue( "linesColor" ) );
 
     network.draw( midiUC.getValue( "networkFade" ) );
@@ -172,46 +172,9 @@ void ofApp::guiUpdate()
 
 //--------------------------------------------------------------
 
-void ofApp::videoUpdate()
-{
-    if ( midiUC.getValue( "videoFaderA" ) )
-    {
-        if ( !videoA.videoPlayer_.isPlaying() ) { videoA.videoPlayer_.play(); }
-        videoA.update();
-        videoA.fade( ofClamp( midiUC.getValue( "videoFaderA" ) - videoASensor, 0.0, 1.0 ) * 255 );
-    }
-    else    { videoA.videoPlayer_.setPaused( true ); }
-    
-    if ( midiUC.getValue( "videoFaderB" ) ) {
-        if ( !videoB.videoPlayer_.isPlaying() ) { videoB.videoPlayer_.play(); }
-        videoB.update();
-        videoB.fade( ofClamp( midiUC.getValue( "videoFaderB" ) - videoBSensor, 0.0, 1.0 ) * 255 );
-    }
-    else    { videoB.videoPlayer_.setPaused( true ); }
-}
-
 //--------------------------------------------------------------
 
-void ofApp::videoDraw()
-{
-    auto x = ofGetWidth() / 2;
-    auto y = ofGetHeight() / 2;
-    auto z = -2000;
-    // macbookAir
-    auto w = 5120;
-    auto h = 3200;
-    
-    if ( midiUC.getValue( "videoFaderA" ) ) videoA.draw( x, y, z, w, h );
-    if ( midiUC.getValue( "videoFaderB" ) ) videoB.draw( x, y, z, w, h );
-}
-
 //--------------------------------------------------------------
-
-void ofApp::videoNext()
-{
-    videoA.nextVideo();
-    videoB.nextVideo();
-}
 
 //--------------------------------------------------------------
 
@@ -274,7 +237,7 @@ void ofApp::setupMidi()
 
 void ofApp::controlNextSet()
 {
-    videoNext();
+    Video::videoNext();
 }
 
 //--------------------------------------------------------------
@@ -294,6 +257,4 @@ void ofApp::controlSet1()
     backValue         = std::max( oscData[ 0 ], oscData[ 0 ] ); // 0 real | 4 mapped
     legValue          = std::max( oscData[ 6 ], oscData[ 6 ] );
 
-    videoASensor        = ( 1 - armValue ) * midiUC.getValue( "videoSensorA" );
-    videoBSensor        = ( 1 - backValue ) * midiUC.getValue( "videoSensorB" );
 }
