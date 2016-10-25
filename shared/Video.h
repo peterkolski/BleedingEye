@@ -7,7 +7,6 @@
 
 
 #include "ofMain.h"
-#include "ofxMidi.h"
 #include "videoDirectory.hpp"
 
 namespace bildpeter
@@ -16,17 +15,17 @@ class Video
 {
 
 public:
-    void videoSetup( string pathA, string pathB );
+    void setup( string pathA, string pathB );
 
-    void videoUpdate( float faderA, float faderB, float sensorA, float sensorB, float arm, float back );
+    void update( float faderA, float faderB, float sensorA, float sensorB, float arm, float back );
 
-    void videoDraw( float videoFaderA, float videoFaderB );
+    void draw( float faderA, float faderB );
 
-    void videoNext();
+    void next();
 
 private:
-    float videoASensor;
-    float videoBSensor;
+    float sensorValA;
+    float sensorValB;
     VideoDirectoryPlayer videoA;
     VideoDirectoryPlayer videoB;
 };

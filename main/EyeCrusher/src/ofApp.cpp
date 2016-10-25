@@ -1,5 +1,4 @@
 #include "ofApp.h"
-#include "Video.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -33,8 +32,8 @@ void ofApp::setup(){
     flow.setup( ofColor::lightBlue );
     network.setup( guiNumPoints );
     lines.setup( );
-    video.videoSetup( "/Users/sonneundasche/Programming/ofx/apps/LacunExh16/_excluded/videosA/",
-                       "/Users/sonneundasche/Programming/ofx/apps/LacunExh16/_excluded/videosB/" );
+    video.setup( "/Users/sonneundasche/Programming/ofx/apps/LacunExh16/_excluded/videosA/",
+                 "/Users/sonneundasche/Programming/ofx/apps/LacunExh16/_excluded/videosB/" );
 }
 
 //--------------------------------------------------------------
@@ -44,8 +43,8 @@ void ofApp::update(){
     adjustSensitivity();
     controlUpdate();
 
-    video.videoUpdate( midiUC.getValue( "videoFaderA" ), midiUC.getValue( "videoFaderB" ), midiUC.getValue( "videoSensorA" ),
-                        midiUC.getValue( "videoSensorB" ), armValue, backValue );
+    video.update( midiUC.getValue( "videoFaderA" ), midiUC.getValue( "videoFaderB" ), midiUC.getValue( "videoSensorA" ),
+                  midiUC.getValue( "videoSensorB" ), armValue, backValue );
     network.update( midiUC.getValue( "networkFade" ), midiUC.getValue( "networkMovement" ),
                     midiUC.getValue( "networkDistCenter" ), midiUC.getValue( "networkDistDiff" ), armValue, backValue,
                     shoulderValue, midiUC.getValue( "networkMovementSensor" ),
@@ -64,7 +63,7 @@ void ofApp::draw(){
     ofBackground( ofColor::black );
 //    ofBackgroundGradient( ofColor( 0 ), ofColor( 100 ) , OF_GRADIENT_CIRCULAR );
 
-    video.videoDraw( midiUC.getValue( "videoFaderA" ), midiUC.getValue( "videoFaderB" ) );
+    video.draw( midiUC.getValue( "videoFaderA" ), midiUC.getValue( "videoFaderB" ) );
     lines.draw( midiUC.getValue( "linesFade" ), midiUC.getValue( "linesColor" ) );
 
     network.draw( midiUC.getValue( "networkFade" ) );
@@ -229,7 +228,7 @@ void ofApp::setupMidi()
 
 void ofApp::controlNextSet()
 {
-    video.videoNext();
+    video.next( );
 }
 
 //--------------------------------------------------------------
