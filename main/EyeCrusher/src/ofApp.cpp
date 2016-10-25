@@ -28,6 +28,7 @@ void ofApp::setup(){
     midiIn.setVerbose(true);
 //    midiIn.listPorts();
     setupMidi();
+    midiUsedController = midiNano;
 
     flow.setup( ofColor::lightBlue );
     network.setup( guiNumPoints );
@@ -43,19 +44,19 @@ void ofApp::update(){
     adjustSensitivity();
     controlUpdate();
 
-    video.update( midiUC.getValue( "videoFaderA" ), midiUC.getValue( "videoFaderB" ), midiUC.getValue( "videoSensorA" ),
-                  midiUC.getValue( "videoSensorB" ), armValue, backValue );
-    network.update( midiUC.getValue( "networkFade" ), midiUC.getValue( "networkMovement" ),
-                    midiUC.getValue( "networkDistCenter" ), midiUC.getValue( "networkDistDiff" ), armValue, backValue,
-                    shoulderValue, midiUC.getValue( "networkMovementSensor" ),
-                    midiUC.getValue( "networkDistCenterSensor" ), midiUC.getValue( "networkDistDiffSensor" ) );
-    lines.update( midiUC.getValue( "linesFade" ), midiUC.getValue( "linesSpeed" ),
-                  midiUC.getValue( "linesSpeedSensor" ),
+    video.update( midiUsedController.getValue( "videoFaderA" ), midiUsedController.getValue( "videoFaderB" ), midiUsedController.getValue( "videoSensorA" ),
+                  midiUsedController.getValue( "videoSensorB" ), armValue, backValue );
+    network.update( midiUsedController.getValue( "networkFade" ), midiUsedController.getValue( "networkMovement" ),
+                    midiUsedController.getValue( "networkDistCenter" ), midiUsedController.getValue( "networkDistDiff" ), armValue, backValue,
+                    shoulderValue, midiUsedController.getValue( "networkMovementSensor" ),
+                    midiUsedController.getValue( "networkDistCenterSensor" ), midiUsedController.getValue( "networkDistDiffSensor" ) );
+    lines.update( midiUsedController.getValue( "linesFade" ), midiUsedController.getValue( "linesSpeed" ),
+                  midiUsedController.getValue( "linesSpeedSensor" ),
                   armValue );
-    flow.update( midiUC.getValue( "flowFade" ), midiUC.getValue( "flowStrength" ), armValue, shoulderValue, backValue,
-                 midiUC.getValue( "flowStrengthSensor" ) );
+    flow.update( midiUsedController.getValue( "flowFade" ), midiUsedController.getValue( "flowStrength" ), armValue, shoulderValue, backValue,
+                 midiUsedController.getValue( "flowStrengthSensor" ) );
 
-    ribbon.update( midiUC, "ribbonSize", "ribbonFade", armValue, shoulderValue, backValue );
+    ribbon.update( midiUsedController, "ribbonSize", "ribbonFade", armValue, shoulderValue, backValue );
 }
 
 //--------------------------------------------------------------
@@ -63,12 +64,12 @@ void ofApp::draw(){
     ofBackground( ofColor::black );
 //    ofBackgroundGradient( ofColor( 0 ), ofColor( 100 ) , OF_GRADIENT_CIRCULAR );
 
-    video.draw( midiUC.getValue( "videoFaderA" ), midiUC.getValue( "videoFaderB" ) );
-    lines.draw( midiUC.getValue( "linesFade" ), midiUC.getValue( "linesColor" ) );
+    video.draw( midiUsedController.getValue( "videoFaderA" ), midiUsedController.getValue( "videoFaderB" ) );
+    lines.draw( midiUsedController.getValue( "linesFade" ), midiUsedController.getValue( "linesColor" ) );
 
-    network.draw( midiUC.getValue( "networkFade" ) );
-    ribbon.draw( midiUC, "ribbonFade" );
-    flow.draw( midiUC.getValue( "flowFade" ) );
+    network.draw( midiUsedController.getValue( "networkFade" ) );
+    ribbon.draw( midiUsedController, "ribbonFade" );
+    flow.draw( midiUsedController.getValue( "flowFade" ) );
 }
 
 //--------------------------------------------------------------
@@ -98,7 +99,7 @@ void ofApp::newMidiMessage(ofxMidiMessage& msg) {
  
     if( msg.channel == 1 )
     {
-        midiUC.updateMessageValues( msg );
+        midiUsedController.updateMessageValues( msg );
     }
 }
 
@@ -174,8 +175,8 @@ void    ofApp::adjustSensitivity()
     for ( auto &sensorValue : oscData )
     {
         sensorValue = ofMap(    sensorValue,
-                                0.0 + midiUC.getValue( "sensitivity" ) / 2,
-                                1.0 - midiUC.getValue( "sensitivity" ) / 2,
+                                0.0 + midiUsedController.getValue( "sensitivity" ) / 2,
+                                1.0 - midiUsedController.getValue( "sensitivity" ) / 2,
                                 0.0, 1.0, true );
     }
 }
@@ -221,6 +222,34 @@ void ofApp::setupMidi()
     midiUC.setNameControlerPair( "videoSensorB", 17 );
     
     midiUC.setNameControlerPair( "sensitivity", 9 );
+
+    midiNano.setNameControlerPair( "networkFade", 1 );
+    midiNano.setNameControlerPair( "networkFadeSensor", 88 );
+    midiNano.setNameControlerPair( "networkMovement", 11 );
+    midiNano.setNameControlerPair( "networkMovementSensor", 88 );
+    midiNano.setNameControlerPair( "networkDistCenter", 2 );
+    midiNano.setNameControlerPair( "networkDistCenterSensor", 88 );
+    midiNano.setNameControlerPair( "networkDistDiff", 12 );
+    midiNano.setNameControlerPair( "networkDistDiffSensor", 88 );
+
+    midiNano.setNameControlerPair( "linesFade", 3 );
+    midiNano.setNameControlerPair( "linesSpeed", 13 );
+    midiNano.setNameControlerPair( "linesSpeedSensor", 88 );
+    midiNano.setNameControlerPair( "linesColor", 4 );
+
+    midiNano.setNameControlerPair( "flowFade", 5 );
+    midiNano.setNameControlerPair( "flowStrength", 15 );
+    midiNano.setNameControlerPair( "flowStrengthSensor", 88 );
+
+    midiNano.setNameControlerPair("ribbonFade", 6 );
+    midiNano.setNameControlerPair("ribbonSize", 16 );
+
+    midiNano.setNameControlerPair( "videoFaderA", 8 );
+    midiNano.setNameControlerPair( "videoFaderB", 9 );
+    midiNano.setNameControlerPair( "videoSensorA", 8 );
+    midiNano.setNameControlerPair( "videoSensorB", 9 );
+
+    midiNano.setNameControlerPair( "sensitivity", 20 );
 }
 
 
