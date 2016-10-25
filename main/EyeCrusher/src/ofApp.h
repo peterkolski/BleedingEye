@@ -47,6 +47,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     bildpeter::Flow     flow;
     bildpeter::Network  network;
 	bildpeter::Lines	lines;
+    bildpeter::Video    video;
 
 
 

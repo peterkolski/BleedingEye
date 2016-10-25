@@ -5,6 +5,8 @@
 #include "ofApp.h"
 #include "Video.h"
 
+namespace bildpeter
+{
 void Video::videoSetup( string pathA, string pathB )
 {
     videoA.loadDirectory( pathA );
@@ -25,7 +27,7 @@ void Video::videoUpdate( float faderA, float faderB, float sensorA, float sensor
         videoA.fade( ofClamp( faderA - videoASensor, 0.0, 1.0 ) * 255 );
     }
     else    { videoA.videoPlayer_.setPaused( true ); }
-    
+
     if ( faderB ) {
         if ( !videoB.videoPlayer_.isPlaying() ) { videoB.videoPlayer_.play(); }
         videoB.update();
@@ -42,7 +44,7 @@ void Video::videoDraw( float videoFaderA, float videoFaderB )
     // macbookAir
     auto w = 5120;
     auto h = 3200;
-    
+
     if ( videoFaderA ) videoA.draw( x, y, z, w, h );
     if ( videoFaderB ) videoB.draw( x, y, z, w, h );
 }
@@ -52,3 +54,5 @@ void Video::videoNext()
     videoA.nextVideo();
     videoB.nextVideo();
 }
+
+} // namespace bildpeter

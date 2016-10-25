@@ -33,7 +33,7 @@ void ofApp::setup(){
     flow.setup( ofColor::lightBlue );
     network.setup( guiNumPoints );
     lines.setup( );
-    Video::videoSetup( "/Users/sonneundasche/Programming/ofx/apps/LacunExh16/_excluded/videosA/",
+    video.videoSetup( "/Users/sonneundasche/Programming/ofx/apps/LacunExh16/_excluded/videosA/",
                        "/Users/sonneundasche/Programming/ofx/apps/LacunExh16/_excluded/videosB/" );
 }
 
@@ -44,7 +44,7 @@ void ofApp::update(){
     adjustSensitivity();
     controlUpdate();
 
-    Video::videoUpdate( midiUC.getValue( "videoFaderA" ), midiUC.getValue( "videoFaderB" ), midiUC.getValue( "videoSensorA" ),
+    video.videoUpdate( midiUC.getValue( "videoFaderA" ), midiUC.getValue( "videoFaderB" ), midiUC.getValue( "videoSensorA" ),
                         midiUC.getValue( "videoSensorB" ), armValue, backValue );
     network.update( midiUC.getValue( "networkFade" ), midiUC.getValue( "networkMovement" ),
                     midiUC.getValue( "networkDistCenter" ), midiUC.getValue( "networkDistDiff" ), armValue, backValue,
@@ -64,7 +64,7 @@ void ofApp::draw(){
     ofBackground( ofColor::black );
 //    ofBackgroundGradient( ofColor( 0 ), ofColor( 100 ) , OF_GRADIENT_CIRCULAR );
 
-    Video::videoDraw( midiUC.getValue( "videoFaderA" ), midiUC.getValue( "videoFaderB" ) );
+    video.videoDraw( midiUC.getValue( "videoFaderA" ), midiUC.getValue( "videoFaderB" ) );
     lines.draw( midiUC.getValue( "linesFade" ), midiUC.getValue( "linesColor" ) );
 
     network.draw( midiUC.getValue( "networkFade" ) );
@@ -170,14 +170,6 @@ void ofApp::guiUpdate()
 //    valMovement         = oscData[ 0 ] * guiOscMaxMovement;
 }
 
-//--------------------------------------------------------------
-
-//--------------------------------------------------------------
-
-//--------------------------------------------------------------
-
-//--------------------------------------------------------------
-
 void    ofApp::adjustSensitivity()
 {
     for ( auto &sensorValue : oscData )
@@ -237,7 +229,7 @@ void ofApp::setupMidi()
 
 void ofApp::controlNextSet()
 {
-    Video::videoNext();
+    video.videoNext();
 }
 
 //--------------------------------------------------------------

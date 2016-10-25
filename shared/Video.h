@@ -10,24 +10,28 @@
 #include "ofxMidi.h"
 #include "videoDirectory.hpp"
 
+namespace bildpeter
+{
 class Video
 {
 
 public:
-    float videoASensor;
-    float videoBSensor;
-    bildpeter::VideoDirectoryPlayer videoA;
-    bildpeter::VideoDirectoryPlayer videoB;
-
-    // --- Video
     void videoSetup( string pathA, string pathB );
 
     void videoUpdate( float faderA, float faderB, float sensorA, float sensorB, float arm, float back );
 
     void videoDraw( float videoFaderA, float videoFaderB );
 
-    void    videoNext();
+    void videoNext();
+
+private:
+    float videoASensor;
+    float videoBSensor;
+    VideoDirectoryPlayer videoA;
+    VideoDirectoryPlayer videoB;
 };
+
+} // namespace bildpeter
 
 
 #endif //BLEEDINGEYE_VIDEO_H
