@@ -23,18 +23,18 @@ void ofApp::setup(){
     // --- VIDEO
     
     // --- MIDI
-    midiIn.openPort( 0 );
+    midiIn.openPort( 1 );
     midiIn.addListener( this );
     midiIn.setVerbose(true);
-//    midiIn.listPorts();
+    midiIn.listPorts();
     setupMidi();
     midiUsedController = midiNano;
 
     flow.setup( ofColor::lightBlue );
     network.setup( guiNumPoints );
     lines.setup( );
-    video.setup( "/Users/sonneundasche/Programming/ofx/apps/LacunExh16/_excluded/videosA/",
-                 "/Users/sonneundasche/Programming/ofx/apps/LacunExh16/_excluded/videosB/" );
+    video.setup( "/Users/sonneundasche/programming/of/apps/BleedingEye/data/videosA/",
+                 "/Users/sonneundasche/programming/of/apps/BleedingEye/data/videosB/" );
 }
 
 //--------------------------------------------------------------
@@ -245,9 +245,9 @@ void ofApp::setupMidi()
     midiNano.setNameControlerPair("ribbonSize", 16 );
 
     midiNano.setNameControlerPair( "videoFaderA", 8 );
+    midiNano.setNameControlerPair( "videoSensorA", 88 );
     midiNano.setNameControlerPair( "videoFaderB", 9 );
-    midiNano.setNameControlerPair( "videoSensorA", 8 );
-    midiNano.setNameControlerPair( "videoSensorB", 9 );
+    midiNano.setNameControlerPair( "videoSensorB", 88 );
 
     midiNano.setNameControlerPair( "sensitivity", 20 );
 }
