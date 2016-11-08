@@ -6,17 +6,16 @@
 
 namespace bildpeter {
 
-    void
-    Ribbon::update( bildpeter::MidiValues midiValues, string sizeTxt, string fadeTxt, double x, double y, double z )
+    void Ribbon::update( float size, float fade, double x, double y, double z )
     {
         ofVec3f nullVec;
         ofVec3f posLeft, posRight;
 
-        ribbonRadius_ = midiValues.getValue( sizeTxt ) * ribbonRadiusMax_;
-        auto fade = ofMap( midiValues.getValue( fadeTxt ), 0.2, 1.0, 0.0, 255.0, true );
+        ribbonRadius_ = size * ribbonRadiusMax_;
+        auto _fade = ofMap( fade, 0.2, 1.0, 0.0, 255.0, true );
 //    fade += 50.0;// add value, so I can fade out
 
-        ribbonColor_ = ofColor( fade, fade, fade, 255 );
+        ribbonColor_ = ofColor( _fade, _fade, _fade, 255 );
 
         setPostion( x, y, z, posLeft, posRight );
 

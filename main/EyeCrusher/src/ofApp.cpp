@@ -54,7 +54,10 @@ void ofApp::update(){
     flow.update( midiUsedController.getValue( "flowFade" ), midiUsedController.getValue( "flowStrength" ), armValue, shoulderValue, backValue,
                  midiUsedController.getValue( "flowStrengthSensor" ) );
 
-    ribbon.update( midiUsedController, "ribbonSize", "ribbonFade", armValue, shoulderValue, backValue );
+    ribbon.update( midiUsedController.getValue( "ribbonSize"),
+                   midiUsedController.getValue( "ribbonFade"),
+                   armValue, shoulderValue, backValue );
+    // midiUsedController, "ribbonSize", "ribbonFade"
 }
 
 //--------------------------------------------------------------
