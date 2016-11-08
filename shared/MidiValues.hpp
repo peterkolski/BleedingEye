@@ -13,8 +13,6 @@
 #include "ofxMidi.h"
 
 
-//    TODO Done? change to unordered_map with names
-
 namespace bildpeter{
 
 class MidiValues

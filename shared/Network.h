@@ -10,8 +10,6 @@
 namespace bildpeter
 {
 
-// TODO comments
-
 class Network
 {
 public:
