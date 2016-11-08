@@ -20,7 +20,6 @@ public:
 
     Ribbon( int ribbonLength, const ofColor &ribbonColor, float ribbonThickness );
 
-    // TODO extract Midi
     void update( float size, float fade, double x, double y, double z );
     void draw( float fade );
 

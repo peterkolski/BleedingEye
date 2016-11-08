@@ -57,7 +57,6 @@ void ofApp::update(){
     ribbon.update( midiUsedController.getValue( "ribbonSize"),
                    midiUsedController.getValue( "ribbonFade"),
                    armValue, shoulderValue, backValue );
-    // midiUsedController, "ribbonSize", "ribbonFade"
 }
 
 //--------------------------------------------------------------
