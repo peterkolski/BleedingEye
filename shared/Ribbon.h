@@ -22,7 +22,8 @@ public:
 
     // TODO extract Midi
     void update( bildpeter::MidiValues midiValues, string sizeTxt, string fadeTxt, double x, double y, double z );
-    void    draw( bildpeter::MidiValues &midiValues, string nameDev );
+    void draw( bildpeter::MidiValues &midiValues, string nameDev, float fade );
+
 
 private:
     ofxTwistedRibbon        *ribbonLeft_, *ribbonRight_;
@@ -31,6 +32,8 @@ private:
     float                   ribbonThickness_ = 10.0;
     float                   ribbonRadius_    = 600;
     float                   ribbonRadiusMax_ = 1000;
+
+    void setPostion( double x, double y, double z, ofVec3f &posLeft, ofVec3f &posRight ) const;
 };
 
 }

@@ -66,7 +66,7 @@ void ofApp::draw(){
     lines.draw( midiUsedController.getValue( "linesFade" ), midiUsedController.getValue( "linesColor" ) );
 
     network.draw( midiUsedController.getValue( "networkFade" ) );
-    ribbon.draw( midiUsedController, "ribbonFade" );
+    ribbon.draw( midiUsedController, "ribbonFade", midiValues.getValue( nameDev ) );
     flow.draw( midiUsedController.getValue( "flowFade" ) );
 }
 

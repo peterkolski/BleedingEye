@@ -7,7 +7,8 @@
 namespace bildpeter {
 
     void
-    Ribbon::update( bildpeter::MidiValues midiValues, string sizeTxt, string fadeTxt, double x, double y, double z ) {
+    Ribbon::update( bildpeter::MidiValues midiValues, string sizeTxt, string fadeTxt, double x, double y, double z )
+    {
         ofVec3f nullVec;
         ofVec3f posLeft, posRight;
 
@@ -17,13 +18,7 @@ namespace bildpeter {
 
         ribbonColor_ = ofColor( fade, fade, fade, 255 );
 
-        posLeft.x = ( x - 0.5 ) * ribbonRadius_;
-        posLeft.y = ( y - 0.5 ) * ribbonRadius_;
-        posLeft.z = ( z - 0.5 ) * ribbonRadius_;
-
-        posRight.x = ( (1 - x) - 0.5 ) * ribbonRadius_;
-        posRight.y = ( y - 0.5 ) * ribbonRadius_;
-        posRight.z = ( z - 0.5 ) * ribbonRadius_;
+        setPostion( x, y, z, posLeft, posRight );
 
         if ( posLeft.length( ) != 0 ) {
             ribbonLeft_->update( posLeft, ribbonColor_ );
@@ -34,8 +29,21 @@ namespace bildpeter {
         }
     }
 
-    void Ribbon::draw( bildpeter::MidiValues &midiValues, string nameDev ) {
-        if ( midiValues.getValue( nameDev ) ) {
+    void Ribbon::setPostion( double x, double y, double z, ofVec3f &posLeft, ofVec3f &posRight ) const
+    {
+        posLeft.x = ( x - 0.5 ) * ribbonRadius_;
+        posLeft.y = ( y - 0.5 ) * ribbonRadius_;
+        posLeft.z = ( z - 0.5 ) * ribbonRadius_;
+
+        posRight.x = ( (1 - x) - 0.5 ) * ribbonRadius_;
+        posRight.y = ( y - 0.5 ) * ribbonRadius_;
+        posRight.z = ( z - 0.5 ) * ribbonRadius_;
+    }
+
+    void Ribbon::draw( bildpeter::MidiValues &midiValues, string nameDev, float fade )
+    {
+        if ( fade )
+        {
             ofPushStyle( );
             ofSetColor( 255 );
 
@@ -46,6 +54,7 @@ namespace bildpeter {
                 ribbonLeft_->draw( );
             }
             ofPopMatrix( );
+
             ofPushMatrix( );
             {
                 ofTranslate( ofGetWidth( ) * 2 / 3, ofGetHeight( ) / 2 );
