@@ -40,7 +40,7 @@ namespace bildpeter {
         posRight.z = ( z - 0.5 ) * ribbonRadius_;
     }
 
-    void Ribbon::draw( bildpeter::MidiValues &midiValues, string nameDev, float fade )
+    void Ribbon::draw( float fade )
     {
         if ( fade )
         {

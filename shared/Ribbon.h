@@ -22,7 +22,7 @@ public:
 
     // TODO extract Midi
     void update( bildpeter::MidiValues midiValues, string sizeTxt, string fadeTxt, double x, double y, double z );
-    void draw( bildpeter::MidiValues &midiValues, string nameDev, float fade );
+    void draw( float fade );
 
 
 private:
