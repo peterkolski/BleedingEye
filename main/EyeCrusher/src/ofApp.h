@@ -4,7 +4,7 @@
 #include "ofxGui.h"
 #include "ofxMidi.h"
 
-#include "DancePerfOSC.hpp"
+#include "SensorOSC.hpp"
 #include "videoDirectory.hpp"
 #include "MidiValues.hpp"
 

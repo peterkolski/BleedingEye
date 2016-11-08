@@ -1,12 +1,12 @@
 //
-//  DancePerfOSC.cpp
+//  SensorOSC.cpp
 //  RibbonDev
 //
 //  Created by Peter A. Kolski on 15.04.16.
 //
 //
 
-#include "DancePerfOSC.hpp"
+#include "SensorOSC.hpp"
 
 
 namespace bildpeter {
@@ -21,8 +21,8 @@ namespace bildpeter {
         
         // init filter value
         double frequency    = 60 ;  // Hz
-        double mincutoff    = 1.0 ; // FIXME
-        double beta         = 1.0 ; // FIXME
+        double mincutoff    = 1.0 ; // fixed
+        double beta         = 1.0 ; // fixed
         double dcutoff      = 1.0 ; // this one should be ok
 
         for ( auto &filter : filters_ )

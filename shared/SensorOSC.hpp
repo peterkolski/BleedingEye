@@ -1,13 +1,13 @@
 //
-//  DancePerfOSC.hpp
+//  SensorOSC.hpp
 //  RibbonDev
 //
 //  Created by Peter A. Kolski on 15.04.16.
 //
 //
 
-#ifndef DancePerfOSC_hpp
-#define DancePerfOSC_hpp
+#ifndef SensorOSC_hpp
+#define SensorOSC_hpp
 
 #include "ofMain.h"
 #include "ofxOsc.h"
@@ -47,4 +47,4 @@ private:
 } // --- namespace bildpeter
 
 
-#endif /* DancePerfOSC_hpp */
+#endif /* SensorOSC_hpp */

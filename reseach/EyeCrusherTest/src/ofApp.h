@@ -8,7 +8,7 @@
 
 #include "NetworkNode.hpp"
 #include "NetworkVisual.hpp"
-#include "DancePerfOSC.hpp"
+#include "SensorOSC.hpp"
 #include "videoDirectory.hpp"
 #include "MidiValues.hpp"
 #include "LinesHorizontal.hpp"
