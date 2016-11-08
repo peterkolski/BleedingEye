@@ -26,7 +26,7 @@ void ofApp::setup(){
     midiIn.setVerbose(true);
     midiIn.listPorts();
     setupMidi();
-    midiUsedController = midiNano;
+    midiUsed = midiNano;
 
     flow.setup( ofColor::lightBlue );
     network.setup( guiNumPoints );
@@ -42,20 +42,20 @@ void ofApp::update(){
     adjustSensitivity();
     controlUpdate();
 
-    video.update( midiUsedController.getValue( "videoFaderA" ), midiUsedController.getValue( "videoFaderB" ), midiUsedController.getValue( "videoSensorA" ),
-                  midiUsedController.getValue( "videoSensorB" ), armValue, backValue );
-    network.update( midiUsedController.getValue( "networkFade" ), midiUsedController.getValue( "networkMovement" ),
-                    midiUsedController.getValue( "networkDistCenter" ), midiUsedController.getValue( "networkDistDiff" ), armValue, backValue,
-                    shoulderValue, midiUsedController.getValue( "networkMovementSensor" ),
-                    midiUsedController.getValue( "networkDistCenterSensor" ), midiUsedController.getValue( "networkDistDiffSensor" ) );
-    lines.update( midiUsedController.getValue( "linesFade" ), midiUsedController.getValue( "linesSpeed" ),
-                  midiUsedController.getValue( "linesSpeedSensor" ),
+    video.update( midiUsed.getValue( "videoFaderA" ), midiUsed.getValue( "videoFaderB" ), midiUsed.getValue( "videoSensorA" ),
+                  midiUsed.getValue( "videoSensorB" ), armValue, backValue );
+    network.update( midiUsed.getValue( "networkFade" ), midiUsed.getValue( "networkMovement" ),
+                    midiUsed.getValue( "networkDistCenter" ), midiUsed.getValue( "networkDistDiff" ), armValue, backValue,
+                    shoulderValue, midiUsed.getValue( "networkMovementSensor" ),
+                    midiUsed.getValue( "networkDistCenterSensor" ), midiUsed.getValue( "networkDistDiffSensor" ) );
+    lines.update( midiUsed.getValue( "linesFade" ), midiUsed.getValue( "linesSpeed" ),
+                  midiUsed.getValue( "linesSpeedSensor" ),
                   armValue );
-    flow.update( midiUsedController.getValue( "flowFade" ), midiUsedController.getValue( "flowStrength" ), armValue, shoulderValue, backValue,
-                 midiUsedController.getValue( "flowStrengthSensor" ) );
+    flow.update( midiUsed.getValue( "flowFade" ), midiUsed.getValue( "flowStrength" ), armValue, shoulderValue, backValue,
+                 midiUsed.getValue( "flowStrengthSensor" ) );
 
-    ribbon.update( midiUsedController.getValue( "ribbonSize"),
-                   midiUsedController.getValue( "ribbonFade"),
+    ribbon.update( midiUsed.getValue( "ribbonSize"),
+                   midiUsed.getValue( "ribbonFade"),
                    armValue, shoulderValue, backValue );
 }
 
@@ -64,12 +64,12 @@ void ofApp::draw(){
     ofBackground( ofColor::black );
 //    ofBackgroundGradient( ofColor( 0 ), ofColor( 100 ) , OF_GRADIENT_CIRCULAR );
 
-    video.draw( midiUsedController.getValue( "videoFaderA" ), midiUsedController.getValue( "videoFaderB" ) );
-    lines.draw( midiUsedController.getValue( "linesFade" ), midiUsedController.getValue( "linesColor" ) );
+    video.draw( midiUsed.getValue( "videoFaderA" ), midiUsed.getValue( "videoFaderB" ) );
+    lines.draw( midiUsed.getValue( "linesFade" ), midiUsed.getValue( "linesColor" ) );
 
-    network.draw( midiUsedController.getValue( "networkFade" ) );
-    ribbon.draw( midiUsedController.getValue( "ribbonFade" ) );
-    flow.draw( midiUsedController.getValue( "flowFade" ) );
+    network.draw( midiUsed.getValue( "networkFade" ) );
+    ribbon.draw( midiUsed.getValue( "ribbonFade" ) );
+    flow.draw( midiUsed.getValue( "flowFade" ) );
 }
 
 //--------------------------------------------------------------
@@ -99,7 +99,7 @@ void ofApp::newMidiMessage(ofxMidiMessage& msg) {
  
     if( msg.channel == 1 )
     {
-        midiUsedController.updateMessageValues( msg );
+        midiUsed.updateMessageValues( msg );
     }
 }
 
@@ -125,8 +125,8 @@ void    ofApp::adjustSensitivity()
     for ( auto &sensorValue : oscData )
     {
         sensorValue = ofMap(    sensorValue,
-                                0.0 + midiUsedController.getValue( "sensitivity" ) / 2,
-                                1.0 - midiUsedController.getValue( "sensitivity" ) / 2,
+                                0.0 + midiUsed.getValue( "sensitivity" ) / 2,
+                                1.0 - midiUsed.getValue( "sensitivity" ) / 2,
                                 0.0, 1.0, true );
     }
 }

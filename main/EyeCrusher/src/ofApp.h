@@ -50,7 +50,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     void                    setupMidi();
     void                    newMidiMessage( ofxMidiMessage& eventArgs );
     ofxMidiIn               midiIn;
-    bildpeter::MidiValues   midiUsedController, midiUC, midiNano;
+    bildpeter::MidiValues   midiUsed, midiUC, midiNano;
 
 
     void    controlUpdate();
