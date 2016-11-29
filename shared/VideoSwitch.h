@@ -5,8 +5,9 @@
 #ifndef BLEEDINGEYE_VIDEOSWITCH_H
 #define BLEEDINGEYE_VIDEOSWITCH_H
 
-#include <map>
+#include <unordered_map>
 #include <vector>
+#include <algorithm>
 
 namespace bildpeter
 {
@@ -24,8 +25,20 @@ private:
     int indexVideo  = 0;
     int indexBank   = 0;
 
-    std::map< int, int > videoMap = { {1,1}, {2,2}, {3,3}, {4,4}, {5,5}, {6,6}, {7,7}, {8,8}, {9,9}, {0,0} };
-//    std::vector< int > bankMap  = { 'Q', 'W', 'E', 'R', 'T', 'Z', 'U', 'I', 'O' };
+    std::unordered_map< int, int >   videoKeyMap =
+            {
+                    {'1', 0 },
+                    {'2', 1 },
+                    {'3', 2 },
+                    {'4', 3 },
+                    {'5', 4 },
+                    {'6', 5 },
+                    {'7', 6 },
+                    {'8', 7 },
+                    {'9', 8 },
+                    {'0', 9 },
+            };
+//    std::map< int, int > bankMap  = { {'Q',0}, 'W', 'E', 'R', 'T', 'Z', 'U', 'I', 'O' };
 };
 } // namespace bildpeter
 
