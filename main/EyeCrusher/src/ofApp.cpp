@@ -21,7 +21,7 @@ void ofApp::setup(){
     oscSensor.enableRandomValues( inputIsRandom );
 
     midiMapper.midiSetup(
-            "/Users/sonneundasche/programming/of/apps/BleedingEye/main/EyeCrusher/bin/data/SettingsMidi.txt", this );
+            "/Users/sonneundasche/programming/of/apps/BleedingEye/main/EyeCrusher/bin/data/SettingsMidi.xml", this );
 
     flow.setup( ofColor::lightBlue );
     network.setup( guiNumPoints );
@@ -86,6 +86,9 @@ void ofApp::keyPressed(int key){
             
         default:    break;
     }
+
+    videoSwitchLeft.grabVideoKey( key );
+    videoSwitchLeft.grabBankKey( key );
 }
 
 //--------------------------------------------------------------
