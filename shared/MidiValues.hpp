@@ -15,6 +15,31 @@
 
 namespace bildpeter{
 
+std::vector< string >   midiKeywordsOld =
+        {   "networkFade",
+            "networkFadeSensor",
+            "networkMovement",
+            "networkMovementSensor",
+            "networkDistCenter",
+            "networkDistCenterSensor",
+            "networkDistDiff",
+            "networkDistDiffSensor",
+            "linesFade",
+            "linesSpeed",
+            "linesSpeedSensor",
+            "linesColor",
+            "flowFade",
+            "flowStrength",
+            "flowStrengthSensor",
+            "ribbonFade",
+            "ribbonSize",
+            "videoFaderA",
+            "videoFaderB",
+            "videoSensorA",
+            "videoSensorB",
+            "sensitivity",
+        };
+
 class MidiValues
 {
 public:
