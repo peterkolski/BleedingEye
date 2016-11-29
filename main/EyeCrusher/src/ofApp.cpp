@@ -139,9 +139,7 @@ void ofApp::drawInputIndicator()
 
 void ofApp::setupMidi( string path )
 {
-    cout << "FileLoaded: "
-         << xmlReader.loadFile( path )
-         << "\n";
+    ofLogNotice() << "FileLoaded: " << xmlReader.loadFile( path ) << "\n";
 
     midiIn.openPort( xmlReader.getValue( "port", 0 ) );
     midiIn.addListener( this );
