@@ -52,7 +52,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     const int       midiValStandard = 88;
     const string    keyMidiPort     = "port";
     ofxXmlSettings  xmlReader;
-    void            setupMidi( string path );
+    void            midiSetup( string path );
     void            newMidiMessage( ofxMidiMessage& eventArgs );
     ofxMidiIn               midiIn;
     bildpeter::MidiValues   midiUsed;

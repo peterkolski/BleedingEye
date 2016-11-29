@@ -20,7 +20,7 @@ void ofApp::setup(){
     oscSensor.setup( oscPort, "/dance", 7 );
     oscSensor.enableRandomValues( inputIsRandom );
 
-    setupMidi( "/Users/sonneundasche/programming/of/apps/BleedingEye/main/EyeCrusher/bin/data/SettingsMidi.txt" );
+    midiSetup( "/Users/sonneundasche/programming/of/apps/BleedingEye/main/EyeCrusher/bin/data/SettingsMidi.txt" );
 
     flow.setup( ofColor::lightBlue );
     network.setup( guiNumPoints );
@@ -137,9 +137,10 @@ void ofApp::drawInputIndicator()
 
 //--------------------------------------------------------------
 
-void ofApp::setupMidi( string path )
+/// Activation of a midi device and assigning CC values to each needed word-key
+/// \param path to a XML file with tags found in  MidiMapping.h
+void ofApp::midiSetup( string path )
 {
-
     if ( xmlReader.loadFile( path ) )
     {
         if ( xmlReader.tagExists( keyMidiPort ) )
