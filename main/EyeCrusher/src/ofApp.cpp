@@ -149,7 +149,16 @@ void ofApp::setupMidi( string path )
 
         for( auto &key : midiMapper.midiKeywordsOld )
         {
-            midiUsed.setNameControlerPair( key, xmlReader.getValue( key, 88 ) );
+            if ( xmlReader.tagExists( key ) )
+            {
+                midiUsed.setNameControlerPair( key, xmlReader.getValue( key, midiValStandard ) );
+            }
+            else
+            {
+                ofLogError() << "Midi key in 'SettingsMidi.txt' not found: " << key 
+                             << "  - set to 188";
+                midiUsed.setNameControlerPair( key, midiValStandard );
+            }
         }
 
         ofLogNotice() << "XML file Loaded. \n";

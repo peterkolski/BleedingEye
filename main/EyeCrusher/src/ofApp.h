@@ -49,6 +49,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     int                     inputIsRandom = false;
     
     // --- MIDI
+    const int midiValStandard = 88;
     ofxXmlSettings          xmlReader;
     void setupMidi( string path );
     void                    newMidiMessage( ofxMidiMessage& eventArgs );
