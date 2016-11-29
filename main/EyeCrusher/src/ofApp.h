@@ -39,7 +39,6 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     bildpeter::Video    video;
 
 
-
     // --- OSC
     bildpeter::SensorOSC    oscSensor;
     vector< float >         oscData;

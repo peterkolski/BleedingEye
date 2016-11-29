@@ -114,6 +114,7 @@ void ofApp::guiUpdate()
 //    valMovement         = oscData[ 0 ] * guiOscMaxMovement;
 }
 
+//TODO Was soll das hier denn? Ist das nützlich?
 void    ofApp::adjustSensitivity()
 {
     for ( auto &sensorValue : oscData )

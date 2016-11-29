@@ -9,7 +9,7 @@ namespace bildpeter
 
 /// Activation of a midi device and assigning CC values to each needed word-key
 /// \param path to a XML file with tags found in  MidiMapping.h
-
+/// \param listener parent of the ofApp together with ofBaseApp (Multiple Inheritance)
 void MidiMapping::midiSetup( string path, ofxMidiListener *listener )
 {
     if ( xmlReader.loadFile( path ) )
@@ -50,6 +50,8 @@ void MidiMapping::midiSetup( string path, ofxMidiListener *listener )
     }
 }
 
+/// Should be called to avoid OS conflicts with midi devices after closing
+/// \param listener parent of the ofApp together with ofBaseApp (Multiple Inheritance)
 void MidiMapping::close( ofxMidiListener *listener )
 {
     midiIn.closePort();
