@@ -20,7 +20,7 @@ void MidiMapping::midiSetup( string path, ofxMidiListener *listener )
         }
         else
         {
-            ofLogError() << "Midi key in 'SettingsMidi.txt' not found: " << keyMidiPort << " - Port set to 0";
+            ofLogError() << "Midi key in 'SettingsMidi.xml' not found: " << keyMidiPort << " - Port set to 0";
             midiIn.openPort( 0 );
         }
 
@@ -36,7 +36,7 @@ void MidiMapping::midiSetup( string path, ofxMidiListener *listener )
             }
             else
             {
-                ofLogError() << "Midi key in 'SettingsMidi.txt' not found: " << key
+                ofLogError() << "Midi key in 'SettingsMidi.xml' not found: " << key
                              << "  - set to 188";
                 midiUsed.setNameControlerPair( key, midiValStandard );
             }
@@ -46,7 +46,7 @@ void MidiMapping::midiSetup( string path, ofxMidiListener *listener )
     }
     else
     {
-        ofLogError() << "File 'SettingsMidi.txt' not found. No Midi loaded. ";
+        ofLogError() << "File 'SettingsMidi.xml' not found. No Midi loaded. ";
     }
 }
 
