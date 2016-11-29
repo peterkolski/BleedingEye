@@ -20,7 +20,8 @@ void ofApp::setup(){
     oscSensor.setup( oscPort, "/dance", 7 );
     oscSensor.enableRandomValues( inputIsRandom );
 
-    midiSetup( "/Users/sonneundasche/programming/of/apps/BleedingEye/main/EyeCrusher/bin/data/SettingsMidi.txt" );
+    midiMapper.midiSetup(
+            "/Users/sonneundasche/programming/of/apps/BleedingEye/main/EyeCrusher/bin/data/SettingsMidi.txt", this );
 
     flow.setup( ofColor::lightBlue );
     network.setup( guiNumPoints );
@@ -36,20 +37,20 @@ void ofApp::update(){
     adjustSensitivity();
     controlUpdate();
 
-    video.update( midiUsed.getValue( "videoFaderA" ), midiUsed.getValue( "videoFaderB" ), midiUsed.getValue( "videoSensorA" ),
-                  midiUsed.getValue( "videoSensorB" ), armValue, backValue );
-    network.update( midiUsed.getValue( "networkFade" ), midiUsed.getValue( "networkMovement" ),
-                    midiUsed.getValue( "networkDistCenter" ), midiUsed.getValue( "networkDistDiff" ), armValue, backValue,
-                    shoulderValue, midiUsed.getValue( "networkMovementSensor" ),
-                    midiUsed.getValue( "networkDistCenterSensor" ), midiUsed.getValue( "networkDistDiffSensor" ) );
-    lines.update( midiUsed.getValue( "linesFade" ), midiUsed.getValue( "linesSpeed" ),
-                  midiUsed.getValue( "linesSpeedSensor" ),
+    video.update( midiMapper.midiUsed.getValue( "videoFaderA" ), midiMapper.midiUsed.getValue( "videoFaderB" ), midiMapper.midiUsed.getValue( "videoSensorA" ),
+                  midiMapper.midiUsed.getValue( "videoSensorB" ), armValue, backValue );
+    network.update( midiMapper.midiUsed.getValue( "networkFade" ), midiMapper.midiUsed.getValue( "networkMovement" ),
+                    midiMapper.midiUsed.getValue( "networkDistCenter" ), midiMapper.midiUsed.getValue( "networkDistDiff" ), armValue, backValue,
+                    shoulderValue, midiMapper.midiUsed.getValue( "networkMovementSensor" ),
+                    midiMapper.midiUsed.getValue( "networkDistCenterSensor" ), midiMapper.midiUsed.getValue( "networkDistDiffSensor" ) );
+    lines.update( midiMapper.midiUsed.getValue( "linesFade" ), midiMapper.midiUsed.getValue( "linesSpeed" ),
+                  midiMapper.midiUsed.getValue( "linesSpeedSensor" ),
                   armValue );
-    flow.update( midiUsed.getValue( "flowFade" ), midiUsed.getValue( "flowStrength" ), armValue, shoulderValue, backValue,
-                 midiUsed.getValue( "flowStrengthSensor" ) );
+    flow.update( midiMapper.midiUsed.getValue( "flowFade" ), midiMapper.midiUsed.getValue( "flowStrength" ), armValue, shoulderValue, backValue,
+                 midiMapper.midiUsed.getValue( "flowStrengthSensor" ) );
 
-    ribbon.update( midiUsed.getValue( "ribbonSize"),
-                   midiUsed.getValue( "ribbonFade"),
+    ribbon.update( midiMapper.midiUsed.getValue( "ribbonSize"),
+                   midiMapper.midiUsed.getValue( "ribbonFade"),
                    armValue, shoulderValue, backValue );
 }
 
@@ -58,12 +59,12 @@ void ofApp::draw(){
     ofBackground( ofColor::black );
 //    ofBackgroundGradient( ofColor( 0 ), ofColor( 100 ) , OF_GRADIENT_CIRCULAR );
 
-    video.draw( midiUsed.getValue( "videoFaderA" ), midiUsed.getValue( "videoFaderB" ) );
-    lines.draw( midiUsed.getValue( "linesFade" ), midiUsed.getValue( "linesColor" ) );
+    video.draw( midiMapper.midiUsed.getValue( "videoFaderA" ), midiMapper.midiUsed.getValue( "videoFaderB" ) );
+    lines.draw( midiMapper.midiUsed.getValue( "linesFade" ), midiMapper.midiUsed.getValue( "linesColor" ) );
 
-    network.draw( midiUsed.getValue( "networkFade" ) );
-    ribbon.draw( midiUsed.getValue( "ribbonFade" ) );
-    flow.draw( midiUsed.getValue( "flowFade" ) );
+    network.draw( midiMapper.midiUsed.getValue( "networkFade" ) );
+    ribbon.draw( midiMapper.midiUsed.getValue( "ribbonFade" ) );
+    flow.draw( midiMapper.midiUsed.getValue( "flowFade" ) );
 }
 
 //--------------------------------------------------------------
@@ -93,14 +94,13 @@ void ofApp::newMidiMessage(ofxMidiMessage& msg) {
  
     if( msg.channel == 1 )
     {
-        midiUsed.updateMessageValues( msg );
+        midiMapper.midiUsed.updateMessageValues( msg );
     }
 }
 
 //--------------------------------------------------------------
 void ofApp::exit() {
-    midiIn.closePort();
-    midiIn.removeListener(this);
+    midiMapper.close( this );
 }
 
 //--------------------------------------------------------------
@@ -119,8 +119,8 @@ void    ofApp::adjustSensitivity()
     for ( auto &sensorValue : oscData )
     {
         sensorValue = ofMap(    sensorValue,
-                                0.0 + midiUsed.getValue( "sensitivity" ) / 2,
-                                1.0 - midiUsed.getValue( "sensitivity" ) / 2,
+                                0.0 + midiMapper.midiUsed.getValue( "sensitivity" ) / 2,
+                                1.0 - midiMapper.midiUsed.getValue( "sensitivity" ) / 2,
                                 0.0, 1.0, true );
     }
 }
@@ -135,49 +135,7 @@ void ofApp::drawInputIndicator()
         ofDrawBitmapStringHighlight( "INPUT: Noise", ofGetWidth() - 100, ofGetHeight() - 10 );
 }
 
-//--------------------------------------------------------------
 
-/// Activation of a midi device and assigning CC values to each needed word-key
-/// \param path to a XML file with tags found in  MidiMapping.h
-void ofApp::midiSetup( string path )
-{
-    if ( xmlReader.loadFile( path ) )
-    {
-        if ( xmlReader.tagExists( keyMidiPort ) )
-        {
-            midiIn.openPort( xmlReader.getValue( keyMidiPort, 0 ) );
-        }
-        else 
-        {
-            ofLogError() << "Midi key in 'SettingsMidi.txt' not found: " << keyMidiPort << " - Port set to 0";
-            midiIn.openPort( 0 );
-        }
-
-        midiIn.addListener( this );
-        midiIn.setVerbose(true);
-        midiIn.listPorts();
-
-        for( auto &key : midiMapper.midiKeywordsOld )
-        {
-            if ( xmlReader.tagExists( key ) )
-            {
-                midiUsed.setNameControlerPair( key, xmlReader.getValue( key, midiValStandard ) );
-            }
-            else
-            {
-                ofLogError() << "Midi key in 'SettingsMidi.txt' not found: " << key 
-                             << "  - set to 188";
-                midiUsed.setNameControlerPair( key, midiValStandard );
-            }
-        }
-
-        ofLogNotice() << "XML file Loaded. \n";
-    }
-    else
-    {
-        ofLogError() << "File 'SettingsMidi.txt' not found. No Midi loaded. ";
-    }
-}
 
 
 //--------------------------------------------------------------

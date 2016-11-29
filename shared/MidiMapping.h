@@ -7,6 +7,10 @@
 
 #include <vector>
 #include <string>
+#include "ofxMidi.h"
+#include "MidiValues.hpp"
+#include "ofxXmlSettings.h"
+
 
 namespace bildpeter
 {
@@ -14,6 +18,18 @@ namespace bildpeter
 class MidiMapping
 {
 public:
+    void midiSetup( string path, ofxMidiListener *listener );
+    void close( ofxMidiListener *listener );
+
+    bildpeter::MidiValues   midiUsed;
+
+private:
+    ofxXmlSettings  xmlReader;
+    const int       midiValStandard = 88;
+    const string    keyMidiPort     = "port";
+    ofxMidiIn               midiIn;
+
+
     std::vector< std::string >   midiKeywordsOld =
             {   "networkFade",
                 "networkFadeSensor",

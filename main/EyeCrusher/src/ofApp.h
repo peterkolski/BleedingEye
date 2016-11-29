@@ -3,11 +3,9 @@
 #include "ofMain.h"
 #include "ofxGui.h"
 #include "ofxMidi.h"
-#include "ofxXmlSettings.h"
 
 #include "SensorOSC.hpp"
 #include "videoDirectory.hpp"
-#include "MidiValues.hpp"
 #include "MidiMapping.h"
 
 #include "Ribbon.h"
@@ -49,14 +47,8 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     int                     inputIsRandom = false;
     
     // --- MIDI
-    const int       midiValStandard = 88;
-    const string    keyMidiPort     = "port";
-    ofxXmlSettings  xmlReader;
-    void            midiSetup( string path );
-    void            newMidiMessage( ofxMidiMessage& eventArgs );
-    ofxMidiIn               midiIn;
-    bildpeter::MidiValues   midiUsed;
     bildpeter::MidiMapping  midiMapper;
+    void                    newMidiMessage( ofxMidiMessage& eventArgs );
 
 
     void    controlUpdate();
