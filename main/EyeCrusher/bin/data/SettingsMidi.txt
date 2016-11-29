@@ -1,24 +1,28 @@
 <port> 1 </port>
 
-<networkFade> </networkFade>
-<networkFadeSensor> </networkFadeSensor>
-<networkMovement> </networkMovement>
-<networkMovementSensor> </networkMovementSensor>
-<networkDistCenter> </networkDistCenter>
-<networkDistCenterSensor> </networkDistCenterSensor>
-<networkDistDiff> </networkDistDiff>
-<networkDistDiffSensor> </networkDistDiffSensor>
-<linesFade> </linesFade>
-<linesSpeed> </linesSpeed>
-<linesSpeedSensor> </linesSpeedSensor>
-<linesColor> </linesColor>
-<flowFade> </flowFade>
-<flowStrength> </flowStrength>
-<flowStrengthSensor> </flowStrengthSensor>
-<ribbonFade> </ribbonFade>
-<ribbonSize> </ribbonSize>
-<videoFaderA> </videoFaderA>
-<videoFaderB> </videoFaderB>
-<videoSensorA> </videoSensorA>
-<videoSensorB> </videoSensorB>
-<sensitivity> </sensitivity>
+<networkFade> 1 </networkFade>
+<networkFadeSensor> 88 </networkFadeSensor>
+<networkMovement> 11 </networkMovement>
+<networkMovementSensor> 88 </networkMovementSensor>
+<networkDistCenter> 2 </networkDistCenter>
+<networkDistCenterSensor> 88 </networkDistCenterSensor>
+<networkDistDiff> 12 </networkDistDiff>
+<networkDistDiffSensor> 88 </networkDistDiffSensor>
+
+<linesFade> 3 </linesFade>
+<linesSpeed> 13 </linesSpeed>
+<linesSpeedSensor> 88 </linesSpeedSensor>
+<linesColor> 4 </linesColor>
+
+<flowFade> 5 </flowFade>
+<flowStrength> 15 </flowStrength>
+<flowStrengthSensor> 88 </flowStrengthSensor>
+
+<ribbonFade> 6 </ribbonFade>
+<ribbonSize> 16 </ribbonSize>
+
+<videoFaderA> 8 </videoFaderA>
+<videoFaderB> 9 </videoFaderB>
+<videoSensorA> 88 </videoSensorA>
+<videoSensorB> 88</videoSensorB>
+<sensitivity> 20 </sensitivity>
