@@ -139,16 +139,24 @@ void ofApp::drawInputIndicator()
 
 void ofApp::setupMidi( string path )
 {
-    ofLogNotice() << "FileLoaded: " << xmlReader.loadFile( path ) << "\n";
 
-    midiIn.openPort( xmlReader.getValue( "port", 0 ) );
-    midiIn.addListener( this );
-    midiIn.setVerbose(true);
-    midiIn.listPorts();
-    
-    for( auto &key : midiMapper.midiKeywordsOld )
+    if ( xmlReader.loadFile( path ) )
     {
-        midiUsed.setNameControlerPair( key, xmlReader.getValue( key, 88 ) );
+        midiIn.openPort( xmlReader.getValue( "port", 0 ) );
+        midiIn.addListener( this );
+        midiIn.setVerbose(true);
+        midiIn.listPorts();
+
+        for( auto &key : midiMapper.midiKeywordsOld )
+        {
+            midiUsed.setNameControlerPair( key, xmlReader.getValue( key, 88 ) );
+        }
+
+        ofLogNotice() << "XML file Loaded. \n";
+    }
+    else
+    {
+        ofLogError() << "File 'SettingsMidi.txt' not found. No Midi loaded. ";
     }
 }
 
