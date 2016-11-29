@@ -38,7 +38,19 @@ private:
                     {'9', 8 },
                     {'0', 9 },
             };
-//    std::map< int, int > bankMap  = { {'Q',0}, 'W', 'E', 'R', 'T', 'Z', 'U', 'I', 'O' };
+    std::unordered_map< int, int >   bankKeyMap  =
+            {
+                    {'Q', 0 },
+                    {'W', 1 },
+                    {'E', 2 },
+                    {'R', 3 },
+                    {'T', 4 },
+                    {'Z', 5 },
+                    {'U', 6 },
+                    {'I', 7 },
+                    {'O', 8 },
+                    {'P', 9 }
+            };
 };
 } // namespace bildpeter
 

@@ -88,7 +88,9 @@ void ofApp::keyPressed(int key){
     }
 
     videoSwitchLeft.grabVideoKey( key );
+    ofLogNotice() << "videoKey: " << videoSwitchLeft.getIndexVideo();
     videoSwitchLeft.grabBankKey( key );
+    ofLogNotice() << "bankKey: " << videoSwitchLeft.getIndexBank();
 }
 
 //--------------------------------------------------------------

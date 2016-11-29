@@ -17,7 +17,11 @@ bool bildpeter::VideoSwitch::grabVideoKey( int key )
 
 bool bildpeter::VideoSwitch::grabBankKey( int key )
 {
-//    if ( bankMap.count)= ) {}
+    if ( bankKeyMap.count( key ) )
+    {
+        indexBank = bankKeyMap.at( key );
+        return true;
+    }
     return false;
 }
 
