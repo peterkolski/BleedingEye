@@ -1,0 +1,29 @@
+<port> 0 </port>
+
+<networkFade> 1 </networkFade>
+<networkFadeSensor> 10 </networkFadeSensor>
+<networkMovement> 18 </networkMovement>
+<networkMovementSensor> 26 </networkMovementSensor>
+<networkDistCenter> 2 </networkDistCenter>
+<networkDistCenterSensor> 11 </networkDistCenterSensor>
+<networkDistDiff> 19 </networkDistDiff>
+<networkDistDiffSensor> 27 </networkDistDiffSensor>
+
+<linesFade> 3 </linesFade>
+<linesSpeed> 12 </linesSpeed>
+<linesSpeedSensor> 20 </linesSpeedSensor>
+<linesColor> 28 </linesColor>
+
+<flowFade> 4 </flowFade>
+<flowStrength> 13 </flowStrength>
+<flowStrengthSensor> 21 </flowStrengthSensor>
+
+<ribbonFade> 5 </ribbonFade>
+<ribbonSize> 14 </ribbonSize>
+
+<videoFaderA> 7 </videoFaderA>
+<videoFaderB> 8 </videoFaderB>
+<videoSensorA> 16 </videoSensorA>
+<videoSensorB> 17</videoSensorB>
+
+<sensitivity> 9 </sensitivity>

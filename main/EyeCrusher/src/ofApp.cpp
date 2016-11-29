@@ -24,13 +24,7 @@ void ofApp::setup(){
          << xmlReader.loadFile("/Users/sonneundasche/programming/of/apps/BleedingEye/main/EyeCrusher/bin/data/SettingsMidi.txt")
          << "\n";
 
-    // --- MIDI
-    midiIn.openPort( xmlReader.getValue( "port", 0 ) );
-    midiIn.addListener( this );
-    midiIn.setVerbose(true);
-    midiIn.listPorts();
     setupMidi();
-    midiUsed = midiNano;
 
     flow.setup( ofColor::lightBlue );
     network.setup( guiNumPoints );
@@ -149,39 +143,15 @@ void ofApp::drawInputIndicator()
 
 void ofApp::setupMidi()
 {
-    midiUC.setNameControlerPair( "networkFade", 1 );
-    midiUC.setNameControlerPair( "networkFadeSensor", 10 );
-    midiUC.setNameControlerPair( "networkMovement", 18 );
-    midiUC.setNameControlerPair( "networkMovementSensor", 26 );
-    midiUC.setNameControlerPair( "networkDistCenter", 2 );
-    midiUC.setNameControlerPair( "networkDistCenterSensor", 11 );
-    midiUC.setNameControlerPair( "networkDistDiff", 19 );
-    midiUC.setNameControlerPair( "networkDistDiffSensor", 27 );
+    midiIn.openPort( xmlReader.getValue( "port", 0 ) );
+    midiIn.addListener( this );
+    midiIn.setVerbose(true);
+    midiIn.listPorts();
     
-    midiUC.setNameControlerPair( "linesFade", 3 );
-    midiUC.setNameControlerPair( "linesSpeed", 12 );
-    midiUC.setNameControlerPair( "linesSpeedSensor", 20 );
-    midiUC.setNameControlerPair( "linesColor", 28 );
-    
-    midiUC.setNameControlerPair( "flowFade", 4 );
-    midiUC.setNameControlerPair( "flowStrength", 13 );
-    midiUC.setNameControlerPair( "flowStrengthSensor", 21 );
-    
-    midiUC.setNameControlerPair("ribbonFade", 5 );
-    midiUC.setNameControlerPair("ribbonSize", 14 );
-    
-    midiUC.setNameControlerPair( "videoFaderA", 7 );
-    midiUC.setNameControlerPair( "videoFaderB", 8 );
-    midiUC.setNameControlerPair( "videoSensorA", 16 );
-    midiUC.setNameControlerPair( "videoSensorB", 17 );
-    
-    midiUC.setNameControlerPair( "sensitivity", 9 );
-
     for( auto &key : midiMapper.midiKeywordsOld )
     {
-        midiNano.setNameControlerPair( key, xmlReader.getValue( key, 88 ) );
+        midiUsed.setNameControlerPair( key, xmlReader.getValue( key, 88 ) );
     }
-    
 }
 
 
