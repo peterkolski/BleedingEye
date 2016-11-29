@@ -25,7 +25,7 @@ void ofApp::setup(){
          << "\n";
 
     // --- MIDI
-    midiIn.openPort( 1 );
+    midiIn.openPort( xmlReader.getValue( "port", 0 ) );
     midiIn.addListener( this );
     midiIn.setVerbose(true);
     midiIn.listPorts();
