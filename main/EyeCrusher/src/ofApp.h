@@ -50,7 +50,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     
     // --- MIDI
     ofxXmlSettings          xmlReader;
-    void                    setupMidi();
+    void setupMidi( string path );
     void                    newMidiMessage( ofxMidiMessage& eventArgs );
     ofxMidiIn               midiIn;
     bildpeter::MidiValues   midiUsed, midiUC;

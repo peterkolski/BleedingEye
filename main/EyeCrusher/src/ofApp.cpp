@@ -20,11 +20,7 @@ void ofApp::setup(){
     oscSensor.setup( oscPort, "/dance", 7 );
     oscSensor.enableRandomValues( inputIsRandom );
 
-    cout << "FileLoaded: "
-         << xmlReader.loadFile("/Users/sonneundasche/programming/of/apps/BleedingEye/main/EyeCrusher/bin/data/SettingsMidi.txt")
-         << "\n";
-
-    setupMidi();
+    setupMidi( "/Users/sonneundasche/programming/of/apps/BleedingEye/main/EyeCrusher/bin/data/SettingsMidi.txt" );
 
     flow.setup( ofColor::lightBlue );
     network.setup( guiNumPoints );
@@ -141,8 +137,12 @@ void ofApp::drawInputIndicator()
 
 //--------------------------------------------------------------
 
-void ofApp::setupMidi()
+void ofApp::setupMidi( string path )
 {
+    cout << "FileLoaded: "
+         << xmlReader.loadFile( path )
+         << "\n";
+
     midiIn.openPort( xmlReader.getValue( "port", 0 ) );
     midiIn.addListener( this );
     midiIn.setVerbose(true);
