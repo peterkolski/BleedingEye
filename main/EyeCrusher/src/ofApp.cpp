@@ -177,33 +177,11 @@ void ofApp::setupMidi()
     
     midiUC.setNameControlerPair( "sensitivity", 9 );
 
-    midiNano.setNameControlerPair( "networkFade", 1 );
-    midiNano.setNameControlerPair( "networkFadeSensor", 88 );
-    midiNano.setNameControlerPair( "networkMovement", 11 );
-    midiNano.setNameControlerPair( "networkMovementSensor", 88 );
-    midiNano.setNameControlerPair( "networkDistCenter", 2 );
-    midiNano.setNameControlerPair( "networkDistCenterSensor", 88 );
-    midiNano.setNameControlerPair( "networkDistDiff", 12 );
-    midiNano.setNameControlerPair( "networkDistDiffSensor", 88 );
-
-    midiNano.setNameControlerPair( "linesFade", 3 );
-    midiNano.setNameControlerPair( "linesSpeed", 13 );
-    midiNano.setNameControlerPair( "linesSpeedSensor", 88 );
-    midiNano.setNameControlerPair( "linesColor", 4 );
-
-    midiNano.setNameControlerPair( "flowFade", 5 );
-    midiNano.setNameControlerPair( "flowStrength", 15 );
-    midiNano.setNameControlerPair( "flowStrengthSensor", 88 );
-
-    midiNano.setNameControlerPair("ribbonFade", 6 );
-    midiNano.setNameControlerPair("ribbonSize", 16 );
-
-    midiNano.setNameControlerPair( "videoFaderA", 8 );
-    midiNano.setNameControlerPair( "videoSensorA", 88 );
-    midiNano.setNameControlerPair( "videoFaderB", 9 );
-    midiNano.setNameControlerPair( "videoSensorB", 88 );
-
-    midiNano.setNameControlerPair( "sensitivity", 20 );
+    for( auto &key : midiMapper.midiKeywordsOld )
+    {
+        midiNano.setNameControlerPair( key, xmlReader.getValue( key, 88 ) );
+    }
+    
 }
 
 

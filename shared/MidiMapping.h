@@ -5,14 +5,16 @@
 #ifndef BLEEDINGEYE_MIDIMAPPING_H
 #define BLEEDINGEYE_MIDIMAPPING_H
 
-#include <stdio.h>
+#include <vector>
+#include <string>
+
 namespace bildpeter
 {
 
 class MidiMapping
 {
 public:
-    std::vector< string >   midiKeywordsOld =
+    std::vector< std::string >   midiKeywordsOld =
             {   "networkFade",
                 "networkFadeSensor",
                 "networkMovement",

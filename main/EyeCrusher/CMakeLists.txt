@@ -21,6 +21,7 @@ list( APPEND ${APP_NAME}_SOURCE_FILES
         ../../shared/SensorOSC.cpp
         ../../shared/videoDirectory.cpp
         ../../shared/MidiValues.cpp
+        ../../shared/MidiMapping.cpp
         ../../shared/LinesHorizontal.cpp
         ../../shared/FlowPoint.cpp
         ../../shared/Ribbon.cpp
