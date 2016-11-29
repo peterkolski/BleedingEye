@@ -29,6 +29,7 @@ list( APPEND ${APP_NAME}_SOURCE_FILES
         ../../shared/Network.cpp
         ../../shared/Lines.cpp
         ../../shared/Video.cpp
+        ../../shared/VideoSwitch.cpp
         )
 
 # ------------------------ AddOns ------------
