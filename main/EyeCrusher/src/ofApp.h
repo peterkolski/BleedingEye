@@ -8,6 +8,7 @@
 #include "SensorOSC.hpp"
 #include "videoDirectory.hpp"
 #include "MidiValues.hpp"
+#include "MidiMapping.h"
 
 #include "Ribbon.h"
 #include "Flow.h"
@@ -53,6 +54,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     void                    newMidiMessage( ofxMidiMessage& eventArgs );
     ofxMidiIn               midiIn;
     bildpeter::MidiValues   midiUsed, midiUC, midiNano;
+    bildpeter::MidiMapping  midiMapper;
 
 
     void    controlUpdate();

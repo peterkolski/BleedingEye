@@ -11,6 +11,7 @@ namespace bildpeter
 
 class MidiMapping
 {
+public:
     std::vector< string >   midiKeywordsOld =
             {   "networkFade",
                 "networkFadeSensor",
@@ -35,7 +36,8 @@ class MidiMapping
                 "videoSensorB",
                 "sensitivity",
             };
-}:
+
+};
 
 } // namespace bildpeter
 
