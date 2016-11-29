@@ -6,6 +6,8 @@
 #define BLEEDINGEYE_MIDIMAPPING_H
 
 #include <stdio.h>
+namespace bildpeter
+{
 
 class MidiMapping
 {
@@ -33,8 +35,8 @@ class MidiMapping
                 "videoSensorB",
                 "sensitivity",
             };
-
-
 }:
+
+} // namespace bildpeter
 
 #endif //BLEEDINGEYE_MIDIMAPPING_H
