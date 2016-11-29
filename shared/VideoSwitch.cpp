@@ -15,3 +15,14 @@ bool bildpeter::VideoSwitch::grabBankKey( int key )
 
     return false;
 }
+
+
+int bildpeter::VideoSwitch::getIndexBank() const
+{
+    return indexBank;
+}
+
+int bildpeter::VideoSwitch::getIndexVideo() const
+{
+    return indexVideo;
+}
