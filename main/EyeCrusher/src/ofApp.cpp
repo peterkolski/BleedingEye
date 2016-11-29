@@ -37,20 +37,20 @@ void ofApp::update(){
     adjustSensitivity();
     controlUpdate();
 
-    video.update( midiMapper.midiUsed.getValue( "videoFaderA" ), midiMapper.midiUsed.getValue( "videoFaderB" ), midiMapper.midiUsed.getValue( "videoSensorA" ),
-                  midiMapper.midiUsed.getValue( "videoSensorB" ), armValue, backValue );
-    network.update( midiMapper.midiUsed.getValue( "networkFade" ), midiMapper.midiUsed.getValue( "networkMovement" ),
-                    midiMapper.midiUsed.getValue( "networkDistCenter" ), midiMapper.midiUsed.getValue( "networkDistDiff" ), armValue, backValue,
-                    shoulderValue, midiMapper.midiUsed.getValue( "networkMovementSensor" ),
-                    midiMapper.midiUsed.getValue( "networkDistCenterSensor" ), midiMapper.midiUsed.getValue( "networkDistDiffSensor" ) );
-    lines.update( midiMapper.midiUsed.getValue( "linesFade" ), midiMapper.midiUsed.getValue( "linesSpeed" ),
-                  midiMapper.midiUsed.getValue( "linesSpeedSensor" ),
+    video.update( midiMapper.midiUsed_.getValue( "videoFaderA" ), midiMapper.midiUsed_.getValue( "videoFaderB" ), midiMapper.midiUsed_.getValue( "videoSensorA" ),
+                  midiMapper.midiUsed_.getValue( "videoSensorB" ), armValue, backValue );
+    network.update( midiMapper.midiUsed_.getValue( "networkFade" ), midiMapper.midiUsed_.getValue( "networkMovement" ),
+                    midiMapper.midiUsed_.getValue( "networkDistCenter" ), midiMapper.midiUsed_.getValue( "networkDistDiff" ), armValue, backValue,
+                    shoulderValue, midiMapper.midiUsed_.getValue( "networkMovementSensor" ),
+                    midiMapper.midiUsed_.getValue( "networkDistCenterSensor" ), midiMapper.midiUsed_.getValue( "networkDistDiffSensor" ) );
+    lines.update( midiMapper.midiUsed_.getValue( "linesFade" ), midiMapper.midiUsed_.getValue( "linesSpeed" ),
+                  midiMapper.midiUsed_.getValue( "linesSpeedSensor" ),
                   armValue );
-    flow.update( midiMapper.midiUsed.getValue( "flowFade" ), midiMapper.midiUsed.getValue( "flowStrength" ), armValue, shoulderValue, backValue,
-                 midiMapper.midiUsed.getValue( "flowStrengthSensor" ) );
+    flow.update( midiMapper.midiUsed_.getValue( "flowFade" ), midiMapper.midiUsed_.getValue( "flowStrength" ), armValue, shoulderValue, backValue,
+                 midiMapper.midiUsed_.getValue( "flowStrengthSensor" ) );
 
-    ribbon.update( midiMapper.midiUsed.getValue( "ribbonSize"),
-                   midiMapper.midiUsed.getValue( "ribbonFade"),
+    ribbon.update( midiMapper.midiUsed_.getValue( "ribbonSize"),
+                   midiMapper.midiUsed_.getValue( "ribbonFade"),
                    armValue, shoulderValue, backValue );
 }
 
@@ -59,12 +59,12 @@ void ofApp::draw(){
     ofBackground( ofColor::black );
 //    ofBackgroundGradient( ofColor( 0 ), ofColor( 100 ) , OF_GRADIENT_CIRCULAR );
 
-    video.draw( midiMapper.midiUsed.getValue( "videoFaderA" ), midiMapper.midiUsed.getValue( "videoFaderB" ) );
-    lines.draw( midiMapper.midiUsed.getValue( "linesFade" ), midiMapper.midiUsed.getValue( "linesColor" ) );
+    video.draw( midiMapper.midiUsed_.getValue( "videoFaderA" ), midiMapper.midiUsed_.getValue( "videoFaderB" ) );
+    lines.draw( midiMapper.midiUsed_.getValue( "linesFade" ), midiMapper.midiUsed_.getValue( "linesColor" ) );
 
-    network.draw( midiMapper.midiUsed.getValue( "networkFade" ) );
-    ribbon.draw( midiMapper.midiUsed.getValue( "ribbonFade" ) );
-    flow.draw( midiMapper.midiUsed.getValue( "flowFade" ) );
+    network.draw( midiMapper.midiUsed_.getValue( "networkFade" ) );
+    ribbon.draw( midiMapper.midiUsed_.getValue( "ribbonFade" ) );
+    flow.draw( midiMapper.midiUsed_.getValue( "flowFade" ) );
 }
 
 //--------------------------------------------------------------
@@ -99,7 +99,7 @@ void ofApp::newMidiMessage(ofxMidiMessage& msg) {
  
     if( msg.channel == 1 )
     {
-        midiMapper.midiUsed.updateMessageValues( msg );
+        midiMapper.midiUsed_.updateMessageValues( msg );
     }
 }
 
@@ -125,8 +125,8 @@ void    ofApp::adjustSensitivity()
     for ( auto &sensorValue : oscData )
     {
         sensorValue = ofMap(    sensorValue,
-                                0.0 + midiMapper.midiUsed.getValue( "sensitivity" ) / 2,
-                                1.0 - midiMapper.midiUsed.getValue( "sensitivity" ) / 2,
+                                0.0 + midiMapper.midiUsed_.getValue( "sensitivity" ) / 2,
+                                1.0 - midiMapper.midiUsed_.getValue( "sensitivity" ) / 2,
                                 0.0, 1.0, true );
     }
 }

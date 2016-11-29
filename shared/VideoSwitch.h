@@ -22,10 +22,10 @@ public:
 
 
 private:
-    int indexVideo  = 0;
-    int indexBank   = 0;
+    int indexVideo_  = 0;
+    int indexBank_   = 0;
 
-    std::unordered_map< int, int >   videoKeyMap =
+    std::unordered_map< int, int >   videoKeyMap_ =
             {
                     {'1', 0 },
                     {'2', 1 },
@@ -38,7 +38,7 @@ private:
                     {'9', 8 },
                     {'0', 9 },
             };
-    std::unordered_map< int, int >   bankKeyMap  =
+    std::unordered_map< int, int >   bankKeyMap_  =
             {
                     {'Q', 0 },
                     {'W', 1 },

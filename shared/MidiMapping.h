@@ -21,16 +21,16 @@ public:
     void midiSetup( string path, ofxMidiListener *listener );
     void close( ofxMidiListener *listener );
 
-    bildpeter::MidiValues   midiUsed;
+    bildpeter::MidiValues   midiUsed_;
 
 private:
-    ofxXmlSettings  xmlReader;
-    const int       midiValStandard = 88;
-    const string    keyMidiPort     = "port";
-    ofxMidiIn               midiIn;
+    ofxXmlSettings  xmlReader_;
+    const int       midiValStandard_ = 88;
+    const string    keyMidiPort_     = "port";
+    ofxMidiIn       midiIn_;
 
 
-    std::vector< std::string >   midiKeywordsOld =
+    std::vector< std::string >   midiKeywordsOld_ =
             {   "networkFade",
                 "networkFadeSensor",
                 "networkMovement",

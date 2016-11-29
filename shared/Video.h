@@ -24,10 +24,10 @@ public:
     void next();
 
 private:
-    float sensorValA;
-    float sensorValB;
-    VideoDirectoryPlayer videoA;
-    VideoDirectoryPlayer videoB;
+    float                   sensorValA_;
+    float                   sensorValB_;
+    VideoDirectoryPlayer    videoA_;
+    VideoDirectoryPlayer    videoB_;
 };
 
 } // namespace bildpeter

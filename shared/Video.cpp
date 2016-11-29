@@ -8,31 +8,31 @@ namespace bildpeter
 {
 void Video::setup( string pathA, string pathB )
 {
-    videoA.loadDirectory( pathA );
-    videoB.loadDirectory( pathB );
-    videoA.play();
-    videoB.play();
+    videoA_.loadDirectory( pathA );
+    videoB_.loadDirectory( pathB );
+    videoA_.play();
+    videoB_.play();
 }
 
 void Video::update( float faderA, float faderB, float sensorA, float sensorB, float arm, float back )
 {
-    sensorValA        = ( 1 - arm ) * sensorA;
-    sensorValB        = ( 1 - back ) * sensorB;
+    sensorValA_        = ( 1 - arm ) * sensorA;
+    sensorValB_        = ( 1 - back ) * sensorB;
 
     if ( faderA )
     {
-        if ( !videoA.videoPlayer_.isPlaying() ) { videoA.videoPlayer_.play(); }
-        videoA.update();
-        videoA.fade( ofClamp( faderA - sensorValA, 0.0, 1.0 ) * 255 );
+        if ( !videoA_.videoPlayer_.isPlaying() ) { videoA_.videoPlayer_.play(); }
+        videoA_.update();
+        videoA_.fade( ofClamp( faderA - sensorValA_, 0.0, 1.0 ) * 255 );
     }
-    else    { videoA.videoPlayer_.setPaused( true ); }
+    else    { videoA_.videoPlayer_.setPaused( true ); }
 
     if ( faderB ) {
-        if ( !videoB.videoPlayer_.isPlaying() ) { videoB.videoPlayer_.play(); }
-        videoB.update();
-        videoB.fade( ofClamp( faderB - sensorValB, 0.0, 1.0 ) * 255 );
+        if ( !videoB_.videoPlayer_.isPlaying() ) { videoB_.videoPlayer_.play(); }
+        videoB_.update();
+        videoB_.fade( ofClamp( faderB - sensorValB_, 0.0, 1.0 ) * 255 );
     }
-    else    { videoB.videoPlayer_.setPaused( true ); }
+    else    { videoB_.videoPlayer_.setPaused( true ); }
 }
 
 void Video::draw( float faderA, float faderB )
@@ -44,14 +44,14 @@ void Video::draw( float faderA, float faderB )
     auto w = 5120;
     auto h = 3200;
 
-    if ( faderA ) videoA.draw( x, y, z, w, h );
-    if ( faderB ) videoB.draw( x, y, z, w, h );
+    if ( faderA ) videoA_.draw( x, y, z, w, h );
+    if ( faderB ) videoB_.draw( x, y, z, w, h );
 }
 
 void Video::next()
 {
-    videoA.nextVideo();
-    videoB.nextVideo();
+    videoA_.nextVideo();
+    videoB_.nextVideo();
 }
 
 } // namespace bildpeter
