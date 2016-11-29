@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ofxGui.h"
 #include "ofxMidi.h"
+#include "ofxXmlSettings.h"
 
 #include "SensorOSC.hpp"
 #include "videoDirectory.hpp"
@@ -47,6 +48,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     int                     inputIsRandom = false;
     
     // --- MIDI
+    ofxXmlSettings          xmlReader;
     void                    setupMidi();
     void                    newMidiMessage( ofxMidiMessage& eventArgs );
     ofxMidiIn               midiIn;

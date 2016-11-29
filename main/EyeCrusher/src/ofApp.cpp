@@ -20,6 +20,10 @@ void ofApp::setup(){
     oscSensor.setup( oscPort, "/dance", 7 );
     oscSensor.enableRandomValues( inputIsRandom );
 
+    cout << "FileLoaded: "
+         << xmlReader.loadFile("/Users/sonneundasche/programming/of/apps/BleedingEye/main/EyeCrusher/bin/data/SettingsMidi.txt")
+         << "\n";
+
     // --- MIDI
     midiIn.openPort( 1 );
     midiIn.addListener( this );
