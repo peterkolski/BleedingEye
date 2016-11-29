@@ -142,7 +142,16 @@ void ofApp::setupMidi( string path )
 
     if ( xmlReader.loadFile( path ) )
     {
-        midiIn.openPort( xmlReader.getValue( "port", 0 ) );
+        if ( xmlReader.tagExists( keyMidiPort ) )
+        {
+            midiIn.openPort( xmlReader.getValue( keyMidiPort, 0 ) );
+        }
+        else 
+        {
+            ofLogError() << "Midi key in 'SettingsMidi.txt' not found: " << keyMidiPort << " - Port set to 0";
+            midiIn.openPort( 0 );
+        }
+
         midiIn.addListener( this );
         midiIn.setVerbose(true);
         midiIn.listPorts();

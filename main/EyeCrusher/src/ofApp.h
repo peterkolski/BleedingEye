@@ -49,10 +49,11 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     int                     inputIsRandom = false;
     
     // --- MIDI
-    const int midiValStandard = 88;
-    ofxXmlSettings          xmlReader;
-    void setupMidi( string path );
-    void                    newMidiMessage( ofxMidiMessage& eventArgs );
+    const int       midiValStandard = 88;
+    const string    keyMidiPort     = "port";
+    ofxXmlSettings  xmlReader;
+    void            setupMidi( string path );
+    void            newMidiMessage( ofxMidiMessage& eventArgs );
     ofxMidiIn               midiIn;
     bildpeter::MidiValues   midiUsed;
     bildpeter::MidiMapping  midiMapper;
