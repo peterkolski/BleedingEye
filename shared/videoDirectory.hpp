@@ -22,6 +22,7 @@ public:
 
     void    loadDirectory( string _path );
     void    nextVideo();
+    bool    setVideoByIndex( int index );
     void    update();
     void    play()                          { videoPlayer_.play(); }
     void    draw( float x, float y, float w, float h );

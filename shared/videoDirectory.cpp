@@ -97,7 +97,12 @@ namespace bildpeter {
         planeWithVideo_.mapTexCoords( 0, 0, videoPlayer_.getWidth(), videoPlayer_.getHeight() );
     }
 
-    // --------------------------------------------------------------------------------------
+bool VideoDirectoryPlayer::setVideoByIndex( int index )
+{
+    return false;
+}
+
+// --------------------------------------------------------------------------------------
     
     
 }   // namespace bildpeter
