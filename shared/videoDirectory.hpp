@@ -25,6 +25,7 @@ public:
     bool    setVideoByIndex( int index );
     void    update();
     void    play();
+    void    stop();
     void    draw( float x, float y, float w, float h );
     void    draw( float x, float y, float z, float w, float h );
     void    fade( float alpha )             { fadeColor_ = ofColor( ofColor::white, alpha ); }
@@ -38,6 +39,8 @@ private:
     int                 videoIndexMax_      = -1;
     bool                isPlaying_          = false;
     ofColor             fadeColor_          = ofColor::white;
+
+    void playIfNotPlaying() const;
 };
     
 }   // namespace bildpeter

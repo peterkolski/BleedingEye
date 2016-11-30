@@ -102,12 +102,19 @@ bool VideoDirectoryPlayer::setVideoByIndex( int index )
         videoIndexCurrent_ = index;
 
         videoPlayer_.load( directoryList_.getFiles()[ videoIndexCurrent_ ].path() );    //TODO Does it have to load each time?
-        if ( isPlaying_ && !( videoPlayer_.isPlaying( ) ) ) {
-            videoPlayer_.play();
-        }
+
+        playIfNotPlaying( );
+
         return true;
     }
     else return false;
+}
+
+void VideoDirectoryPlayer::playIfNotPlaying() const
+{
+    if ( isPlaying_ && !( videoPlayer_.isPlaying( ) ) ) {
+            videoPlayer_.play();
+        }
 }
 
 void VideoDirectoryPlayer::play()
@@ -116,6 +123,15 @@ void VideoDirectoryPlayer::play()
     if ( !videoPlayer_.isPlaying() )
     {
         videoPlayer_.play();
+    }
+}
+
+void VideoDirectoryPlayer::stop()
+{
+    isPlaying_ = false;
+    if ( videoPlayer_.isPlaying() )
+    {
+        videoPlayer_.stop();
     }
 }
 
