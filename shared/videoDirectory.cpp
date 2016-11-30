@@ -77,7 +77,7 @@ namespace bildpeter {
     
     void VideoDirectoryPlayer::nextVideo()
     {
-        auto isPlaying  = videoPlayer_.isPlaying();
+        isPlaying_  = videoPlayer_.isPlaying(); // TODO set global
         
         if ( videoIndexCurrent_ >= videoIndexMax_ ) {
             videoIndexCurrent_ = 0;
@@ -90,7 +90,7 @@ namespace bildpeter {
         }
         
         videoPlayer_.load( directoryList_.getFiles()[ videoIndexCurrent_ ].path() );
-        if (isPlaying) {
+        if ( isPlaying_ ) {
             videoPlayer_.play();
         }
         
@@ -99,7 +99,17 @@ namespace bildpeter {
 
 bool VideoDirectoryPlayer::setVideoByIndex( int index )
 {
-    return false;
+    if ( index <= videoIndexMax_ )
+    {
+        videoIndexCurrent_ = index;
+        
+        videoPlayer_.load( directoryList_.getFiles()[ videoIndexCurrent_ ].path() );
+        if ( isPlaying_ && !( videoPlayer_.isPlaying( ) ) ) {
+            videoPlayer_.play();
+        }
+        return true;
+    }
+    else return false;
 }
 
 // --------------------------------------------------------------------------------------
