@@ -111,7 +111,11 @@ bool VideoDirectoryPlayer::setVideoByIndex( int index )
 
         return true;
     }
-    else return false;
+    else
+    {
+        ofLogVerbose() << logInfo_  << "No video with index " << index;
+        return false;
+    }
 }
 
 void VideoDirectoryPlayer::loadFromIndex( int index )
