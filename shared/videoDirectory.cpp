@@ -94,6 +94,7 @@ namespace bildpeter {
         planeWithVideo_.mapTexCoords( 0, 0, videoPlayer_.getWidth(), videoPlayer_.getHeight() );
     }
 
+
 bool VideoDirectoryPlayer::setVideoByIndex( int index )
 {
     if ( index <= videoIndexMax_ )
@@ -103,6 +104,8 @@ bool VideoDirectoryPlayer::setVideoByIndex( int index )
         loadFromIndex( videoIndexCurrent_ );
 
         playIfItShould( );
+
+        ofLogVerbose() << "Video index set to " << videoIndexCurrent_;
 
         return true;
     }
