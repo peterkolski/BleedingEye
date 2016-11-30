@@ -88,9 +88,8 @@ namespace bildpeter {
         }
         
         videoPlayer_.load( directoryList_.getFiles()[ videoIndexCurrent_ ].path() );
-        if ( isPlaying_ ) {
-            videoPlayer_.play();
-        }
+
+        playIfItShould( );
         
         planeWithVideo_.mapTexCoords( 0, 0, videoPlayer_.getWidth(), videoPlayer_.getHeight() );
     }
@@ -103,14 +102,14 @@ bool VideoDirectoryPlayer::setVideoByIndex( int index )
 
         videoPlayer_.load( directoryList_.getFiles()[ videoIndexCurrent_ ].path() );    //TODO Does it have to load each time?
 
-        playIfNotPlaying( );
+        playIfItShould( );
 
         return true;
     }
     else return false;
 }
 
-void VideoDirectoryPlayer::playIfNotPlaying()
+void VideoDirectoryPlayer::playIfItShould()
 {
     if ( isPlaying_ && !( videoPlayer_.isPlaying( ) ) ) {
             videoPlayer_.play();
