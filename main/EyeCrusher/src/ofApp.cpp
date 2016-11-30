@@ -3,7 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 //    ofEnableAntiAliasing();
-//    ofSetLogLevel( OF_LOG_VERBOSE );
+    ofSetLogLevel( OF_LOG_VERBOSE );
     ofEnableAlphaBlending();
     ofHideCursor();
     

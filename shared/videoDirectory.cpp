@@ -21,12 +21,12 @@ namespace bildpeter {
             videoIndexCurrent_  = 0;
             videoIndexMax_      = directoryList_.getFiles().size() - 1;
             loadFromIndex( videoIndexCurrent_ );
-            
-            // --- Logging
-            ofLogVerbose()  << "File paths: " << directoryList_.getFiles().size();
+
+            ofLogVerbose()  << logInfo_ << "File paths amount: " << directoryList_.getFiles().size();
+
             for ( auto &file : directoryList_.getFiles() )
             {
-                ofLogVerbose() << file.path();
+                ofLogVerbose() << logInfo_<< file.path();
             }
             
             planeWithVideo_.mapTexCoords( 0, 0, videoPlayer_.getWidth(), videoPlayer_.getHeight() );
@@ -34,7 +34,7 @@ namespace bildpeter {
         }
         else
         {
-            ofLogError() << "No files in directory";
+            ofLogError() << logInfo_ << "No files in directory";
         }
     }
     
@@ -73,18 +73,18 @@ namespace bildpeter {
         ofPopStyle();
     }
     
-    // --------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------
     
     void VideoDirectoryPlayer::nextVideo()
     {
         if ( videoIndexCurrent_ >= videoIndexMax_ ) {
             videoIndexCurrent_ = 0;
-            ofLogVerbose() << "Last video";
+            ofLogVerbose() << logInfo_ << "Last video";
         }
         else
         {
             videoIndexCurrent_++;
-            ofLogVerbose() << "Next video";
+            ofLogVerbose() << logInfo_ << "Next video";
         }
 
         loadFromIndex( videoIndexCurrent_ );
@@ -94,7 +94,11 @@ namespace bildpeter {
         planeWithVideo_.mapTexCoords( 0, 0, videoPlayer_.getWidth(), videoPlayer_.getHeight() );
     }
 
+// --------------------------------------------------------------------------------------
 
+///
+/// \param index Of the video in the folder (starts with 0)
+/// \return     true if video is loaded
 bool VideoDirectoryPlayer::setVideoByIndex( int index )
 {
     if ( index <= videoIndexMax_ )
@@ -105,8 +109,6 @@ bool VideoDirectoryPlayer::setVideoByIndex( int index )
 
         playIfItShould( );
 
-        ofLogVerbose() << "Video index set to " << videoIndexCurrent_;
-
         return true;
     }
     else return false;
@@ -116,6 +118,7 @@ void VideoDirectoryPlayer::loadFromIndex( int index )
 {
     videoPlayer_.load( directoryList_.getFiles()[ index ].path() );    //TODO Does it have to load each time?
 
+    ofLogVerbose() << logInfo_  << "Video index set to " << videoIndexCurrent_;
 }
 
 void VideoDirectoryPlayer::playIfItShould()
@@ -131,6 +134,7 @@ void VideoDirectoryPlayer::play()
     if ( !videoPlayer_.isPlaying() )
     {
         videoPlayer_.play();
+        ofLogVerbose() << logInfo_  << "Play video";
     }
 }
 
@@ -140,6 +144,7 @@ void VideoDirectoryPlayer::stop()
     if ( videoPlayer_.isPlaying() )
     {
         videoPlayer_.stop();
+        ofLogVerbose() << logInfo_  << "Stop video";
     }
 }
 

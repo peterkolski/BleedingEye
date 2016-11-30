@@ -33,6 +33,7 @@ public:
     ofVideoPlayer       videoPlayer_;
     
 private:
+    string              logInfo_ = "VideoDirectory | ";
     ofDirectory         directoryList_;
     ofPlanePrimitive    planeWithVideo_;
     int                 videoIndexCurrent_  = 0;    // TODO replace with iterators
