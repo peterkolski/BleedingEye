@@ -65,6 +65,7 @@ void ofApp::draw(){
     network.draw( midiMapper.midiUsed_.getValue( "networkFade" ) );
     ribbon.draw( midiMapper.midiUsed_.getValue( "ribbonFade" ) );
     flow.draw( midiMapper.midiUsed_.getValue( "flowFade" ) );
+    ofDrawBitmapStringHighlight( ofToString( ofGetFrameRate() ), ofPoint( 100, 100 ) );
 }
 
 //--------------------------------------------------------------
@@ -88,6 +89,7 @@ void ofApp::keyPressed(int key){
     }
 
     videoSwitchLeft.grabVideoKey( key );
+    video.setVideoA( 0 );
     ofLogNotice() << "videoKey: " << videoSwitchLeft.getIndexVideo();
     videoSwitchLeft.grabBankKey( key );
     ofLogNotice() << "bankKey: " << videoSwitchLeft.getIndexBank();
