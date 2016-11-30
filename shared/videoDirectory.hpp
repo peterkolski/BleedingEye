@@ -41,6 +41,8 @@ private:
     ofColor             fadeColor_          = ofColor::white;
 
     void playIfItShould();
+
+    void loadFromIndex( int index );
 };
     
 }   // namespace bildpeter

@@ -20,7 +20,7 @@ namespace bildpeter {
         {
             videoIndexCurrent_  = 0;
             videoIndexMax_      = directoryList_.getFiles().size() - 1;
-            videoPlayer_.load( directoryList_.getFiles()[ videoIndexCurrent_ ].path() );
+            loadFromIndex( videoIndexCurrent_ );
             
             // --- Logging
             ofLogVerbose()  << "File paths: " << directoryList_.getFiles().size();
@@ -86,8 +86,8 @@ namespace bildpeter {
             videoIndexCurrent_++;
             ofLogVerbose() << "Next video";
         }
-        
-        videoPlayer_.load( directoryList_.getFiles()[ videoIndexCurrent_ ].path() );
+
+        loadFromIndex( videoIndexCurrent_ );
 
         playIfItShould( );
         
@@ -100,13 +100,19 @@ bool VideoDirectoryPlayer::setVideoByIndex( int index )
     {
         videoIndexCurrent_ = index;
 
-        videoPlayer_.load( directoryList_.getFiles()[ videoIndexCurrent_ ].path() );    //TODO Does it have to load each time?
+        loadFromIndex( videoIndexCurrent_ );
 
         playIfItShould( );
 
         return true;
     }
     else return false;
+}
+
+void VideoDirectoryPlayer::loadFromIndex( int index )
+{
+    videoPlayer_.load( directoryList_.getFiles()[ index ].path() );    //TODO Does it have to load each time?
+
 }
 
 void VideoDirectoryPlayer::playIfItShould()
