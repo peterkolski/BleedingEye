@@ -24,7 +24,7 @@ public:
     void    nextVideo();
     bool    setVideoByIndex( int index );
     void    update();
-    void    play()                          { videoPlayer_.play(); }
+    void    play();
     void    draw( float x, float y, float w, float h );
     void    draw( float x, float y, float z, float w, float h );
     void    fade( float alpha )             { fadeColor_ = ofColor( ofColor::white, alpha ); }
