@@ -56,12 +56,12 @@ void Video::next()
 
 bool Video::setVideoA( int index )
 {
-    return false;
+    return videoA_.setVideoByIndex( index );
 }
 
 bool Video::setVideoB( int index )
 {
-    return false;
+    return videoB_.setVideoByIndex( index );
 }
 
 } // namespace bildpeter
