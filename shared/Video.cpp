@@ -54,4 +54,14 @@ void Video::next()
     videoB_.nextVideo();
 }
 
+bool Video::setVideoA( int index )
+{
+    return false;
+}
+
+bool Video::setVideoB( int index )
+{
+    return false;
+}
+
 } // namespace bildpeter

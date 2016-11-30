@@ -23,6 +23,9 @@ public:
 
     void next();
 
+    bool setVideoA( int index );
+    bool setVideoB( int index );
+
 private:
     float                   sensorValA_;
     float                   sensorValB_;
