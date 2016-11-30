@@ -110,7 +110,7 @@ bool VideoDirectoryPlayer::setVideoByIndex( int index )
     else return false;
 }
 
-void VideoDirectoryPlayer::playIfNotPlaying() const
+void VideoDirectoryPlayer::playIfNotPlaying()
 {
     if ( isPlaying_ && !( videoPlayer_.isPlaying( ) ) ) {
             videoPlayer_.play();

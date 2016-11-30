@@ -40,7 +40,7 @@ private:
     bool                isPlaying_          = false;
     ofColor             fadeColor_          = ofColor::white;
 
-    void playIfNotPlaying() const;
+    void playIfNotPlaying();
 };
     
 }   // namespace bildpeter
