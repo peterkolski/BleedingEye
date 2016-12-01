@@ -13,7 +13,7 @@
 #include "Network.h"
 #include "Lines.h"
 #include "Video.h"
-#include "VideoSwitch.h"
+#include "KeyDetector.h"
 
 // -------------------------------------------------------------------
 // -------------------------------------------------------------------
@@ -39,7 +39,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 
     // --- Video
     bildpeter::Video        video;
-    bildpeter::VideoSwitch  videoSwitchLeft, videoSwitcherRight;
+    bildpeter::KeyDetector  videoSwitchLeft, videoSwitcherRight;
 
 
     // --- OSC

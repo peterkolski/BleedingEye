@@ -2,9 +2,9 @@
 // Created by Peter A. Kolski on 29.11.16.
 //
 
-#include "VideoSwitch.h"
+#include "KeyDetector.h"
 
-bool bildpeter::VideoSwitch::grabKey( int key )
+bool bildpeter::KeyDetector::grabKey( int key )
 {
     if ( videoKeyMap_.count( key ) )
     {
@@ -21,17 +21,17 @@ bool bildpeter::VideoSwitch::grabKey( int key )
 }
 
 
-int bildpeter::VideoSwitch::getIndexBank() const
+int bildpeter::KeyDetector::getIndexBank() const
 {
     return indexBank_;
 }
 
-int bildpeter::VideoSwitch::getIndexVideo() const
+int bildpeter::KeyDetector::getIndexVideo() const
 {
     return indexVideo_;
 }
 
-void bildpeter::VideoSwitch::setMaps( std::unordered_map< int, int > mapVid, std::unordered_map< int, int > mapBank )
+void bildpeter::KeyDetector::setMaps( std::unordered_map< int, int > mapVid, std::unordered_map< int, int > mapBank )
 {
     videoKeyMap_ = mapVid;
     bankKeyMap_ = mapBank;

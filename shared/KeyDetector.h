@@ -11,7 +11,7 @@
 
 namespace bildpeter
 {
-class VideoSwitch
+class KeyDetector
 {
 public:
     void setVideoMap( std::unordered_map< int, int > map )    { videoKeyMap_ = map; }
