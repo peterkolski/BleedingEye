@@ -21,7 +21,7 @@ public:
     ~VideoDirectoryPlayer() {};
     VideoDirectoryPlayer( string _path )    { loadDirectory( _path ); }
 
-    void    loadDirectory( string path );
+    void    loadDirectory( string rootPath );
     void    nextVideo();
     bool    setVideoByIndex( int index );
     bool    setBankByIndex( int index );
