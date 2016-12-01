@@ -96,7 +96,7 @@ namespace bildpeter {
 
 // --------------------------------------------------------------------------------------
 
-///
+/// Switching to other video for playing
 /// \param index Of the video in the folder (starts with 0)
 /// \return     true if video is loaded
 bool VideoDirectoryPlayer::setVideoByIndex( int index )
@@ -118,6 +118,11 @@ bool VideoDirectoryPlayer::setVideoByIndex( int index )
     }
 }
 
+// --------------------------------------------------------------------------------------
+
+/// Switching to other video-bank (folder with videos)
+/// \param index Of the video-bank of folders (starts with 0)
+/// \return     true if bank is loaded
 bool VideoDirectoryPlayer::setBankByIndex( int index )
 {
     if ( index <= bankIndexMax_  )
@@ -134,7 +139,6 @@ bool VideoDirectoryPlayer::setBankByIndex( int index )
         ofLogVerbose() << logInfo_  << "No bank with index " << index;
         return false;
     }
-
 }
 
 void VideoDirectoryPlayer::loadFromIndex( int index )
