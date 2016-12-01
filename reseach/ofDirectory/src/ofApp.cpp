@@ -14,6 +14,8 @@ void ofApp::setup(){
                       << " | D: " << file.isDirectory();
     }
 
+    ofLogNotice() << "paths: " << dirDetect.getPathsAmount();
+
     for ( auto &path : dirDetect.getPaths() )
     {
         ofLogNotice() << path;
