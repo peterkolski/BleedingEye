@@ -32,7 +32,6 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     void                drawInputIndicator();
     void                adjustSensitivity();
 
-	// TODO easier construction
 	bildpeter::Ribbon   ribbon;
     bildpeter::Flow     flow;
     bildpeter::Network  network;
@@ -74,60 +73,59 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 };
 
 
-//std::unordered_map< int, int > keyMapLeftVideo_ =
-//        {
-//                {'1', 0 },
-//                {'2', 1 },
-//                {'3', 2 },
-//                {'4', 3 },
-//                {'5', 4 },
-//                {'6', 5 },
-//                {'7', 6 },
-//                {'8', 7 },
-//                {'9', 8 },
-//                {'0', 9 },
-//        };
-//
-//std::unordered_map< int, int > keyMapLeftBank_ =
-//        {
-////                {'!', 0 },
-//////                {'"', 1 },
-//////                {'§', 2 },
-////                {'$', 3 },
-////                {'%', 4 },
-////                {'&', 5 },
-////                {'/', 6 },
-////                {'(', 7 },
-////                {')', 8 },
-////                {'=', 9 },
-//        };
-//
-//
-//std::unordered_map< int, int >   keyMapRightVideo_  =
-//        {
-//                {'q', 0 },
-//                {'w', 1 },
-//                {'e', 2 },
-//                {'r', 3 },
-//                {'t', 4 },
-//                {'z', 5 },
-//                {'u', 6 },
-//                {'i', 7 },
-//                {'o', 8 },
-//                {'p', 9 }
-//        };
-//
-//std::unordered_map< int, int >   keyMapRightBank_  =
-//        {
-//                {'Q', 0 },
-//                {'W', 1 },
-//                {'E', 2 },
-//                {'R', 3 },
-//                {'T', 4 },
-//                {'Z', 5 },
-//                {'U', 6 },
-//                {'I', 7 },
-//                {'O', 8 },
-//                {'P', 9 }
-//        };
+const std::unordered_map< int, int > keyMapLeftVideo =
+        {
+                {'1', 0 },
+                {'2', 1 },
+                {'3', 2 },
+                {'4', 3 },
+                {'5', 4 },
+                {'6', 5 },
+                {'7', 6 },
+                {'8', 7 },
+                {'9', 8 },
+                {'0', 9 },
+        };
 
+const std::unordered_map< int, int > keyMapLeftBank =
+        {
+                {'!', 0 },
+//                {'"', 1 },
+//                {'§', 2 },
+                {'$', 3 },
+                {'%', 4 },
+                {'&', 5 },
+                {'/', 6 },
+                {'(', 7 },
+                {')', 8 },
+                {'=', 9 },
+        };
+
+
+const std::unordered_map< int, int >   keyMapRightVideo_  =
+        {
+                {'q', 0 },
+                {'w', 1 },
+                {'e', 2 },
+                {'r', 3 },
+                {'t', 4 },
+                {'z', 5 },
+                {'u', 6 },
+                {'i', 7 },
+                {'o', 8 },
+                {'p', 9 }
+        };
+
+const std::unordered_map< int, int >   keyMapRightBank  =
+        {
+                {'Q', 0 },
+                {'W', 1 },
+                {'E', 2 },
+                {'R', 3 },
+                {'T', 4 },
+                {'Z', 5 },
+                {'U', 6 },
+                {'I', 7 },
+                {'O', 8 },
+                {'P', 9 }
+        };
