@@ -13,7 +13,7 @@
 #include "Network.h"
 #include "Lines.h"
 #include "Video.h"
-#include "KeyDetector.h"
+#include "util/KeyDetector.h"
 
 // -------------------------------------------------------------------
 // -------------------------------------------------------------------

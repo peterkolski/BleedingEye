@@ -2,8 +2,8 @@
 // Created by Peter A. Kolski on 29.11.16.
 //
 
-#ifndef BLEEDINGEYE_VIDEOSWITCH_H
-#define BLEEDINGEYE_VIDEOSWITCH_H
+#ifndef BLEEDINGEYE_KEYDETECTOR_H
+#define BLEEDINGEYE_KEYDETECTOR_H
 
 #include <unordered_map>
 #include <vector>
