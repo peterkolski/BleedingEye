@@ -23,18 +23,21 @@ public:
     void    loadDirectory( string _path );
     void    nextVideo();
     bool    setVideoByIndex( int index );
+    bool    setBankByIndex( int index );
     void    update();
     void    play();
     void    stop();
     void    draw( float x, float y, float w, float h );
     void    draw( float x, float y, float z, float w, float h );
+
     void    fade( float alpha )             { fadeColor_ = ofColor( ofColor::white, alpha ); }
 
     ofVideoPlayer       videoPlayer_;
 
-    bool setBankByIndex( int index );
-
 private:
+    void loadFromIndex( int index );
+    void playIfItShould();
+
     string              logInfo_ = "VideoDirectory | ";
     ofDirectory         directoryList_;
     ofPlanePrimitive    planeWithVideo_;
@@ -42,12 +45,10 @@ private:
     int                 videoIndexMax_      = -1;
     int                 bankIndexCurrent_   = 0;
     int                 bankIndexMax_       = -1;
+
     bool                isPlaying_          = false;
+
     ofColor             fadeColor_          = ofColor::white;
-
-    void playIfItShould();
-
-    void loadFromIndex( int index );
 
 };
     
