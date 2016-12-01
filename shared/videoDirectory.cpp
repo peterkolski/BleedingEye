@@ -120,9 +120,21 @@ bool VideoDirectoryPlayer::setVideoByIndex( int index )
 
 bool VideoDirectoryPlayer::setBankByIndex( int index )
 {
-    //TODO implement
-    ofLogError( ) << logInfo_ << "Not implemented";
-    return false;
+    if ( index <= bankIndexMax_  )
+    {
+        if ( bankIndexCurrent_ != index )
+        {
+            //TODO implement
+        }
+        ofLogError( ) << logInfo_ << "Not implemented";
+        return true;
+    }
+    else
+    {
+        ofLogVerbose() << logInfo_  << "No video with index " << index;
+        return false;
+    }
+
 }
 
 void VideoDirectoryPlayer::loadFromIndex( int index )

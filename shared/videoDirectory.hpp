@@ -40,12 +40,15 @@ private:
     ofPlanePrimitive    planeWithVideo_;
     int                 videoIndexCurrent_  = 0;    // TODO replace with iterators
     int                 videoIndexMax_      = -1;
+    int                 bankIndexCurrent_   = 0;
+    int                 bankIndexMax_       = -1;
     bool                isPlaying_          = false;
     ofColor             fadeColor_          = ofColor::white;
 
     void playIfItShould();
 
     void loadFromIndex( int index );
+
 };
     
 }   // namespace bildpeter
