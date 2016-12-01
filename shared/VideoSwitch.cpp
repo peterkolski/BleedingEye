@@ -4,25 +4,20 @@
 
 #include "VideoSwitch.h"
 
-bool bildpeter::VideoSwitch::grabVideoKey( int key )
+bool bildpeter::VideoSwitch::grabKey( int key )
 {
     if ( videoKeyMap_.count( key ) )
     {
         indexVideo_ = videoKeyMap_.at( key );
         return true;
     }
-
-    return false;
-}
-
-bool bildpeter::VideoSwitch::grabBankKey( int key )
-{
-    if ( bankKeyMap_.count( key ) )
+    else if ( bankKeyMap_.count( key ) )
     {
         indexBank_ = bankKeyMap_.at( key );
         return true;
     }
-    return false;
+    else
+        return false;
 }
 
 

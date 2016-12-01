@@ -94,9 +94,7 @@ void ofApp::keyPressed(int key){
     }
 
     videoSwitchLeft.grabKey( key );
-    videoSwitchLeft.grabBankKey( key );
     videoSwitcherRight.grabKey( key );
-    videoSwitcherRight.grabBankKey( key );
 
 
     video.setVideoA( videoSwitchLeft.getIndexVideo() );
