@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "util/DirectoryDetector.h"
 // -------------------------------------------------------------------
 // -------------------------------------------------------------------
 
@@ -13,4 +14,6 @@ class ofApp : public ofBaseApp
 		void update();
 		void draw();
 
+
+    ofDirectory     dirList_;
 };

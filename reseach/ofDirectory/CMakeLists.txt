@@ -14,10 +14,11 @@ set( ${APP_NAME}_SOURCE_FILES
         )
 
 # ------------------------ Shared ------------------------
-#list( APPEND ${APP_NAME}_SOURCE_FILES
-#        )
+list( APPEND ${APP_NAME}_SOURCE_FILES
+        ../../shared/util/DirectoryDetector.cpp
+        )
 
-#include_directories( ../../shared )
+include_directories( ../../shared )
 
 # ------------------------ AddOns ------------
 set( OFX_ADDONS_ACTIVE
