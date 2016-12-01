@@ -72,6 +72,8 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
     ofxPanel        gui;
 };
 
+// ----------------------------------------------------------
+// ------------------  CONSTANTS  ---------------------------
 
 const std::unordered_map< int, int > keyMapLeftVideo =
         {
@@ -90,7 +92,7 @@ const std::unordered_map< int, int > keyMapLeftVideo =
 const std::unordered_map< int, int > keyMapLeftBank =
         {
                 {'!', 0 },
-//                {'"', 1 },
+                {'"', 1 },
 //                {'§', 2 },
                 {'$', 3 },
                 {'%', 4 },
@@ -102,7 +104,7 @@ const std::unordered_map< int, int > keyMapLeftBank =
         };
 
 
-const std::unordered_map< int, int >   keyMapRightVideo_  =
+const std::unordered_map< int, int >   keyMapRightVideo  =
         {
                 {'q', 0 },
                 {'w', 1 },

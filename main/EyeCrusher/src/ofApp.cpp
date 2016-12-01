@@ -26,6 +26,11 @@ void ofApp::setup(){
     flow.setup( ofColor::lightBlue );
     network.setup( guiNumPoints );
     lines.setup( );
+
+    videoSwitchLeft.setVideoMap( keyMapLeftVideo );
+    videoSwitchLeft.setBankMap( keyMapLeftBank );
+    videoSwitcherRight.setVideoMap( keyMapRightVideo );
+    videoSwitcherRight.setBankMap( keyMapRightBank );
     video.setup( "/Users/sonneundasche/programming/of/apps/BleedingEye/data/videosA/",
                  "/Users/sonneundasche/programming/of/apps/BleedingEye/data/videosB/" );
 }
@@ -88,12 +93,19 @@ void ofApp::keyPressed(int key){
         default:    break;
     }
 
-    videoSwitchLeft.grabVideoKey( key );
-    video.setVideoA( videoSwitchLeft.getIndexVideo() );
-//    video.setVideoB( videoSwitchLeft.getIndexVideo() );
-    ofLogNotice() << "videoKey: " << videoSwitchLeft.getIndexVideo();
+    videoSwitchLeft.grabKey( key );
     videoSwitchLeft.grabBankKey( key );
-    ofLogNotice() << "bankKey: " << videoSwitchLeft.getIndexBank();
+    videoSwitcherRight.grabKey( key );
+    videoSwitcherRight.grabBankKey( key );
+
+
+    video.setVideoA( videoSwitchLeft.getIndexVideo() );
+    video.setVideoB( videoSwitcherRight.getIndexVideo() );
+
+    ofLogVerbose() << "LEFT | video: " << videoSwitchLeft.getIndexVideo()
+                   << "bank: " << videoSwitchLeft.getIndexBank();
+    ofLogVerbose()  << "Right | video: " << videoSwitcherRight.getIndexVideo()
+                    << "bank: " << videoSwitcherRight.getIndexBank();
 }
 
 //--------------------------------------------------------------
