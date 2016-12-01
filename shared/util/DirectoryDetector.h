@@ -18,6 +18,7 @@ public:
     std::vector< string >   getPaths()          { return paths_; }
 
 private:
+    string                  logInfo_ = "DirectoryDetector | ";
     ofDirectory             dirList_;
     std::vector< string >   paths_;
 };

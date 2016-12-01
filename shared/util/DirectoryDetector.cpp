@@ -15,4 +15,9 @@ void bildpeter::DirectoryDetector::readDirectories( string path )
             paths_.push_back( dir.getAbsolutePath() );
     }
 
+    if ( paths_.size() == 0 )
+    {
+        ofLogError() << logInfo_ << "No directory found in " << path;
+    }
+
 }

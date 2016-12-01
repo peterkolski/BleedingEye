@@ -3,7 +3,9 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 
-    std::string  _startPath = "/Users/sonneundasche/programming/of/apps/BleedingEye/reseach/ofDirectory/folders/A";
+//    std::string  _startPath = "/Users/sonneundasche/programming/of/apps/BleedingEye/reseach/ofDirectory/folders/A";
+    std::string  _startPath = "/Users/sonneundasche/programming/of/apps/BleedingEye/reseach/ofDirectory/folders/B";
+
     dirList_.listDir( _startPath );
     dirDetect.readDirectories( _startPath );
 
