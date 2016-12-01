@@ -15,5 +15,6 @@ class ofApp : public ofBaseApp
 		void draw();
 
 
-    ofDirectory     dirList_;
+    ofDirectory                     dirList_;
+    bildpeter::DirectoryDetector    dirDetect;
 };

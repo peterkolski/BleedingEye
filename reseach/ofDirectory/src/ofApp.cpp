@@ -3,16 +3,21 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 
-    dirList_.listDir( "/Users/sonneundasche/programming/of/apps/BleedingEye/reseach/ofDirectory/folders/A" );
+    std::string  _startPath = "/Users/sonneundasche/programming/of/apps/BleedingEye/reseach/ofDirectory/folders/A";
+    dirList_.listDir( _startPath );
+    dirDetect.readDirectories( _startPath );
 
     for( auto &file : dirList_.getFiles() )
     {
         ofLogNotice() << file.path()
                       << " | F: " << file.isFile()
-                      << " | D: " << file.isDirectory()
-                      << "\n";
+                      << " | D: " << file.isDirectory();
     }
 
+    for ( auto &path : dirDetect.getPaths() )
+    {
+        ofLogNotice() << path;
+    }
 }
 
 //--------------------------------------------------------------
