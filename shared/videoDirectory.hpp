@@ -31,7 +31,9 @@ public:
     void    fade( float alpha )             { fadeColor_ = ofColor( ofColor::white, alpha ); }
 
     ofVideoPlayer       videoPlayer_;
-    
+
+    bool setBankByIndex( int index );
+
 private:
     string              logInfo_ = "VideoDirectory | ";
     ofDirectory         directoryList_;

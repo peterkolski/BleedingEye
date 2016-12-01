@@ -26,6 +26,9 @@ public:
     bool setVideoA( int index );
     bool setVideoB( int index );
 
+    bool setBankA( int index );
+    bool setBankB( int index );
+
 private:
     float                   sensorValA_;
     float                   sensorValB_;

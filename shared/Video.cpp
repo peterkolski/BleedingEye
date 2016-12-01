@@ -64,4 +64,15 @@ bool Video::setVideoB( int index )
     return videoB_.setVideoByIndex( index );
 }
 
+bool Video::setBankA( int index )
+{
+
+    return videoA_.setBankByIndex( index );
+}
+
+bool Video::setBankB( int index )
+{
+    return videoB_.setBankByIndex( index );
+}
+
 } // namespace bildpeter
