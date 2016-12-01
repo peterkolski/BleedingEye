@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "ofMain.h"
+#include "util/DirectoryDetector.h"
 
 namespace bildpeter {
 
@@ -20,7 +21,7 @@ public:
     ~VideoDirectoryPlayer() {};
     VideoDirectoryPlayer( string _path )    { loadDirectory( _path ); }
 
-    void    loadDirectory( string _path );
+    void    loadDirectory( string path );
     void    nextVideo();
     bool    setVideoByIndex( int index );
     bool    setBankByIndex( int index );
@@ -39,6 +40,7 @@ private:
     void playIfItShould();
 
     string              logInfo_ = "VideoDirectory | ";
+    DirectoryDetector   bankDir_;
     ofDirectory         directoryList_;
     ofPlanePrimitive    planeWithVideo_;
     int                 videoIndexCurrent_  = 0;    // TODO replace with iterators

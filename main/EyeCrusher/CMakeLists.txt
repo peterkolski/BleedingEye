@@ -30,6 +30,7 @@ list( APPEND ${APP_NAME}_SOURCE_FILES
         ../../shared/Lines.cpp
         ../../shared/Video.cpp
         ../../shared/util/KeyDetector.cpp
+        ../../shared/util/DirectoryDetector.cpp
         )
 
 # ------------------------ AddOns ------------

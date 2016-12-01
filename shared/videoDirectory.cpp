@@ -12,9 +12,13 @@
 namespace bildpeter {
 
     
-    void VideoDirectoryPlayer::loadDirectory( string _path )
+    void VideoDirectoryPlayer::loadDirectory( string path )
     {
-        directoryList_.listDir( _path );
+        // --- Banks
+        bankDir_.readDirectories( path );
+
+        // --- Videos
+        directoryList_.listDir( path );
         directoryList_.sort();
         if ( directoryList_.getFiles().size() )
         {
