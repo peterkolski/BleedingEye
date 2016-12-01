@@ -131,7 +131,7 @@ bool VideoDirectoryPlayer::setBankByIndex( int index )
     }
     else
     {
-        ofLogVerbose() << logInfo_  << "No video with index " << index;
+        ofLogVerbose() << logInfo_  << "No bank with index " << index;
         return false;
     }
 
