@@ -12,8 +12,9 @@ set( OF_DIRECTORY_BY_USER ../../../../ )
 include_directories( shared )
 
 
-add_subdirectory( main/EyeCrusher )
+#add_subdirectory( main/EyeCrusher )
 #add_subdirectory( reseach/EyeCrusherTest )
+add_subdirectory( reseach/ofDirectory )
 
 
 # =========================================================================
