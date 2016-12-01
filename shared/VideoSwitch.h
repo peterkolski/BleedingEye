@@ -16,6 +16,7 @@ class VideoSwitch
 public:
     void setVideoMap( std::unordered_map< int, int > map )    { videoKeyMap_ = map; }
     void setBankMap( std::unordered_map< int, int > map )     { bankKeyMap_  = map; }
+    void setMaps( std::unordered_map< int, int > mapVid, std::unordered_map< int, int > mapBank );
     bool grabKey( int key );
 
     int getIndexVideo() const;

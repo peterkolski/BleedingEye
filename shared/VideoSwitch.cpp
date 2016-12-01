@@ -30,3 +30,9 @@ int bildpeter::VideoSwitch::getIndexVideo() const
 {
     return indexVideo_;
 }
+
+void bildpeter::VideoSwitch::setMaps( std::unordered_map< int, int > mapVid, std::unordered_map< int, int > mapBank )
+{
+    videoKeyMap_ = mapVid;
+    bankKeyMap_ = mapBank;
+}

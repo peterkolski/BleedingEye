@@ -27,10 +27,9 @@ void ofApp::setup(){
     network.setup( guiNumPoints );
     lines.setup( );
 
-    videoSwitchLeft.setVideoMap( keyMapLeftVideo );
-    videoSwitchLeft.setBankMap( keyMapLeftBank );
-    videoSwitcherRight.setVideoMap( keyMapRightVideo );
-    videoSwitcherRight.setBankMap( keyMapRightBank );
+    videoSwitchLeft.setMaps(    keyMapLeftVideo,  keyMapLeftBank );
+    videoSwitcherRight.setMaps( keyMapRightVideo, keyMapRightBank );
+
     video.setup( "/Users/sonneundasche/programming/of/apps/BleedingEye/data/videosA/",
                  "/Users/sonneundasche/programming/of/apps/BleedingEye/data/videosB/" );
 }
