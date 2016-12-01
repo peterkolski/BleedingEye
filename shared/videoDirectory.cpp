@@ -101,14 +101,14 @@ namespace bildpeter {
 /// \return     true if video is loaded
 bool VideoDirectoryPlayer::setVideoByIndex( int index )
 {
-    if ( index <= videoIndexMax_ )
+    if ( index <= videoIndexMax_  )
     {
-        videoIndexCurrent_ = index;
-
-        loadFromIndex( videoIndexCurrent_ );
-
-        playIfItShould( );
-
+        if ( videoIndexCurrent_ != index )
+        {
+            videoIndexCurrent_ = index;
+            loadFromIndex( videoIndexCurrent_ );
+            playIfItShould( );
+        }
         return true;
     }
     else
@@ -116,6 +116,13 @@ bool VideoDirectoryPlayer::setVideoByIndex( int index )
         ofLogVerbose() << logInfo_  << "No video with index " << index;
         return false;
     }
+}
+
+bool VideoDirectoryPlayer::setBankByIndex( int index )
+{
+    //TODO implement
+    ofLogError( ) << logInfo_ << "Not implemented";
+    return false;
 }
 
 void VideoDirectoryPlayer::loadFromIndex( int index )
