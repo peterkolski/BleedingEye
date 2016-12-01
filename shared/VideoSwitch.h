@@ -14,6 +14,8 @@ namespace bildpeter
 class VideoSwitch
 {
 public:
+    void setVideoMap( std::unordered_map< int, int > map )    { videoKeyMap_ = map; }
+    void setBankMap( std::unordered_map< int, int > map )     { bankKeyMap_  = map; }
     bool grabVideoKey( int key );
     bool grabBankKey( int key );
 
