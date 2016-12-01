@@ -80,10 +80,6 @@ void ofApp::keyPressed(int key){
         case 'r':   network.setRandomPositions( guiNumPoints ); break;
         case 'p':   network.isPointDrawing_ = !network.isPointDrawing_;   break;
         case 's':   controlNextSet();                   break;
-//        case 'i':
-//            inputIsRandom = !inputIsRandom;
-//            oscSensor.enableRandomValues( inputIsRandom );
-//            break;
         case 'f':
             isFullscreen = !isFullscreen;
             ofSetFullscreen( isFullscreen );
@@ -98,11 +94,14 @@ void ofApp::keyPressed(int key){
 
     video.setVideoA( videoSwitchLeft.getIndexVideo() );
     video.setVideoB( videoSwitcherRight.getIndexVideo() );
+    video.setBankA( videoSwitchLeft.getIndexBank() );
+    video.setBankB( videoSwitcherRight.getIndexBank() );
+
 
     ofLogVerbose() << "LEFT | video: " << videoSwitchLeft.getIndexVideo()
-                   << "bank: " << videoSwitchLeft.getIndexBank();
+                   << " bank: " << videoSwitchLeft.getIndexBank();
     ofLogVerbose()  << "Right | video: " << videoSwitcherRight.getIndexVideo()
-                    << "bank: " << videoSwitcherRight.getIndexBank();
+                    << " bank: " << videoSwitcherRight.getIndexBank();
 }
 
 //--------------------------------------------------------------
