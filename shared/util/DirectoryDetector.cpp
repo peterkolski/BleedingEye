@@ -23,5 +23,5 @@ void bildpeter::DirectoryDetector::readDirectories( string path )
 
 string bildpeter::DirectoryDetector::getPathByIndex( int index )
 {
-    return paths_[ index ];
+    return paths_.at( index );
 }

@@ -21,7 +21,7 @@ namespace bildpeter {
 
         for ( int i = 0; i < bankDir_.getPathsAmount(); ++i )
         {
-            videoPathsVec_[ i ].readFiles( bankDir_.getPathByIndex( i ) );
+            videoPathsVec_.at( i ).readFiles( bankDir_.getPathByIndex( i ) );
         }
 
         // TODO first video should be started (search for one)
@@ -90,7 +90,7 @@ namespace bildpeter {
 /// \return     true if video is loaded
 bool VideoDirectoryPlayer::setVideoByIndex( int index )
 {
-    if ( index < videoPathsVec_[ bankIndexCurrent_ ].getPathsAmount()  )
+    if ( index < videoPathsVec_.at( bankIndexCurrent_ ).getPathsAmount()  )
     {
         if ( videoIndexCurrent_ != index )
         {
@@ -121,7 +121,7 @@ bool VideoDirectoryPlayer::setBankByIndex( int index )
         bankIndexCurrent_ = index;
 
         // --- check if video exists
-        if ( videoIndexCurrent_ < videoPathsVec_[ bankIndexCurrent_ ].getPathsAmount() )
+        if ( videoIndexCurrent_ < videoPathsVec_.at( bankIndexCurrent_ ).getPathsAmount() )
         {
             if ( bankIndexCurrent_ != index )
             {
@@ -147,7 +147,7 @@ bool VideoDirectoryPlayer::setBankByIndex( int index )
 void VideoDirectoryPlayer::loadFromIndex( int indexBank, int indexVideo )
 {
 
-    videoPlayer_.load( videoPathsVec_[ indexBank].getPathByIndex( indexVideo ) );    //TODO Does it have to load each time?
+    videoPlayer_.load( videoPathsVec_.at( indexBank ).getPathByIndex( indexVideo ) );    //TODO Does it have to load each time?
     planeWithVideo_.mapTexCoords( 0, 0, videoPlayer_.getWidth(), videoPlayer_.getHeight() );
 
     ofLogVerbose() << logInfo_  << "Video index set to " << videoIndexCurrent_;

@@ -33,5 +33,5 @@ void bildpeter::VideoFileDetector::readFiles( string path )
 
 string bildpeter::VideoFileDetector::getPathByIndex( int index )
 {
-    return paths_[ index ];
+    return paths_.at( index );
 }
