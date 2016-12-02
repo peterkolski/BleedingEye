@@ -19,5 +19,9 @@ void bildpeter::DirectoryDetector::readDirectories( string path )
     {
         ofLogError() << logInfo_ << "No directory found in " << path;
     }
+}
 
+string bildpeter::DirectoryDetector::getPathByIndex( int index )
+{
+    return paths_[ index ];
 }

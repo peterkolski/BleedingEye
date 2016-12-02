@@ -16,6 +16,7 @@ public:
 
     int                     getPathsAmount()    { return paths_.size(); }
     std::vector< string >   getPaths()          { return paths_; }
+    string getPathByIndex( int index );
 
 private:
     string                  logInfo_ = "DirectoryDetector | ";
