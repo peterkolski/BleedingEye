@@ -24,21 +24,10 @@ namespace bildpeter {
             videoPathsVec_[ i ].readFiles( bankDir_.getPathByIndex( i ) );
         }
 
+        // TODO first video should be started (search for one)
 
-        // --- Videos
-        directoryList_.listDir( rootPath );
-        directoryList_.sort();
-        if ( directoryList_.getFiles().size() )
-        {
-            videoIndexCurrent_  = 0;
-            videoIndexMax_      = directoryList_.getFiles().size() - 1;
-            loadFromIndex( videoIndexCurrent_ );
 
-        }
-        else
-        {
-            ofLogError() << logInfo_ << "No files in directory";
-        }
+
     }
     
     // --------------------------------------------------------------------------------------
@@ -80,7 +69,7 @@ namespace bildpeter {
     
     void VideoDirectoryPlayer::nextVideo()
     {
-        if ( videoIndexCurrent_ >= videoIndexMax_ ) {
+        if ( videoIndexCurrent_ >= videoPathsVec_[ bankIndexCurrent_ ].getPathsAmount() ) {
             videoIndexCurrent_ = 0;
             ofLogVerbose() << logInfo_ << "Last video";
         }
@@ -90,11 +79,8 @@ namespace bildpeter {
             ofLogVerbose() << logInfo_ << "Next video";
         }
 
-        loadFromIndex( videoIndexCurrent_ );
-
+        loadFromIndex( bankIndexCurrent_, videoIndexCurrent_ );
         playIfItShould( );
-        
-        planeWithVideo_.mapTexCoords( 0, 0, videoPlayer_.getWidth(), videoPlayer_.getHeight() );
     }
 
 // --------------------------------------------------------------------------------------
@@ -104,12 +90,12 @@ namespace bildpeter {
 /// \return     true if video is loaded
 bool VideoDirectoryPlayer::setVideoByIndex( int index )
 {
-    if ( index <= videoIndexMax_  )
+    if ( index < videoPathsVec_[ bankIndexCurrent_ ].getPathsAmount()  )
     {
         if ( videoIndexCurrent_ != index )
         {
             videoIndexCurrent_ = index;
-            loadFromIndex( videoIndexCurrent_ );
+            loadFromIndex( bankIndexCurrent_, videoIndexCurrent_ );
             playIfItShould( );
         }
         return true;
@@ -128,14 +114,28 @@ bool VideoDirectoryPlayer::setVideoByIndex( int index )
 /// \return     true if bank is loaded
 bool VideoDirectoryPlayer::setBankByIndex( int index )
 {
-    if ( index <= bankIndexMax_  )
+    //TODO this should be better designed
+    // --- check if bank exists
+    if ( index < videoPathsVec_.size() )
     {
-        if ( bankIndexCurrent_ != index )
+        bankIndexCurrent_ = index;
+
+        // --- check if video exists
+        if ( videoIndexCurrent_ < videoPathsVec_[ bankIndexCurrent_ ].getPathsAmount() )
         {
-            //TODO implement
+            if ( bankIndexCurrent_ != index )
+            {
+                loadFromIndex( bankIndexCurrent_, videoIndexCurrent_ );
+                playIfItShould();
+            }
+            return true;
         }
-        ofLogError( ) << logInfo_ << "Not implemented";
-        return true;
+        else
+        {
+            ofLogVerbose() << logInfo_  << "No video with index " << videoIndexCurrent_
+                                        << " in bank " << bankIndexCurrent_;
+            return false;
+        }
     }
     else
     {
@@ -144,10 +144,11 @@ bool VideoDirectoryPlayer::setBankByIndex( int index )
     }
 }
 
-void VideoDirectoryPlayer::loadFromIndex( int index )
+void VideoDirectoryPlayer::loadFromIndex( int indexBank, int indexVideo )
 {
-    videoPlayer_.load( directoryList_.getFiles()[ index ].path() );    //TODO Does it have to load each time?
-    planeWithVideo_.mapTexCoords( 0, 0, videoPlayer_.getWidth(), videoPlayer_.getHeight() ); // TODO should be called with every switch
+
+    videoPlayer_.load( videoPathsVec_[ indexBank].getPathByIndex( indexVideo ) );    //TODO Does it have to load each time?
+    planeWithVideo_.mapTexCoords( 0, 0, videoPlayer_.getWidth(), videoPlayer_.getHeight() );
 
     ofLogVerbose() << logInfo_  << "Video index set to " << videoIndexCurrent_;
 }

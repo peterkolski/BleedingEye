@@ -37,7 +37,7 @@ public:
     ofVideoPlayer       videoPlayer_;
 
 private:
-    void loadFromIndex( int index );
+    void loadFromIndex( int indexBank, int indexVideo );
     void playIfItShould();
 
     string              logInfo_ = "VideoDirectory | ";
@@ -46,9 +46,9 @@ private:
     ofDirectory         directoryList_;
     ofPlanePrimitive    planeWithVideo_;
     int                 videoIndexCurrent_  = 0;    // TODO replace with iterators
-    int                 videoIndexMax_      = -1;
+//    int                 videoIndexMax_      = -1;
     int                 bankIndexCurrent_   = 0;
-    int                 bankIndexMax_       = -1;
+//    int                 bankIndexMax_       = -1;
 
     bool                isPlaying_          = false;
 
