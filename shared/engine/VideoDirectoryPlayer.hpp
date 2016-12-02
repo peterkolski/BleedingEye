@@ -29,9 +29,12 @@ public:
     void    update();
     void    play();
     void    stop();
+    bool    isPlaying();
+
     void    draw( float x, float y, float w, float h );
     void    draw( float x, float y, float z, float w, float h );
     void    fade( float alpha )             { fadeColor_ = ofColor( ofColor::white, alpha ); }
+    void    setPaused( bool pause );
 
 private:
     void loadFromIndex( int indexBank, int indexVideo );

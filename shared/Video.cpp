@@ -21,18 +21,18 @@ void Video::update( float faderA, float faderB, float sensorA, float sensorB, fl
 
     if ( faderA )
     {
-        if ( !videoA_.videoPlayer_.isPlaying() ) { videoA_.videoPlayer_.play(); }
+        if ( !videoA_.isPlaying() ) { videoA_.play(); }
         videoA_.update();
         videoA_.fade( ofClamp( faderA - sensorValA_, 0.0, 1.0 ) * 255 );
     }
-    else    { videoA_.videoPlayer_.setPaused( true ); }
+    else    { videoA_.setPaused( true ); }
 
     if ( faderB ) {
-        if ( !videoB_.videoPlayer_.isPlaying() ) { videoB_.videoPlayer_.play(); }
+        if ( !videoB_.isPlaying() ) { videoB_.play(); }
         videoB_.update();
         videoB_.fade( ofClamp( faderB - sensorValB_, 0.0, 1.0 ) * 255 );
     }
-    else    { videoB_.videoPlayer_.setPaused( true ); }
+    else    { videoB_.setPaused( true ); }
 }
 
 void Video::draw( float faderA, float faderB )

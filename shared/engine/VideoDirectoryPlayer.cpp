@@ -25,8 +25,7 @@ namespace bildpeter {
         }
 
         // TODO first video should be started (search for one)
-
-
+        loadFromIndex( bankIndexCurrent_, videoIndexCurrent_);
 
     }
     
@@ -178,6 +177,16 @@ void VideoDirectoryPlayer::stop()
         videoPlayer_.stop();
         ofLogVerbose() << logInfo_  << "Stop video";
     }
+}
+
+bool VideoDirectoryPlayer::isPlaying()
+{
+    return isPlaying_;
+}
+
+void VideoDirectoryPlayer::setPaused( bool pause )
+{
+    videoPlayer_.setPaused( pause );
 }
 
 
