@@ -20,6 +20,8 @@ void bildpeter::VideoFileDetector::readFiles( string path )
     {
         if ( dir.isFile() )
             paths_.push_back( dir.getAbsolutePath() );
+
+        ofLogVerbose() << logInfo_ << "path: " << paths_.back();
     }
 
     if ( paths_.size() == 0 )
