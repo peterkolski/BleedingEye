@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "ofMain.h"
 #include "util/DirectoryDetector.h"
+#include "util/VideoFileDetector.h"
 
 namespace bildpeter {
 
@@ -41,6 +42,7 @@ private:
 
     string              logInfo_ = "VideoDirectory | ";
     DirectoryDetector   bankDir_;
+    std::vector< bildpeter::VideoFileDetector > videoPathsVec_;
     ofDirectory         directoryList_;
     ofPlanePrimitive    planeWithVideo_;
     int                 videoIndexCurrent_  = 0;    // TODO replace with iterators

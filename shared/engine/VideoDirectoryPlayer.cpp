@@ -16,11 +16,14 @@ namespace bildpeter {
     {
         // --- Banks
         bankDir_.readDirectories( rootPath );
+        // init entries according to folder, so the keys are assigned right
+        videoPathsVec_ = decltype( videoPathsVec_ )( bankDir_.getPathsAmount() );
 
-        for ( auto &currentPath : bankDir_.getPaths() )
+        for ( int i = 0; i < bankDir_.getPathsAmount(); ++i )
         {
-            // TODO Here fill a vector with filePaths
+            videoPathsVec_[ i ].readFiles( bankDir_.getPathByIndex( i ) );
         }
+
 
         // --- Videos
         directoryList_.listDir( rootPath );
@@ -30,15 +33,6 @@ namespace bildpeter {
             videoIndexCurrent_  = 0;
             videoIndexMax_      = directoryList_.getFiles().size() - 1;
             loadFromIndex( videoIndexCurrent_ );
-
-            ofLogVerbose()  << logInfo_ << "File paths amount: " << directoryList_.getFiles().size();
-
-            for ( auto &file : directoryList_.getFiles() )
-            {
-                ofLogVerbose() << logInfo_<< file.path();
-            }
-            
-            planeWithVideo_.mapTexCoords( 0, 0, videoPlayer_.getWidth(), videoPlayer_.getHeight() );
 
         }
         else
@@ -153,6 +147,7 @@ bool VideoDirectoryPlayer::setBankByIndex( int index )
 void VideoDirectoryPlayer::loadFromIndex( int index )
 {
     videoPlayer_.load( directoryList_.getFiles()[ index ].path() );    //TODO Does it have to load each time?
+    planeWithVideo_.mapTexCoords( 0, 0, videoPlayer_.getWidth(), videoPlayer_.getHeight() ); // TODO should be called with every switch
 
     ofLogVerbose() << logInfo_  << "Video index set to " << videoIndexCurrent_;
 }
