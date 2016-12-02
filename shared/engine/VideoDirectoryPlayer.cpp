@@ -14,9 +14,8 @@ namespace bildpeter {
     
     void VideoDirectoryPlayer::loadDirectory( string rootPath )
     {
-        // --- Banks
         bankDir_.readDirectories( rootPath );
-        // init entries according to folder, so the keys are assigned right
+        // --- init entries according to folder, so the keys are assigned right
         videoPathsVec_ = decltype( videoPathsVec_ )( bankDir_.getPathsAmount() );
 
         for ( int i = 0; i < bankDir_.getPathsAmount(); ++i )
@@ -122,11 +121,8 @@ bool VideoDirectoryPlayer::setBankByIndex( int index )
         // --- check if video exists
         if ( videoIndexCurrent_ < videoPathsVec_.at( bankIndexCurrent_ ).getPathsAmount() )
         {
-            if ( bankIndexCurrent_ != index )
-            {
-                loadFromIndex( bankIndexCurrent_, videoIndexCurrent_ );
-                playIfItShould();
-            }
+            loadFromIndex( bankIndexCurrent_, videoIndexCurrent_ ); //TODO shouldnt be reLoaded when the same button is pressed
+            playIfItShould();
             return true;
         }
         else
@@ -146,10 +142,14 @@ bool VideoDirectoryPlayer::setBankByIndex( int index )
 void VideoDirectoryPlayer::loadFromIndex( int indexBank, int indexVideo )
 {
 
-    videoPlayer_.load( videoPathsVec_.at( indexBank ).getPathByIndex( indexVideo ) );    //TODO Does it have to load each time?
+    string _pathCurrent = videoPathsVec_.at( indexBank ).getPathByIndex( indexVideo );
+    videoPlayer_.load( _pathCurrent );    //TODO Does it have to load each time?
     planeWithVideo_.mapTexCoords( 0, 0, videoPlayer_.getWidth(), videoPlayer_.getHeight() );
 
-    ofLogVerbose() << logInfo_  << "Video index set to " << videoIndexCurrent_;
+    ofLogVerbose() << logInfo_
+                    << " Bank_" << indexBank
+                    << " Video_" << indexVideo
+                    << " Video path " << _pathCurrent;
 }
 
 void VideoDirectoryPlayer::playIfItShould()
@@ -186,6 +186,7 @@ bool VideoDirectoryPlayer::isPlaying()
 
 void VideoDirectoryPlayer::setPaused( bool pause )
 {
+    isPlaying_ = false;
     videoPlayer_.setPaused( pause );
 }
 
