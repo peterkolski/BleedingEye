@@ -31,27 +31,21 @@ public:
     void    stop();
     void    draw( float x, float y, float w, float h );
     void    draw( float x, float y, float z, float w, float h );
-
     void    fade( float alpha )             { fadeColor_ = ofColor( ofColor::white, alpha ); }
-
-    ofVideoPlayer       videoPlayer_;
 
 private:
     void loadFromIndex( int indexBank, int indexVideo );
     void playIfItShould();
 
     string              logInfo_ = "VideoDirectory | ";
+    ofVideoPlayer       videoPlayer_;
     DirectoryDetector   bankDir_;
     std::vector< bildpeter::VideoFileDetector > videoPathsVec_;
-    ofDirectory         directoryList_;
     ofPlanePrimitive    planeWithVideo_;
+
     int                 videoIndexCurrent_  = 0;    // TODO replace with iterators
-//    int                 videoIndexMax_      = -1;
     int                 bankIndexCurrent_   = 0;
-//    int                 bankIndexMax_       = -1;
-
     bool                isPlaying_          = false;
-
     ofColor             fadeColor_          = ofColor::white;
 
 };
