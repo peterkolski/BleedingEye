@@ -19,6 +19,7 @@ list( APPEND ${APP_NAME}_SOURCE_FILES
         ../../shared/engine/VideoDirectoryPlayer.cpp
         ../../shared/util/KeyDetector.cpp
         ../../shared/util/DirectoryDetector.cpp
+        ../../shared/util/VideoFileDetector.cpp
         ../../shared/NetworkNode.cpp
         ../../shared/NetworkVisual.cpp
         ../../shared/SensorOSC.cpp
