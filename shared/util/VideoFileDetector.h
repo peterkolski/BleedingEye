@@ -13,7 +13,11 @@ namespace bildpeter
 class VideoFileDetector
 {
 public:
-    void findFiles( string path );
+    void readFiles( string path );
+
+    int              getPathsAmount()    { return paths_.size(); }
+    vector< string > &getPaths_();
+    string           getPathByIndex( int index );
 
 private:
     string                  logInfo_ = "VideoFileDetector | ";
