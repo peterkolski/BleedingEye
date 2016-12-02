@@ -9,7 +9,7 @@
 #include "NetworkNode.hpp"
 #include "NetworkVisual.hpp"
 #include "SensorOSC.hpp"
-#include "videoDirectory.hpp"
+#include "VideoDirectoryPlayer.hpp"
 #include "MidiValues.hpp"
 #include "LinesHorizontal.hpp"
 #include "FlowPoint.hpp"

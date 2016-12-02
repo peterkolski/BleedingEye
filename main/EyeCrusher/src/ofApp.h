@@ -4,16 +4,16 @@
 #include "ofxGui.h"
 #include "ofxMidi.h"
 
+#include "engine/VideoDirectoryPlayer.hpp"
+#include "util/KeyDetector.h"
 #include "SensorOSC.hpp"
-#include "videoDirectory.hpp"
-#include "MidiMapping.h"
 
+#include "MidiMapping.h"
 #include "Ribbon.h"
 #include "Flow.h"
 #include "Network.h"
 #include "Lines.h"
 #include "Video.h"
-#include "util/KeyDetector.h"
 
 // -------------------------------------------------------------------
 // -------------------------------------------------------------------

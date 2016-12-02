@@ -6,7 +6,7 @@
 //
 //
 
-#include "videoDirectory.hpp"
+#include "VideoDirectoryPlayer.hpp"
 
 
 namespace bildpeter {

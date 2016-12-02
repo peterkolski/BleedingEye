@@ -7,7 +7,7 @@
 
 
 #include "ofMain.h"
-#include "videoDirectory.hpp"
+#include "engine/VideoDirectoryPlayer.hpp"
 
 namespace bildpeter
 {

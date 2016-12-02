@@ -16,10 +16,12 @@ set( ${APP_NAME}_SOURCE_FILES
 
 # ------------------------ Shared ------------------------
 list( APPEND ${APP_NAME}_SOURCE_FILES
+        ../../shared/engine/VideoDirectoryPlayer.cpp
+        ../../shared/util/KeyDetector.cpp
+        ../../shared/util/DirectoryDetector.cpp
         ../../shared/NetworkNode.cpp
         ../../shared/NetworkVisual.cpp
         ../../shared/SensorOSC.cpp
-        ../../shared/videoDirectory.cpp
         ../../shared/MidiValues.cpp
         ../../shared/MidiMapping.cpp
         ../../shared/LinesHorizontal.cpp
@@ -29,8 +31,6 @@ list( APPEND ${APP_NAME}_SOURCE_FILES
         ../../shared/Network.cpp
         ../../shared/Lines.cpp
         ../../shared/Video.cpp
-        ../../shared/util/KeyDetector.cpp
-        ../../shared/util/DirectoryDetector.cpp
         )
 
 # ------------------------ AddOns ------------

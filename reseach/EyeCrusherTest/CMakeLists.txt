@@ -19,7 +19,7 @@ list( APPEND ${APP_NAME}_SOURCE_FILES
         ../../shared/NetworkNode.cpp
         ../../shared/NetworkVisual.cpp
         ../../shared/SensorOSC.cpp
-        ../../shared/videoDirectory.cpp
+        ../../shared/VideoDirectoryPlayer.cpp
         ../../shared/MidiValues.cpp
         ../../shared/LinesHorizontal.cpp
         ../../shared/FlowPoint.cpp
