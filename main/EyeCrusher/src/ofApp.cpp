@@ -88,20 +88,22 @@ void ofApp::keyPressed(int key){
         default:    break;
     }
 
-    videoSwitchLeft.grabKey( key );
-    videoSwitcherRight.grabKey( key );
+    if ( videoSwitchLeft.grabKey( key ) )
+    {
+        video.setVideoA( videoSwitchLeft.getIndexVideo() );
+        video.setBankA( videoSwitchLeft.getIndexBank() );
+        ofLogVerbose() << "LEFT | video: " << videoSwitchLeft.getIndexVideo()
+                       << " bank: " << videoSwitchLeft.getIndexBank();
+    }
 
 
-    video.setVideoA( videoSwitchLeft.getIndexVideo() );
-    video.setVideoB( videoSwitcherRight.getIndexVideo() );
-    video.setBankA( videoSwitchLeft.getIndexBank() );
-    video.setBankB( videoSwitcherRight.getIndexBank() );
-
-
-    ofLogVerbose() << "LEFT | video: " << videoSwitchLeft.getIndexVideo()
-                   << " bank: " << videoSwitchLeft.getIndexBank();
-    ofLogVerbose()  << "Right | video: " << videoSwitcherRight.getIndexVideo()
-                    << " bank: " << videoSwitcherRight.getIndexBank();
+    if ( videoSwitcherRight.grabKey( key ) )
+    {
+        video.setVideoB( videoSwitcherRight.getIndexVideo() );
+        video.setBankB( videoSwitcherRight.getIndexBank() );
+        ofLogVerbose()  << "Right | video: " << videoSwitcherRight.getIndexVideo()
+                        << " bank: " << videoSwitcherRight.getIndexBank();
+    }
 }
 
 //--------------------------------------------------------------
@@ -151,9 +153,6 @@ void ofApp::drawInputIndicator()
     else
         ofDrawBitmapStringHighlight( "INPUT: Noise", ofGetWidth() - 100, ofGetHeight() - 10 );
 }
-
-
-
 
 //--------------------------------------------------------------
 
