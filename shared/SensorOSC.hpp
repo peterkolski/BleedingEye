@@ -19,7 +19,7 @@ namespace bildpeter{
 
 class SensorOSC {
 public:
-    void                setup( int _oscPort, string _adress, int _values );
+    void                setup( int _oscPort, string _adress, unsigned long _values );
     void                update();
     void                update( int _frequency, int _mincutoff, int _beta, int _derivedCutoff );
 

@@ -11,7 +11,7 @@
 namespace bildpeter {
     
     
-    void SensorOSC::setup( int _oscPort, string _adress, int _values )
+    void SensorOSC::setup( const int _oscPort, string _adress, const unsigned long _values )
     {
         receiver_.setup( _oscPort );
         data_           = vector< float >( _values );
@@ -69,8 +69,8 @@ void SensorOSC::adjustSensitivity( vector< float > &oscData, float sensitivity )
     for ( auto &sensorValue : oscData )
     {
         sensorValue = ofMap(    sensorValue,
-                                0.0 + sensitivity / 2,
-                                1.0 - sensitivity / 2,
+                                ( float ) ( 0.0 + sensitivity / 2.0 ),
+                                ( float ) ( 1.0 - sensitivity / 2.0 ),
                                 0.0, 1.0, true );
     }
 }
@@ -84,7 +84,7 @@ void SensorOSC::adjustSensitivity( vector< float > &oscData, float sensitivity )
             if ( useFilter_ )
             {
 //                data_[ i ] = filters_[ i ].filter( oscMessage_.getArgAsFloat( i ), ofGetElapsedTimef() );
-                data_[ i ] = filters_[ i ].filter( oscMessage_.getArgAsFloat( i ) );
+                data_[ i ] = ( float ) filters_[ i ].filter( oscMessage_.getArgAsFloat( i ) );
             }
             else
             {
