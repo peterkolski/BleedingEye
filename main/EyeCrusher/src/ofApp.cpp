@@ -38,7 +38,8 @@ void ofApp::setup(){
 void ofApp::update(){
     oscSensor.update();
     oscData = oscSensor.getData();
-    adjustSensitivity();
+    oscSensor.adjustSensitivity( oscData, midiMapper.midiUsed_.getValue( "sensitivity" ) );
+
     controlUpdate();
 
     video.update( midiMapper.midiUsed_.getValue( "videoFaderA" ), midiMapper.midiUsed_.getValue( "videoFaderB" ), midiMapper.midiUsed_.getValue( "videoSensorA" ),
@@ -130,18 +131,6 @@ void ofApp::guiUpdate()
 //    maxDist             = guiDistCenter + guiDistDiff / 2;
 //    valOpacity          = oscData[ 0 ] * guiOscOpacity;
 //    valMovement         = oscData[ 0 ] * guiOscMaxMovement;
-}
-
-//TODO Was soll das hier denn? Ist das nützlich?
-void    ofApp::adjustSensitivity()
-{
-    for ( auto &sensorValue : oscData )
-    {
-        sensorValue = ofMap(    sensorValue,
-                                0.0 + midiMapper.midiUsed_.getValue( "sensitivity" ) / 2,
-                                1.0 - midiMapper.midiUsed_.getValue( "sensitivity" ) / 2,
-                                0.0, 1.0, true );
-    }
 }
 
 //--------------------------------------------------------------

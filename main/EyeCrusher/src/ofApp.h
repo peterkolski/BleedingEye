@@ -30,9 +30,8 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 
 
     void                drawInputIndicator();
-    void                adjustSensitivity();
 
-	bildpeter::Ribbon   ribbon;
+    bildpeter::Ribbon   ribbon;
     bildpeter::Flow     flow;
     bildpeter::Network  network;
 	bildpeter::Lines	lines;

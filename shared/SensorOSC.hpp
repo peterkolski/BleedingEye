@@ -12,6 +12,7 @@
 #include "ofMain.h"
 #include "ofxOsc.h"
 #include "ofxOneEuroFilter.h"
+#include "ofxMidi.h"
 
 namespace bildpeter{
 
@@ -26,8 +27,8 @@ public:
     void                setFilter( bool _filterOn )         { useFilter_ = _filterOn; }
     void                enableRandomValues( bool _switch )  { useRandomValues_ = _switch; }
     bool                hasNewData()                        { return newDataReceived_; }
-    
-    
+    void                adjustSensitivity( vector< float > &oscData, float sensitivity );
+
 private:
     void                processData();
     void                getOscData();

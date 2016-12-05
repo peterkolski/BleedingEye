@@ -8,7 +8,6 @@
 
 #include "SensorOSC.hpp"
 
-
 namespace bildpeter {
     
     
@@ -64,7 +63,20 @@ namespace bildpeter {
     }
 
     // ------------------------------------------------------------
-    
+
+void SensorOSC::adjustSensitivity( vector< float > &oscData, float sensitivity )
+{
+    for ( auto &sensorValue : oscData )
+    {
+        sensorValue = ofMap(    sensorValue,
+                                0.0 + sensitivity / 2,
+                                1.0 - sensitivity / 2,
+                                0.0, 1.0, true );
+    }
+}
+
+// ------------------------------------------------------------
+
     void SensorOSC::processData()
     {
         for ( int i = 0; i < data_.size(); ++i )
