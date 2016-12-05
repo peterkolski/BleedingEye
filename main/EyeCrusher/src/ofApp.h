@@ -28,9 +28,6 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
         void exit();
 	    void keyPressed(int key);
 
-
-    void                drawInputIndicator();
-
     bildpeter::Ribbon   ribbon;
     bildpeter::Flow     flow;
     bildpeter::Network  network;
@@ -60,6 +57,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
 
     // --- GUI
     void            guiUpdate();
+    void            drawInputIndicator();
     bool            useMidi      = true;
     bool            isFullscreen = false;
     ofxIntSlider    guiNumPoints;
