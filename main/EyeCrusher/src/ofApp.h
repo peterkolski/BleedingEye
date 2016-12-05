@@ -93,7 +93,7 @@ const std::unordered_map< int, int > keyMapLeftBank =
         {
                 {'!', 0 },
                 {'"', 1 },
-//                {'§', 2 },
+// TODO               {'§', 2 },
                 {'$', 3 },
                 {'%', 4 },
                 {'&', 5 },
